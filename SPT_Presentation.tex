@@ -1,0 +1,134 @@
+\documentclass{beamer}
+
+\setbeamertemplate{caption}{\raggedright\insertcaption\par}
+
+\mode<presentation>
+{
+  \usetheme{CambridgeUS}
+
+  \setbeamercovered{transparent}
+}
+
+
+\definecolor{Or}{RGB}{255,153,000}
+\definecolor{Indigo}{RGB}{72,61,139}
+\definecolor{Magenta}{RGB}{139,0,139}
+
+\setbeamercolor{normal text}{fg=black,bg=white}
+\setbeamercolor{alerted text}{fg=Indigo}
+\setbeamercolor{example text}{fg=Indigo}
+
+%\setbeamercolor{background canvas}{fg=myforeground, bg=white}
+%\setbeamercolor{background}{fg=myforeground, bg=mybackground}
+%
+%\setbeamercolor{palette primary}{fg=black, bg=gray!30!white}
+%\setbeamercolor{palette secondary}{fg=black, bg=gray!20!white}
+%\setbeamercolor{palette tertiary}{fg=black, bg=gold}
+
+
+
+\setbeamercolor{palette tertiary}{fg=black, bg=Indigo}
+\setbeamercolor{frametitle}{fg=Indigo}
+\setbeamercolor{title}{fg=Indigo}
+\setbeamercolor{footline}{fg=Indigo, bg=Indigo}
+\setbeamercolor{author in head/foot}{fg=black}
+\setbeamercolor{date in head/foot}{fg=black}
+\setbeamercolor{title in head/foot}{fg=black}
+
+\definecolor{Highlight}{RGB}{139,0,139}
+\newcommand{\HL}[1]{{\color{Highlight}#1}}
+
+\usefonttheme{professionalfonts}
+\beamertemplatenavigationsymbolsempty
+
+\usepackage[english]{babel}
+\usepackage{color}
+\usepackage{amsfonts}
+\usepackage{epsfig}
+
+%\usepackage{bbold}
+\usepackage{dsfont}
+
+\usepackage[latin1]{inputenc}
+
+\newcommand{\iu}{\mathrm{i}}
+\newcommand{\Id}{1}
+\newcommand{\alg}[1]{\mathcal{A}(#1)}
+\newcommand{\ideal}[1]{\mathcal{I}_{ #1 }}
+\newcommand{\str}{^{*}}
+\newcommand{\ep}[1]{\mathrm{e}^{#1}}
+\newcommand{\hilb}{\mathcal{H}}
+\newcommand{\dd}{\mathrm{d}}
+\newcommand{\tr}{\mathrm{tr}}
+\newcommand{\Tr}{\mathrm{Tr}}
+\newcommand{\oaux}{\otimes_{\mathrm{aux}}}
+
+\newcommand{\mean}[1]{\langle #1 \rangle}
+\newcommand{\cumul}[1]{\langle\!\langle #1 \rangle\!\rangle}
+
+\DeclareRobustCommand{\augiefamily}{%
+  \fontfamily{augie}\fontseries{m}\fontshape{n}\selectfont}
+\DeclareTextFontCommand{\textaugie}{\augiefamily}
+
+\usepackage{physics}
+
+\setlength{\parskip}{0.1cm}
+
+\title[SPT classification]%\hspace{1cm} \insertframenumber/\inserttotalframenumber]
+{SPT classification from matrix product states to recent proofs}
+
+\author[Tijl]
+{Tijl Jappens \\
+ \scriptsize KU Leuven}
+
+
+\institute[]{
+instituut voor theorethische fysica KU Leuven
+}
+
+
+\date{\today}
+
+\setbeamertemplate{itemize items}{\color{black}$\triangleright$}
+\setbeamertemplate{enumerate items}{\color{black}\insertenumlabel.}
+
+\usepackage[T1]{fontenc}
+\DeclareRobustCommand{\augiefamily}{%
+  \fontfamily{augie}\fontseries{m}\fontshape{n}\selectfont}
+\DeclareTextFontCommand{\textaugie}{\augiefamily}
+
+\begin{document}
+
+%%%%%%%%%% Removes the frame number from the title page %%%%%%%%%%
+\bgroup
+\makeatletter
+\setbeamertemplate{footline}
+{
+  \leavevmode%
+  \hbox{%
+  \begin{beamercolorbox}[wd=.333333\paperwidth,ht=2.25ex,dp=1ex,center]{author in head/foot}%
+ %   \usebeamerfont{author in head/foot}\insertshortauthor\expandafter\beamer@ifempty\expandafter{\beamer@shortinstitute}{}{~~(\insertshortinstitute)}
+  \end{beamercolorbox}%
+  \begin{beamercolorbox}[wd=.333333\paperwidth,ht=2.25ex,dp=1ex,center]{title in head/foot}%
+%    \usebeamerfont{title in head/foot}\insertshorttitle
+  \end{beamercolorbox}%
+  \begin{beamercolorbox}[wd=.333333\paperwidth,ht=2.25ex,dp=1ex,right]{date in head/foot}%
+%    \usebeamerfont{date in head/foot}\insertshortdate{}\hspace*{2em}
+%    \insertframenumber{} / \inserttotalframenumber\hspace*{2ex} 
+  \end{beamercolorbox}}%
+  \vskip0pt%
+}
+\makeatother
+\begin{frame}
+\titlepage
+\end{frame}
+\egroup
+
+\setcounter{framenumber}{0}
+
+\begin{frame}{Thouless pump}
+\end{frame}
+
+\end{document}
+
+
