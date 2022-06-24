@@ -174,10 +174,46 @@ Let $\ket{\psi}$ be an SPT then $\forall n\in\{0,L\}:$ $\exists R_n:G\rightarrow
 for all $g\in G.$
 \end{block}
 \pause
+We can chose $\alpha_n$ to be a $U(1)$ representation
+\[\alpha_n\in\textrm{Hom}(G,U(1))\]
+\pause
+and we can chose $R_n$ to be such that there exist $C_n:G^2\rightarrow U(1)$ such that
+\[R_n(h)R_n(g)=C_n(g,h) R_n(gh).\]
+\end{frame}
+
+\begin{frame}{Properties of $C_n$}
 Since $U(gh)^\dagger U(g)U(h)=\id$ we need
 \begin{equation}
-A_n^i=\alpha_n()
+A_n^i=R_n(h)^\dagger R_n(g)^\dagger R_{n}(gh) A^i_n R_{n+1}(gh)^\dagger R_{n+1}(g) R_{n+1}(h)
 \end{equation}
+and therefore $C_n(g,h)=C_{n+1}(g,h)$. From now on:
+\[C_1(g,h)=\cdots=C_L(g,h)=C(g,h).\]
+\pause
+Because of associativity
+\begin{align*}
+(R_n(g)R_n(h))R_n(l)&=R_n(g)(R_n(h)R_n(l))\\
+C(g,h)(gh,l)&=C(g,hl)C(h,l).
+\end{align*}
+C is a cochain (from group cohomology).
+\end{frame}
+
+\begin{frame}{Properties of $C_n$}
+Note that for any $\beta:G\rightarrow U(1)$ changing the choice of $R_n:$
+\[R_n(g)\rightarrow \beta(g)R_n(g)\]
+is still consistent with everything up to now.
+\pause
+Define an equivalence class by saying that $(C_1)_{\sim}=(C_2)_{\sim}$ if there exists a $\beta:G\rightarrow U(1)$ such that:
+\[C_1(g,h)=C_2(g,h)\beta(g)\beta(h)\overline{\beta(gh)}.\]
+\pause
+\begin{block}{Claim}
+Let $C$ be the cochain defined up to now then $(C)_\sim$ is independent of the choice of $R_n$.
+\end{block}
+\end{frame}
+
+\begin{frame}{Translation invariance}
+\end{frame}
+
+\begin{frame}{Loops of SPT's}
 \end{frame}
 
 \end{document}
