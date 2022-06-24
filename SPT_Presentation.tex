@@ -45,23 +45,24 @@
 \usepackage{color}
 \usepackage{amsfonts}
 \usepackage{epsfig}
+\usepackage{amsmath}
 
 %\usepackage{bbold}
 \usepackage{dsfont}
+\usepackage{bbm}
 
 \usepackage[latin1]{inputenc}
 
-\newcommand{\iu}{\mathrm{i}}
-\newcommand{\Id}{1}
-\newcommand{\alg}[1]{\mathcal{A}(#1)}
-\newcommand{\ideal}[1]{\mathcal{I}_{ #1 }}
-\newcommand{\str}{^{*}}
-\newcommand{\ep}[1]{\mathrm{e}^{#1}}
-\newcommand{\hilb}{\mathcal{H}}
+\newcommand{\id}{\mathbbm{1}}
+\newcommand{\HH}{\mathcal{H}}
+\newcommand{\CC}{\mathbb{C}}
+\newcommand{\BB}{\mathcal{B}}
 \newcommand{\dd}{\mathrm{d}}
+\newcommand{\UU}{\mathcal{U}}
 \newcommand{\tr}{\mathrm{tr}}
 \newcommand{\Tr}{\mathrm{Tr}}
-\newcommand{\oaux}{\otimes_{\mathrm{aux}}}
+
+
 
 \newcommand{\mean}[1]{\langle #1 \rangle}
 \newcommand{\cumul}[1]{\langle\!\langle #1 \rangle\!\rangle}
@@ -75,7 +76,7 @@
 \setlength{\parskip}{0.1cm}
 
 \title[SPT classification]%\hspace{1cm} \insertframenumber/\inserttotalframenumber]
-{SPT classification from matrix product states to recent proofs}
+{SPT classification:\\from matrix product states to recent proofs}
 
 \author[Tijl]
 {Tijl Jappens \\
@@ -126,7 +127,57 @@ instituut voor theorethische fysica KU Leuven
 
 \setcounter{framenumber}{0}
 
-\begin{frame}{Thouless pump}
+\begin{frame}{Matrix product state}
+\begin{columns}
+\begin{column}{0.5\textwidth}
+Hilbert space
+\[\HH := \bigotimes_{n=0}^{L}\CC^{d}.\]
+\end{column}
+\begin{column}{0.5\textwidth}
+\begin{itemize}
+\item $L$ is chain length.
+\item $d$ is on site dimension.
+\end{itemize}
+\end{column}
+\end{columns}
+\pause
+\begin{block}{Definition: Matrix product state (MPS)}
+$\ket{\psi}\in\HH$ is a MPS (with periodic boundary) if $\exists D<<L:\forall n\in\{0,..,L\}:\forall i\in\{1,..,d\}:\exists A^i_n\in\BB(\CC^D):$
+\begin{equation}
+\ket{\psi}=\sum_{i_1,..,i_L}\Tr(A^{i_1}_1\cdots A^{i_L}_L)\ket{i_1,\cdots i_L}.
+\end{equation}
+\end{block}
+\pause
+\begin{itemize}
+\item D is called bond dimension.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{On site group action}
+Let $G$ be a compact group. Take
+\begin{align}
+U(g)&\in\textrm{Hom}(G,U(\CC^d))&\tilde U(g)&:= \bigotimes_{n=0}^L U(g).
+\end{align}
+\pause
+\begin{block}{Definition}
+We say that an MPS $\ket{\psi}$ is SPT if $\exists \tilde{\alpha}\in\textrm{Hom}(G,U(1)):$
+\[\tilde{U}(g)\ket{\psi}=\tilde{\alpha}(g)\ket{\psi}.\]
+\end{block}
+\end{frame}
+
+\begin{frame}{On site group action on MPS}
+\begin{block}{Lemma:}
+Let $\ket{\psi}$ be an SPT then $\forall n\in\{0,L\}:$ $\exists R_n:G\rightarrow U(\CC^D)$ and $\alpha_n:G\rightarrow U(1)$ such that
+\begin{equation}
+\sum_{j=0}^{d}U(g)_{ij}A^j_n=\alpha_n(g) R_n(g)^\dagger A^i_n R_{n+1}(g)
+\end{equation}
+for all $g\in G.$
+\end{block}
+\pause
+Since $U(gh)^\dagger U(g)U(h)=\id$ we need
+\begin{equation}
+A_n^i=\alpha_n()
+\end{equation}
 \end{frame}
 
 \end{document}
