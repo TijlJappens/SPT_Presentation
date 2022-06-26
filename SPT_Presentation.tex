@@ -86,7 +86,7 @@
 \setlength{\parskip}{0.1cm}
 
 \title[SPT classification]%\hspace{1cm} \insertframenumber/\inserttotalframenumber]
-{SPT classification:\\from matrix product states to recent proofs}
+{SPT classification:\\from the AKLT model to recent proofs}
 
 \author[Tijl]
 {Tijl Jappens \\
@@ -212,9 +212,11 @@ Some remarkts:
 \pause
 \item For a product state $\bigotimes_{n=1}^L\ket{0}$, the $A's$ are
 \[A^i=\delta_{i,0}\begin{pmatrix}1&0\\0&0\end{pmatrix}\]
-and these transform as a linear representation.
+and these transform as a linear representation (We took $\ket{0}$ because it is the simultanious eigenstate of $S^x$ and $S^z$.).
 \end{itemize}
-\pause
+\end{frame}
+
+\begin{frame}{Why is the AKLT ground state nontrivial?}
 \begin{block}{Conclusion}
 If there is an index, protecting phases invariant under $\ZZ_2\times\ZZ_2$ based on projective representations then the AKLT groundstate cannot be connected to a product state.
 \end{block}
@@ -284,7 +286,7 @@ U(g)&\in\textrm{Hom}(G,U(\CC^d))&\tilde U(g)&:= \bigotimes_{n=0}^L U(g).
 \end{align}
 \pause
 \begin{block}{Definition}
-We say that an MPS $\ket{\psi}$ is SPT if $\exists \tilde{\alpha}\in\textrm{Hom}(G,U(1)):$
+We say that an MPS $\ket{\psi}$ is $G$-invariant if $\exists \tilde{\alpha}\in\textrm{Hom}(G,U(1)):$
 \[\tilde{U}(g)\ket{\psi}=\tilde{\alpha}(g)\ket{\psi}.\]
 \end{block}
 \end{frame}
@@ -361,7 +363,7 @@ H(\lambda)&= \sum_i H_i(\lambda)&U(\lambda)&= \mathcal{T}\exp(-i\int_0^\lambda \
 where each therm is $G-$invariant:
 \[[H_i(\lambda),\tilde{U}(g)]=0.\]
 \pause
-Let $\ket{\psi}$ be a MPS SPT such that
+Let $\ket{\psi}$ be a $G$-invariant MPS such that
 \[U(1)\ket{\psi}\propto \ket{\psi}.\]
 \end{frame}
 
@@ -458,7 +460,7 @@ $\omega:\AA\rightarrow \CC$ is a state if it is positive and linear.\\
 An interaction is a map of the form
 \[\Phi:\mathfrak{B}_{\ZZ^D}\rightarrow\textrm{Herm}(\AA_{\cdot}).\]
 \pause
-Additionally it is bounded if there exists a MDP function $f:\mathbb{N}^+\rightarrow \mathbb{R}^+$ decaying faster then any exponential such that
+Additionally it is bounded if there exists a MDP function $f:\mathbb{N}^+\rightarrow \mathbb{R}^+$ decaying faster then any exponent such that
 \[\norm{\Phi}_f:=\textrm{sup}_{j\in\ZZ^D}\sum_{S}\chi(j\in S)\frac{\norm{\Phi(S)}}{f(1+\textrm{diam}(S))}<\infty.\]
 \end{block}
 \end{frame}
