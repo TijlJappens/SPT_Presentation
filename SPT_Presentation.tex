@@ -50,6 +50,13 @@
 \usepackage{txfonts}
 \usepackage{relsize}
 
+\usepackage{natbib}
+\usepackage{bibentry}
+\bibliographystyle{apalike}
+
+\newcommand\footcite[1]{\footnote{\bibentry{#1}}\label{\thepage:#1}}
+\newcommand\secondcite[1]{\textsuperscript{\ref{\thepage:#1}}}
+
 %\usepackage{bbold}
 \usepackage{dsfont}
 \usepackage{bbm}
@@ -66,8 +73,6 @@
 \newcommand{\tr}{\mathrm{tr}}
 \newcommand{\Tr}{\mathrm{Tr}}
 \renewcommand{\AA}{\mathcal{A}}
-
-
 
 \newcommand{\mean}[1]{\langle #1 \rangle}
 \newcommand{\cumul}[1]{\langle\!\langle #1 \rangle\!\rangle}
@@ -104,6 +109,7 @@ instituut voor theorethische fysica KU Leuven
 \DeclareTextFontCommand{\textaugie}{\augiefamily}
 
 \begin{document}
+\nobibliography{SPT_Presentation}
 
 %%%%%%%%%% Removes the frame number from the title page %%%%%%%%%%
 \bgroup
@@ -132,11 +138,124 @@ instituut voor theorethische fysica KU Leuven
 
 \setcounter{framenumber}{0}
 
+\begin{frame}{The AKLT model}
+On $\HH:=\bigotimes_{n=1}^L\CC^3$ we define the AKLT Hamiltonian: 
+\begin{equation*}
+H_{\text{AKLT}}:= \sum_{i=1}^L\left(\vec{S}_i\cdot \vec{S}_{i+1}+\frac{1}{3}(\vec{S}_i\cdot \vec{S}_{i+1})^2\right).
+\end{equation*}
+\pause
+This has some important properties:
+\begin{itemize}
+\item It has a unique gapped groundstate (construction wil follow).
+\pause
+\item It has an $SO(3)$ symmetry (we won't use this full symmetry).
+\pause
+\item It has in particular a $\ZZ_2\times \ZZ_2$ symmetry.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{The AKLT model}
+On $\HH:=\bigotimes_{n=1}^L\CC^3$ we define the AKLT Hamiltonian: 
+\begin{equation*}
+H_{\text{AKLT}}:= \sum_{i=1}^L\left(\vec{S}_i\cdot \vec{S}_{i+1}+\frac{1}{3}(\vec{S}_i\cdot \vec{S}_{i+1})^2\right).
+\end{equation*}
+The action of this $\ZZ_2\times \ZZ_2$ symmetry is
+\begin{align*}
+U(1,0)&:=\exp(i\pi S^x)=\begin{pmatrix}0&0&-1\\0&-1&0\\-1&0&0\end{pmatrix}&U(0,1)&:=\exp(i\pi S^z)=\begin{pmatrix}-1&0&0\\0&1&0\\0&0&-1\end{pmatrix}
+\end{align*}
+on each site.
+\end{frame}
+
+\begin{frame}{The AKLT model}
+On $\HH:=\bigotimes_{n=1}^L\CC^3$ we define the AKLT Hamiltonian: 
+\begin{equation*}
+H_{\text{AKLT}}:= \sum_{i=1}^L\left(\vec{S}_i\cdot \vec{S}_{i+1}+\frac{1}{3}(\vec{S}_i\cdot \vec{S}_{i+1})^2\right).
+\end{equation*}
+\begin{block}{Question:}
+Is it possible to continuously deform the AKLT ground state to a product state while:
+\begin{itemize}
+\item keeping the gap open.
+\item using only local operators.
+\item preserving the symmetry.
+\end{itemize}
+\end{block}
+\pause
+It turns out the answer is no.
+\end{frame}
+
+\begin{frame}{AKLT groundstate is matrix product state}
+It turns out we can write the AKLT groundstate as
+\begin{equation*}
+\ket{\psi}=\sum_{i_1,\cdots,i_L}\textrm{Tr}_{\CC^2}\left(A^{i_1}\cdots A^{i_L}\right)\ket{i_1,\cdots ,i_L}
+\end{equation*}
+where
+\begin{align*}
+A^+&:=\frac{1}{\sqrt{2}}\sigma^+&A^0&:=-\frac{1}{2}\sigma^z&A^-&:=-\frac{1}{\sqrt{2}}\sigma^-.
+\end{align*}
+\pause
+This is invariant under the group action because
+\begin{align*}
+\sum_j (U(1,0) )_{ij}A^j&=\sigma^x A^i \sigma^x&\sum_j (U(0,1) )_{ij}A^j&=\sigma^z A^i \sigma^z.
+\end{align*}
+\end{frame}
+
+\begin{frame}{Why is the AKLT ground state nontrivial?}
+Some remarkts:
+\begin{itemize}
+\item $\sigma^x$ is a representation of $\ZZ^2$.
+\pause
+\item $\sigma^z$ is also a representation of $\ZZ^2$.
+\pause
+\item $\sigma^z\sigma^x=-\sigma^x\sigma^z=\sigma^y$.
+\pause
+\item Let $R(1,0)=\sigma^x$ and $R(0,1)=\sigma^z$. There does not exists a $\beta\in U(1)$ such for $R(1,1)=\beta \sigma^y$, R is a (linear representation).
+\pause
+\item For a product state $\bigotimes_{n=1}^L\ket{0}$, the $A's$ are
+\[A^i=\delta_{i,0}\begin{pmatrix}1&0\\0&0\end{pmatrix}\]
+and these transform as a linear representation.
+\end{itemize}
+\pause
+\begin{block}{Conclusion}
+If there is an index, protecting phases invariant under $\ZZ_2\times\ZZ_2$ based on projective representations then the AKLT groundstate cannot be connected to a product state.
+\end{block}
+\end{frame}
+
+\begin{frame}{Second group cohomology group}
+Let $G$ be a compact group.
+\begin{block}{Definition}
+Take $R:G\rightarrow U(\CC^D)$. $R$ is the lift of a projective representation if there exists a $C:G^2\rightarrow U(1)$ satisfying
+\[R(g)R(h)=C(g,h)R(gh).\]
+\end{block}
+\pause
+Because of associativity
+\begin{align*}
+(R_n(g)R_n(h))R_n(l)&=R_n(g)(R_n(h)R_n(l))\\
+C(g,h)C(gh,l)&=C(g,hl)C(h,l).
+\end{align*}
+Such a C is called a 2-cochain ($C\in Z^2$).
+\end{frame}
+
+\begin{frame}{Second group cohomology group}
+\begin{block}{Definition}
+We call $C:G^2\rightarrow U(1)$ a coboundary ($C\in B^2$) if there exists a $\beta:G\rightarrow U(1)$ such that
+\[C(g,h)=\beta(g)\beta(h)\overline{\beta(gh)}.\]
+\end{block}
+The second group cohomology group is defined as $H^2(G,U(1)):=Z^2/B^2$.
+\pause
+\begin{block}{Claim}
+The AKLT groundstate cannot be connected to a product state because cochain corresponding to
+\begin{align*}
+R(1,0)&=\sigma^x&R(0,1)&=\sigma^z&R(1,1)&=\sigma^y
+\end{align*}
+is in a nontrivial second group cohomology class.
+\end{block}
+\end{frame}
+
 \begin{frame}{Matrix product state}
+Translation invariance of AKLT state not important. We can make a more general, nonuniform construction:
 \begin{columns}
 \begin{column}{0.5\textwidth}
-Hilbert space
-\[\HH := \bigotimes_{n=0}^{L}\CC^{d}.\]
+\[\HH := \bigotimes_{n=1}^{L}\CC^{d}.\]
 \end{column}
 \begin{column}{0.5\textwidth}
 \begin{itemize}
@@ -159,7 +278,7 @@ $\ket{\psi}\in\HH$ is a MPS (with periodic boundary) if $\exists D<<L:\forall n\
 \end{frame}
 
 \begin{frame}{On site group action}
-Let $G$ be a compact group. Take
+For any $G$, a compact group we can take any representation:
 \begin{align}
 U(g)&\in\textrm{Hom}(G,U(\CC^d))&\tilde U(g)&:= \bigotimes_{n=0}^L U(g).
 \end{align}
@@ -172,21 +291,20 @@ We say that an MPS $\ket{\psi}$ is SPT if $\exists \tilde{\alpha}\in\textrm{Hom}
 
 \begin{frame}{On site group action on MPS}
 \begin{block}{Lemma:}
-Let $\ket{\psi}$ be an SPT then $\forall n\in\{0,L\}:$ $\exists R_n:G\rightarrow U(\CC^D)$ and $\alpha_n:G\rightarrow U(1)$ such that
+Let $\ket{\psi}$ be an SPT then $\forall n\in\{1,L\}:$ $\exists R_n:G\rightarrow U(\CC^D)$ and $\alpha_n:G\rightarrow U(1)$ such that
 \begin{equation}
 \sum_{j=0}^{d}U(g)_{ij}A^j_n=\alpha_n(g) R_n(g)^\dagger A^i_n R_{n+1}(g)
 \end{equation}
 for all $g\in G.$
 \end{block}
 \pause
-We can chose $\alpha_n$ to be a $U(1)$ representation
-\[\alpha_n\in\textrm{Hom}(G,U(1))\]
-\pause
-and we can chose $R_n$ to be such that there exist $C_n:G^2\rightarrow U(1)$ such that
-\[R_n(h)R_n(g)=C_n(g,h) R_n(gh).\]
+\begin{itemize}
+\item $\alpha_n$ is a $U(1)$ representation.
+\item $R_n$ is lift of projective representation.
+\end{itemize}
 \end{frame}
 
-\begin{frame}{Properties of $C_n$}
+\begin{frame}{$C_n$ is uniform}
 Since $U(gh)^\dagger U(g)U(h)=\id$ we need
 \begin{equation}
 A_n^i=R_n(h)^\dagger R_n(g)^\dagger R_{n}(gh) A^i_n R_{n+1}(gh)^\dagger R_{n+1}(g) R_{n+1}(h)
@@ -194,27 +312,31 @@ A_n^i=R_n(h)^\dagger R_n(g)^\dagger R_{n}(gh) A^i_n R_{n+1}(gh)^\dagger R_{n+1}(
 and therefore $C_n(g,h)=C_{n+1}(g,h)$. From now on:
 \[C_1(g,h)=\cdots=C_L(g,h)=C(g,h).\]
 \pause
-Because of associativity
-\begin{align*}
-(R_n(g)R_n(h))R_n(l)&=R_n(g)(R_n(h)R_n(l))\\
-C(g,h)C(gh,l)&=C(g,hl)C(h,l).
-\end{align*}
-C is a cochain (from group cohomology).
-\end{frame}
-
-\begin{frame}{Properties of $C_n$}
-Note that for any $\beta:G\rightarrow U(1)$ changing the choice of $R_n:$
-\[R_n(g)\rightarrow \beta(g)R_n(g)\]
-is still consistent with everything up to now.
-\pause
-Define an equivalence class by saying that $(C_1)_{\sim}=(C_2)_{\sim}$ if there exists a $\beta:G\rightarrow U(1)$ such that:
-\[C_1(g,h)=C_2(g,h)\beta(g)\beta(h)\overline{\beta(gh)}.\]
+Therefore uniformity of (equivalences of) cochain comes about naturally.
 \pause
 \begin{block}{Claim}
 Let $C$ be the cochain defined up to now then $(C)_\sim$ is independent of the choice of $R_n$ and $\alpha_n$.
 \end{block}
 \pause
 One dimensional SPT's are classified by an $H^2(G,U(1))-$valued index.
+\end{frame}
+
+\begin{frame}{Translation invariance}
+\begin{itemize}
+\item The $\alpha_n(g)$ were not uniform.
+\pause
+\item What happens in the case where we impose translation invariance?
+\end{itemize}
+Eg. We set $d=2$ and $G=\ZZ_2$.\pause We let the on site group action be (for the $g\neq \text{id}$)
+\[U(g)=\begin{pmatrix}1&0\\0&-1\end{pmatrix}.\]
+\pause
+\begin{block}{Claim:}
+I cannot connect the states
+\begin{align*}
+\ket{\psi_\uparrow}&=\ket{\uparrow,\cdots,\uparrow}&\ket{\psi_\downarrow}&=\ket{\downarrow,\cdots,\downarrow}
+\end{align*}
+through local $G$ and translation invariant hamiltonians.
+\end{block}
 \end{frame}
 
 \begin{frame}{Translation invariance}
@@ -341,10 +463,85 @@ Additionally it is bounded if there exists a MDP function $f:\mathbb{N}^+\righta
 \end{block}
 \end{frame}
 
-\begin{frame}{Locally generated automorphism}
+\begin{frame}{Locally generated automorphism (LGA)}
 \begin{block}{Definition}
 An automorphism $\alpha_\lambda:\AA\rightarrow \AA$ is locally generated if there exists a one parameter family of bounded interactions $\Phi_\lambda$ satisfying ($\forall a\in\AA$)
 \[\frac{\dd}{\dd \lambda}\alpha_\lambda(a)=-i\alpha_\lambda\left(\sum_{S\in\mathfrak{B}_{\ZZ^D}}[\Phi_\lambda(S),a]\right).\]
+\end{block}
+\end{frame}
+
+\begin{frame}{SRE stably SRE and Inverible}
+$\omega\in\mathcal{P}(\AA)$ is
+\pause
+\begin{itemize}
+\item short range entangled (SRE) if there exists a product state $\phi\in\mathcal{P}(\AA)$ and an LGA $\alpha_1$ such that
+\[\omega=\phi\circ\alpha_1.\]
+\pause
+\item stably SRE if there exists a product state $\psi\in\mathcal{P}(\AA')$, a product state $\phi\in\mathcal{P}(\AA\otimes_{\text{stack}} \AA')$ and an LGA $\alpha_1$ such that
+\[\omega\otimes_{\text{stack}}\psi =\phi\circ\alpha_1.\]
+\pause
+\item invertible if there exists an inverse state $\omega^{-1}\in\mathcal{P}(\AA')$, a product state $\phi\in\mathcal{P}(\AA\otimes_{\text{stack}}\AA')$ and an LGA such that
+\[\omega\otimes_{\text{stack}}\omega^{-1}=\phi\circ\alpha_1.\]
+\end{itemize}
+\end{frame}
+
+\begin{frame}{On site group action}
+Let $U\in\textrm{Hom}(G,U(\CC^d))$ be the on site group action. We define the group action $\beta\in\textrm{Hom}(G,\textrm{Aut}(\AA))$ such that for any $a\in\AA_Z$
+\[\beta_g(a)=\textrm{Ad}\left(\bigotimes_{i\in Z}U(g)\right)(a).\]
+\pause
+\begin{itemize}
+\item $\omega\in\mathcal{P}(\AA)$ is $G$-invariant if
+\[\omega\circ\beta_g=\omega.\]
+\pause
+\item An interaction $\Phi$ is $G$-invariant if $\forall Z\in\mathfrak{B}_{\ZZ^D}$
+\[\beta_g(\Phi(Z))=\Phi(Z).\]
+\pause
+\item Similarly for translation invariance.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{1D SPT classification results}
+Let $\AA$ be a quasi local algebra over $\ZZ$.
+\begin{block}{Theorem 1:}
+There exists an $H^2(G,U(1))$ valued index on invertible $G$ invariant states. This index is invariant under $G$-invariant LGA's\footcite{ogata2019classification}. (This result is actually more general)
+\end{block}
+\end{frame}
+
+\begin{frame}{1D SPT classification results}
+Let $\AA$ be a quasi local algebra over $\ZZ$.
+\begin{block}{Theorem 2:}
+If two states $\omega_1$ and $\omega_2$ have the same $H^2(G,U(1))$-valued index then there exist product states $\phi_1,\phi_2$ and an LGA $\alpha_1$ such that
+\[\omega_1\otimes_{\text{stack}}\phi_1=\omega_2\otimes_{\text{stack}}\phi_2\circ\alpha_1.\footcite{kapustin2021classification}\]
+\end{block}
+\end{frame}
+
+\begin{frame}{Loops of 1D SPT classification results}
+Let $\AA$ be a quasi local algebra over $\ZZ$.
+\begin{block}{Theorem 3:}
+$G$-invariant locally generated loops of invertible states are classified by an $H^2(G,U(1))\oplus H^1(G,U(1))$-valued index. This classification is also complete.\footcite{https://doi.org/10.48550/arxiv.2204.03763}
+\end{block}
+\end{frame}
+
+\begin{frame}{2D SPT classification results}
+Let $\AA$ be a quasi local algebra over $\ZZ^2$.
+\begin{block}{Theorem 4:}
+$G$-invariant stably SRE's carry an $H^3(G,U(1))$-valued index. This index is invariant under $G$-invariant LGA's.\footcite{ogata2021h3gmathbb}
+\end{block}
+\end{frame}
+
+\begin{frame}{2D translation invariant SPT classification results}
+Let $\AA$ be a quasi local algebra over $\ZZ^2$.
+\begin{block}{Theorem 5:}
+$G$-invariant stably SRE's, that are translation invariant in one direction carry an $H^3(G,U(1))\oplus H^2(G,U(1))$-valued index. This index is invariant under $G$-invariant, translation invariant LGA's.\footcite{https://doi.org/10.48550/arxiv.2202.11758}
+\end{block}
+\end{frame}
+
+\begin{frame}{2D translation invariant SPT classification results}
+Let $\AA$ be a quasi local algebra over $\ZZ^2$.
+\begin{block}{Theorem 6:}
+$G$-invariant stably SRE's, that are translation invariant in two directions carry an
+\[H^3(G,U(1))\oplus H^2(G,U(1))\oplus H^2(G,U(1))\oplus H^1(G,U(1))\]
+-valued index. This index is invariant under $G$-invariant, translation invariant (in two directions) LGA's.\footcite{https://doi.org/10.48550/arxiv.2202.11758}
 \end{block}
 \end{frame}
 
