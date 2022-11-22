@@ -1,0 +1,30 @@
+\begin{thebibliography}{}
+
+\bibitem[Bachmann et~al., 2022]{https://doi.org/10.48550/arxiv.2204.03763}
+Bachmann, S., De~Roeck, W., Fraas, M., and Jappens, T. (2022).
+\newblock A classification of $g$-charge thouless pumps in 1d invertible
+  states.
+
+\bibitem[Jappens, 2022]{https://doi.org/10.48550/arxiv.2202.11758}
+Jappens, T. (2022).
+\newblock Spt indices emerging from translation invariance in two dimensional
+  quantum spin systems.
+
+\bibitem[Kapustin et~al., 2021]{kapustin2021classification}
+Kapustin, A., Sopenko, N., and Yang, B. (2021).
+\newblock A classification of invertible phases of bosonic quantum lattice
+  systems in one dimension.
+\newblock {\em Journal of Mathematical Physics}, 62(8):081901.
+
+\bibitem[Ogata, 2019]{ogata2019classification}
+Ogata, Y. (2019).
+\newblock A classification of pure states on quantum spin chains satisfying the
+  split property with on-site finite group symmetries.
+
+\bibitem[Ogata, 2021]{ogata2021h3gmathbb}
+Ogata, Y. (2021).
+\newblock A {$H^{3}(G,{\mathbb T})$}-valued index of symmetry protected
+  topological phases with on-site finite group symmetry for two-dimensional
+  quantum spin systems.
+
+\end{thebibliography}
