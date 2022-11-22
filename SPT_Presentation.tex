@@ -53,6 +53,8 @@
 \usepackage{natbib}
 \usepackage{bibentry}
 \bibliographystyle{apalike}
+\usepackage{tikz}
+\usetikzlibrary{decorations.pathreplacing}
 
 \newcommand\footcite[1]{\footnote{\bibentry{#1}}\label{\thepage:#1}}
 \newcommand\secondcite[1]{\textsuperscript{\ref{\thepage:#1}}}
@@ -137,6 +139,66 @@ instituut voor theorethische fysica KU Leuven
 \egroup
 
 \setcounter{framenumber}{0}
+\begin{frame}{The (fake) AKLT model}
+	\begin{block}{On site Hilbert space}
+		In $\CC^4\cong \CC^2\times \CC^2$, take as basis
+		\begin{align*}
+			&&\ket{s}&=\frac{1}{\sqrt{2}}(\ket{\uparrow\downarrow}-\ket{\downarrow\uparrow})&&\\
+			\ket{0}&=\frac{1}{\sqrt{2}}(\ket{\uparrow\downarrow}+\ket{\downarrow\uparrow})&\ket{-1}&=\ket{\downarrow\downarrow}&\ket{1}&=\ket{\uparrow\uparrow}.
+		\end{align*}
+	\end{block}
+	\pause
+	\begin{block}{Group action}
+		Take $U\in \textrm{Hom}(\ZZ^2\times \ZZ^2,U(\CC^4))$ by setting
+		\begin{align*}
+		U(-1,1)&=\sigma_x\otimes \sigma_x&U(1,-1)&=-\sigma_y\otimes \sigma_y&U(-1,1)&=\sigma_z\otimes \sigma_z.
+		\end{align*}
+	\end{block}
+\end{frame}
+
+\begin{frame}{The (fake) AKLT model}
+	\begin{block}{Group action}
+		Take $U\in \textrm{Hom}(\ZZ^2\times \ZZ^2,U(\CC^4))$ by setting
+		\begin{align*}
+		U(-1,1)&=\sigma_x\otimes \sigma_x&U(1,-1)&=-\sigma_y\otimes \sigma_y&U(-1,1)&=\sigma_z\otimes \sigma_z.
+		\end{align*}
+	\end{block}
+	Think of $\ZZ^2\times \ZZ^2$ as a subgroup of $SO(3)$ where
+	\begin{itemize}
+		\item $(-1,1)$ rotates around $x$-axis by $\pi$ radial.
+		\item $(1,-1)$ rotates around $y$-axis by $\pi$ radial.
+		\item $(-1,-1)$ rotates around $z$-axis by $\pi$ radial.
+	\end{itemize}
+	\pause
+	\begin{block}{Back to the state}
+		$\ket{s}$ transforms one dimensional under $\ZZ^2\times \ZZ^2$.\\
+		$\ket{-1},\ket{0},\ket{1}$ transform irreducibly under $\ZZ^2\times \ZZ^2$.
+	\end{block}
+\end{frame}
+
+\begin{frame}{The (fake) AKLT model}
+	\begin{tikzpicture}
+		\foreach \i in {1,...,10}
+		{
+			\draw[black] (\i+0.5,0) ellipse (0.5 and 0.2);
+			\filldraw [black] (\i-0.15,0) circle (2pt);
+			\filldraw [black] (\i+0.15,0) circle (2pt);
+			
+		}
+		\filldraw [black] (11-0.15,0) circle (2pt);
+		\filldraw [black] (11+0.15,0) circle (2pt);
+		\draw [decorate,decoration={brace,amplitude=5pt},xshift=0cm,yshift=0pt] (5,0.3) -- (5+1,0.3) node [black,midway,yshift=0.3cm] {\footnotesize $\ket{s}$};
+		\draw [decorate,decoration={brace,amplitude=5pt},xshift=0cm,yshift=0pt] (5+0.3,-0.3) -- (5-0.3,-0.3) node [black,midway,yshift=-0.3cm] {\footnotesize $\CC^4$};
+	\end{tikzpicture}\\
+	On $\bigotimes_{i=1}^L(\CC^4)$ (with open boundary conditions), define a state\\
+	Where\\
+	\begin{itemize}
+		\item The curves indicate singlet states.
+		\item The sites are pairs of dots close to each other.
+		\item If I count the sites differently, this is a product state but if I take the sites in this way, it is not.
+		\item If I put this state on closed boundary conditions it is invariant under 
+	\end{itemize}
+\end{frame}
 
 \begin{frame}{The AKLT model}
 On $\HH:=\bigotimes_{n=1}^L\CC^3$ we define the AKLT Hamiltonian: 
