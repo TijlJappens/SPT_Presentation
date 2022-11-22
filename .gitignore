@@ -2,3 +2,10 @@
 *.aux
 *.synctex.gz
 README.md
+*.bbl
+*.blg
+*.log
+*.out
+*.nav
+*.snm
+*.toc
