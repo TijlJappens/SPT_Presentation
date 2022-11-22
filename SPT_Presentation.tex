@@ -139,7 +139,7 @@ instituut voor theorethische fysica KU Leuven
 \egroup
 
 \setcounter{framenumber}{0}
-\begin{frame}{The (fake) AKLT model}
+\begin{frame}{The singlet and the triplet}
 	\begin{block}{On site Hilbert space}
 		In $\CC^4\cong \CC^2\times \CC^2$, take as basis
 		\begin{align*}
@@ -151,16 +151,16 @@ instituut voor theorethische fysica KU Leuven
 	\begin{block}{Group action}
 		Take $U\in \textrm{Hom}(\ZZ^2\times \ZZ^2,U(\CC^4))$ by setting
 		\begin{align*}
-		U(-1,1)&=\sigma_x\otimes \sigma_x&U(1,-1)&=-\sigma_y\otimes \sigma_y&U(-1,1)&=\sigma_z\otimes \sigma_z.
+		U(-1,1)&=\sigma_x\otimes \sigma_x&U(1,-1)&=-\sigma_y\otimes \sigma_y&U(-1,-1)&=\sigma_z\otimes \sigma_z.
 		\end{align*}
 	\end{block}
 \end{frame}
 
-\begin{frame}{The (fake) AKLT model}
+\begin{frame}{The singlet and the triplet}
 	\begin{block}{Group action}
 		Take $U\in \textrm{Hom}(\ZZ^2\times \ZZ^2,U(\CC^4))$ by setting
 		\begin{align*}
-		U(-1,1)&=\sigma_x\otimes \sigma_x&U(1,-1)&=-\sigma_y\otimes \sigma_y&U(-1,1)&=\sigma_z\otimes \sigma_z.
+		U(-1,1)&=\sigma_x\otimes \sigma_x&U(1,-1)&=-\sigma_y\otimes \sigma_y&U(-1,-1)&=\sigma_z\otimes \sigma_z.
 		\end{align*}
 	\end{block}
 	Think of $\ZZ^2\times \ZZ^2$ as a subgroup of $SO(3)$ where
@@ -176,11 +176,30 @@ instituut voor theorethische fysica KU Leuven
 	\end{block}
 \end{frame}
 
+\begin{frame}{Intermezzo linear and projective representations}
+	We had a (linear) representation
+	\begin{align*}
+			U(-1,1)&=\sigma_x\otimes \sigma_x&U(1,-1)&=-\sigma_y\otimes \sigma_y&U(-1,1)&=\sigma_z\otimes \sigma_z.
+	\end{align*}
+	\pause
+	Does this reduce to a representation on $\CC^2$?\\
+	\pause
+	In particular, if one takes
+	\begin{align}
+		U(-1,1)&=\sigma_x&U(1,-1)&=\sigma_y&U(-1,-1)&=\sigma_z
+	\end{align}
+	then
+	\begin{equation}
+		U(-1,1)U(1,-1)=-U(1,-1)U(-1,1)=i U(-1,-1).
+	\end{equation}
+	It is a projective representation.
+\end{frame}
+
 \begin{frame}{The (fake) AKLT model}
 	\begin{tikzpicture}
 		\foreach \i in {1,...,10}
 		{
-			\draw[black] (\i+0.5,0) ellipse (0.5 and 0.2);
+			\draw[black] (\i+0.5,0) ellipse (0.48 and 0.2);
 			\filldraw [black] (\i-0.15,0) circle (2pt);
 			\filldraw [black] (\i+0.15,0) circle (2pt);
 			
@@ -190,14 +209,50 @@ instituut voor theorethische fysica KU Leuven
 		\draw [decorate,decoration={brace,amplitude=5pt},xshift=0cm,yshift=0pt] (5,0.3) -- (5+1,0.3) node [black,midway,yshift=0.3cm] {\footnotesize $\ket{s}$};
 		\draw [decorate,decoration={brace,amplitude=5pt},xshift=0cm,yshift=0pt] (5+0.3,-0.3) -- (5-0.3,-0.3) node [black,midway,yshift=-0.3cm] {\footnotesize $\CC^4$};
 	\end{tikzpicture}\\
-	On $\bigotimes_{i=1}^L(\CC^4)$ (with open boundary conditions), define a state\\
-	Where\\
+	On $\bigotimes_{i=1}^L(\CC^4)$, define a state
+	\begin{equation}
+		\ket{\psi}=\bigotimes_{i=1}^L\ket{s}_{(i,R),(i+1,L)}
+	\end{equation}
+	\pause
+	It satisfies that:
 	\begin{itemize}
-		\item The curves indicate singlet states.
-		\item The sites are pairs of dots close to each other.
 		\item If I count the sites differently, this is a product state but if I take the sites in this way, it is not.
-		\item If I put this state on closed boundary conditions it is invariant under 
+		\item If I put this state on closed boundary conditions it is invariant under
+		\begin{equation}
+			U(g)=\bigotimes_i U_i(g).
+		\end{equation}
 	\end{itemize}
+\end{frame}
+
+\begin{frame}{The (fake) AKLT model}
+	Let us forget the boundaries for a while and define\\$\:$\\
+	\begin{tikzpicture}
+		\foreach \i in {1,...,10}
+		{
+			\draw[black] (\i+0.5,0) ellipse (0.48 and 0.2);
+			\filldraw [black] (\i-0.15,0) circle (2pt);
+			\filldraw [black] (\i+0.15,0) circle (2pt);
+			
+		}
+		\filldraw [black] (11-0.15,0) circle (2pt);
+		\filldraw [black] (11+0.15,0) circle (2pt);
+		\begin{scope}
+			\clip(0.5,0.2)rectangle(1,-0.2);
+			\draw[black] (0.5,0) ellipse (0.48 and 0.2);
+		\end{scope}
+		\begin{scope}
+			\clip(11,0.2)rectangle(11.5,-0.2);
+			\draw[black] (11.5,0) ellipse (0.48 and 0.2);
+		\end{scope}
+		\draw [decorate,decoration={brace,amplitude=5pt},xshift=0cm,yshift=0pt] (7,0.3) -- (11.5,0.3) node [black,midway,yshift=0.3cm] {\footnotesize $\ket{\psi_R}$};
+		\draw [decorate,decoration={brace,amplitude=5pt},xshift=0cm,yshift=0pt] (0.5,0.3) -- (6,0.3) node [black,midway,yshift=0.3cm] {\footnotesize $\ket{\psi_L}$};
+		\draw [decorate,decoration={brace,amplitude=5pt},xshift=0cm,yshift=0pt] (6,0.3) -- (7,0.3) node [black,midway,yshift=0.3cm] {\footnotesize $\ket{s}$};
+		\draw [decorate,decoration={brace,amplitude=5pt},xshift=0cm,yshift=0pt] (6.5,-0.3) -- (0.5,-0.3)  node [black,midway,yshift=-0.3cm] {\footnotesize $L$};
+		\draw [decorate,decoration={brace,amplitude=5pt},xshift=0cm,yshift=0pt] (11.5,-0.3) -- (6.5,-0.3)  node [black,midway,yshift=-0.3cm] {\footnotesize $R$};
+	\end{tikzpicture}
+	\begin{block}{Claim}
+		There does not exist any 
+	\end{block}
 \end{frame}
 
 \begin{frame}{The AKLT model}
