@@ -141,7 +141,7 @@ instituut voor theorethische fysica KU Leuven
 \setcounter{framenumber}{0}
 \begin{frame}{The singlet and the triplet}
 	\begin{block}{On site Hilbert space}
-		In $\CC^4\cong \CC^2\times \CC^2$, take as basis
+		In $\CC^4\cong \CC^2\otimes \CC^2$, take as basis
 		\begin{align*}
 			&&\ket{s}&=\frac{1}{\sqrt{2}}(\ket{\uparrow\downarrow}-\ket{\downarrow\uparrow})&&\\
 			\ket{0}&=\frac{1}{\sqrt{2}}(\ket{\uparrow\downarrow}+\ket{\downarrow\uparrow})&\ket{-1}&=\ket{\downarrow\downarrow}&\ket{1}&=\ket{\uparrow\uparrow}.
@@ -192,7 +192,7 @@ instituut voor theorethische fysica KU Leuven
 	\begin{equation}
 		U(-1,1)U(1,-1)=-U(1,-1)U(-1,1)=i U(-1,-1).
 	\end{equation}
-	It is a projective representation.
+	It is a lift of a projective representation.
 \end{frame}
 
 \begin{frame}{The (fake) AKLT model}
@@ -208,6 +208,14 @@ instituut voor theorethische fysica KU Leuven
 		\filldraw [black] (11+0.15,0) circle (2pt);
 		\draw [decorate,decoration={brace,amplitude=5pt},xshift=0cm,yshift=0pt] (5,0.3) -- (5+1,0.3) node [black,midway,yshift=0.3cm] {\footnotesize $\ket{s}$};
 		\draw [decorate,decoration={brace,amplitude=5pt},xshift=0cm,yshift=0pt] (5+0.3,-0.3) -- (5-0.3,-0.3) node [black,midway,yshift=-0.3cm] {\footnotesize $\CC^4$};
+		\begin{scope}
+			\clip(0.5,0.2)rectangle(1,-0.2);
+			\draw[black] (0.5,0) ellipse (0.48 and 0.2);
+		\end{scope}
+		\begin{scope}
+			\clip(11,0.2)rectangle(11.5,-0.2);
+			\draw[black] (11.5,0) ellipse (0.48 and 0.2);
+		\end{scope}
 	\end{tikzpicture}\\
 	On $\bigotimes_{i=1}^L(\CC^4)$, define a state
 	\begin{equation}
@@ -216,16 +224,61 @@ instituut voor theorethische fysica KU Leuven
 	\pause
 	It satisfies that:
 	\begin{itemize}
-		\item If I count the sites differently, this is a product state but if I take the sites in this way, it is not.
-		\item If I put this state on closed boundary conditions it is invariant under
+		\item If I put this state on periodic boundary conditions it is invariant under
 		\begin{equation}
 			U(g)=\bigotimes_i U_i(g).
 		\end{equation}
 	\end{itemize}
 \end{frame}
 
+\begin{frame}{The product state}
+	\begin{tikzpicture}
+		\foreach \i in {1,...,11}
+		{
+			\draw[black] (\i,0) ellipse (0.3 and 0.2);
+			\filldraw [black] (\i-0.15,0) circle (2pt);
+			\filldraw [black] (\i+0.15,0) circle (2pt);
+			
+		}
+		\draw [decorate,decoration={brace,amplitude=5pt},xshift=0cm,yshift=0pt] (5-0.3,0.3) -- (5+0.3,0.3) node [black,midway,yshift=0.3cm] {\footnotesize $\ket{s}$};
+		\draw [decorate,decoration={brace,amplitude=5pt},xshift=0cm,yshift=0pt] (5+0.3,-0.3) -- (5-0.3,-0.3) node [black,midway,yshift=-0.3cm] {\footnotesize $\CC^4$};
+	\end{tikzpicture}\\
+	On $\bigotimes_{i=1}^L(\CC^4)$, define a state
+	\begin{equation}
+		\ket{\psi_0}=\bigotimes_{i=1}^L\ket{s}_{(i,L),(i,R)}
+	\end{equation}
+	\pause
+	It satisfies that:
+	\begin{itemize}
+		\item If I put this state on periodic boundary conditions it is invariant under
+		\begin{equation}
+			U(g)=\bigotimes_i U_i(g).
+		\end{equation}
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Finite depth quantum cirquits}
+	A finite depth quantum cirquit (of depth 4) is of the form:
+	\begin{figure}
+		\center
+		\includegraphics[width=0.8\textwidth]{FiniteDepthQuantumCirquit2.png}
+	\end{figure}
+	If all $U_{ij}$ commute with $U(g)$ $(\forall g\in G)$ then it is $G$-invariant.
+\end{frame}
+
+\begin{frame}{Connecting $\ket{\psi}$ and $\ket{\psi_0}$}
+	I can connect $\ket{\psi}$ and $\ket{\psi_0}$ with a quantum circuit of depth 2:
+	\begin{figure}
+		\center
+		\includegraphics[width=0.8\textwidth]{ConnectingPsiAndPsi0.png}
+	\end{figure}
+	However, this is not $G$-invariant.\\
+	\pause
+	Can I find a $G$-invariant quantum cirquit?
+\end{frame}
+
 \begin{frame}{The (fake) AKLT model}
-	Let us forget the boundaries for a while and define\\$\:$\\
+	$\ket{\psi}=\ket{\psi_L}\otimes\ket{s}\otimes\ket{\psi_R}$ \\
 	\begin{tikzpicture}
 		\foreach \i in {1,...,10}
 		{
@@ -249,300 +302,114 @@ instituut voor theorethische fysica KU Leuven
 		\draw [decorate,decoration={brace,amplitude=5pt},xshift=0cm,yshift=0pt] (6,0.3) -- (7,0.3) node [black,midway,yshift=0.3cm] {\footnotesize $\ket{s}$};
 		\draw [decorate,decoration={brace,amplitude=5pt},xshift=0cm,yshift=0pt] (6.5,-0.3) -- (0.5,-0.3)  node [black,midway,yshift=-0.3cm] {\footnotesize $L$};
 		\draw [decorate,decoration={brace,amplitude=5pt},xshift=0cm,yshift=0pt] (11.5,-0.3) -- (6.5,-0.3)  node [black,midway,yshift=-0.3cm] {\footnotesize $R$};
-	\end{tikzpicture}
+	\end{tikzpicture}\\
+	\pause
+	\begin{equation}
+		\textrm{Tr}_L(\ket{\psi}\bra{\psi})=\frac{1}{2}(\ket{\uparrow}\bra{\uparrow}+\ket{\downarrow}\bra{\downarrow})\otimes\ket{\psi_R}\bra{\psi_R}.
+	\end{equation}
+	This is a (perfectly) mixed state. Take a basis of this mixed state
+	\begin{align}
+		\ket{v_1}=&\ket{\uparrow}\otimes\ket{\psi_R}&\ket{v_2}&\ket{\uparrow}\otimes\ket{\psi_R}.
+	\end{align}
+	\pause
+	This subspace transforms under $\ZZ_2\times\ZZ_2$ as
+	\begin{align}
+		R(-1,1)&=\sigma_x&R(1,-1)&=\sigma_y&R(-1,-1)&=\sigma_z.
+	\end{align}
 	\begin{block}{Claim}
-		There does not exist any 
+		The right half of this chain transforms projectively under the group action.
 	\end{block}
 \end{frame}
 
-\begin{frame}{The AKLT model}
-On $\HH:=\bigotimes_{n=1}^L\CC^3$ we define the AKLT Hamiltonian: 
-\begin{equation*}
-H_{\text{AKLT}}:= \sum_{i=1}^L\left(\vec{S}_i\cdot \vec{S}_{i+1}+\frac{1}{3}(\vec{S}_i\cdot \vec{S}_{i+1})^2\right).
-\end{equation*}
-\pause
-This has some important properties:
-\begin{itemize}
-\item It has a unique gapped groundstate (construction wil follow).
-\pause
-\item It has an $SO(3)$ symmetry (we won't use this full symmetry).
-\pause
-\item It has in particular a $\ZZ_2\times \ZZ_2$ symmetry.
-\end{itemize}
+\begin{frame}{The product state}
+	$\ket{\psi_0}=\ket{\psi_{0,L}}\otimes\ket{\psi_{0,R}}$ \\
+	\begin{tikzpicture}
+		\foreach \i in {1,...,11}
+		{
+			\draw[black] (\i,0) ellipse (0.3 and 0.2);
+			\filldraw [black] (\i-0.15,0) circle (2pt);
+			\filldraw [black] (\i+0.15,0) circle (2pt);
+			
+		}
+		\draw [decorate,decoration={brace,amplitude=5pt},xshift=0cm,yshift=0pt] (6.5,0.3) -- (11.5,0.3) node [black,midway,yshift=0.3cm] {\footnotesize $\ket{\psi_{0,R}}$};
+		\draw [decorate,decoration={brace,amplitude=5pt},xshift=0cm,yshift=0pt] (0.5,0.3) -- (6.5,0.3) node [black,midway,yshift=0.3cm] {\footnotesize $\ket{\psi_{0,L}}$};
+		\draw [decorate,decoration={brace,amplitude=5pt},xshift=0cm,yshift=0pt] (6.5,-0.3) -- (0.5,-0.3)  node [black,midway,yshift=-0.3cm] {\footnotesize $L$};
+		\draw [decorate,decoration={brace,amplitude=5pt},xshift=0cm,yshift=0pt] (11.5,-0.3) -- (6.5,-0.3)  node [black,midway,yshift=-0.3cm] {\footnotesize $R$};
+	\end{tikzpicture}\\
+	\pause
+	\begin{equation}
+		\textrm{Tr}_L(\ket{\psi_0}\bra{\psi_0})=\ket{\psi_{0,R}}\bra{\psi_{0,R}}.
+	\end{equation}
+	\pause
+	This subspace transforms under $\ZZ_2\times\ZZ_2$ one dimensionally.
+	\begin{block}{Claim}
+		The right half of this chain transforms linearly under the group action.
+	\end{block}
 \end{frame}
 
-\begin{frame}{The AKLT model}
-On $\HH:=\bigotimes_{n=1}^L\CC^3$ we define the AKLT Hamiltonian: 
-\begin{equation*}
-H_{\text{AKLT}}:= \sum_{i=1}^L\left(\vec{S}_i\cdot \vec{S}_{i+1}+\frac{1}{3}(\vec{S}_i\cdot \vec{S}_{i+1})^2\right).
-\end{equation*}
-The action of this $\ZZ_2\times \ZZ_2$ symmetry is
-\begin{align*}
-U(1,0)&:=\exp(i\pi S^x)=\begin{pmatrix}0&0&-1\\0&-1&0\\-1&0&0\end{pmatrix}&U(0,1)&:=\exp(i\pi S^z)=\begin{pmatrix}-1&0&0\\0&1&0\\0&0&-1\end{pmatrix}
-\end{align*}
-on each site.
+\begin{frame}{Proof that I can't connect $\ket{\psi_0}$ and $\ket{\psi}$ through finite depth quantum cirquit}
+	Suppose I can connect $\ket{\psi}$ and $\ket{\psi_0}$ through $G$-invariant quantum cirquit of depth $d$:
+	\begin{figure}
+		\center
+		\includegraphics[width=0.8\textwidth]{ConnectingPsiAndPsi0Proof.png}
+	\end{figure}
 \end{frame}
 
-\begin{frame}{The AKLT model}
-On $\HH:=\bigotimes_{n=1}^L\CC^3$ we define the AKLT Hamiltonian: 
-\begin{equation*}
-H_{\text{AKLT}}:= \sum_{i=1}^L\left(\vec{S}_i\cdot \vec{S}_{i+1}+\frac{1}{3}(\vec{S}_i\cdot \vec{S}_{i+1})^2\right).
-\end{equation*}
-\begin{block}{Question:}
-Is it possible to continuously deform the AKLT ground state to a product state while:
-\begin{itemize}
-\item keeping the gap open.
-\item using only local operators.
-\item preserving the symmetry.
-\end{itemize}
-\end{block}
-\pause
-It turns out the answer is no.
-\end{frame}
-
-\begin{frame}{AKLT groundstate is matrix product state}
-It turns out we can write the AKLT groundstate as
-\begin{equation*}
-\ket{\psi}=\sum_{i_1,\cdots,i_L}\textrm{Tr}_{\CC^2}\left(A^{i_1}\cdots A^{i_L}\right)\ket{i_1,\cdots ,i_L}
-\end{equation*}
-where
-\begin{align*}
-A^+&:=\frac{1}{\sqrt{2}}\sigma^+&A^0&:=-\frac{1}{2}\sigma^z&A^-&:=-\frac{1}{\sqrt{2}}\sigma^-.
-\end{align*}
-\pause
-This is invariant under the group action because
-\begin{align*}
-\sum_j (U(1,0) )_{ij}A^j&=\sigma^x A^i \sigma^x&\sum_j (U(0,1) )_{ij}A^j&=\sigma^z A^i \sigma^z.
-\end{align*}
-\end{frame}
-
-\begin{frame}{Why is the AKLT ground state nontrivial?}
-Some remarkts:
-\begin{itemize}
-\item $\sigma^x$ is a representation of $\ZZ^2$.
-\pause
-\item $\sigma^z$ is also a representation of $\ZZ^2$.
-\pause
-\item $\sigma^z\sigma^x=-\sigma^x\sigma^z=\sigma^y$.
-\pause
-\item Let $R(1,0)=\sigma^x$ and $R(0,1)=\sigma^z$. There does not exists a $\beta\in U(1)$ such for $R(1,1)=\beta \sigma^y$, R is a (linear representation).
-\pause
-\item For a product state $\bigotimes_{n=1}^L\ket{0}$, the $A's$ are
-\[A^i=\delta_{i,0}\begin{pmatrix}1&0\\0&0\end{pmatrix}\]
-and these transform as a linear representation (We took $\ket{0}$ because it is the simultanious eigenstate of $S^x$ and $S^z$.).
-\end{itemize}
-\end{frame}
-
-\begin{frame}{Why is the AKLT ground state nontrivial?}
-\begin{block}{Conclusion}
-If there is an index, protecting phases invariant under $\ZZ_2\times\ZZ_2$ based on projective representations then the AKLT groundstate cannot be connected to a product state.
-\end{block}
+\begin{frame}{Proof that I can't connect $\ket{\psi_0}$ and $\ket{\psi}$ through finite depth quantum cirquit}
+	This implies that there exists a state $\ket{\tilde\psi}$ that looks like $\ket{\psi}$ on the left and $\ket{\psi_0}$ on the right:
+	\begin{figure}
+		\center
+		\includegraphics[width=0.75\textwidth]{ConnectingPsiAndPsi0Proof2.png}
+	\end{figure}
+	\pause
+	This cannot exist because you can't connect a state that transforms projectively to a state that transforms linearly.
 \end{frame}
 
 \begin{frame}{Second group cohomology group}
-Let $G$ be a compact group.
-\begin{block}{Definition}
-Take $R:G\rightarrow U(\CC^D)$. $R$ is the lift of a projective representation if there exists a $C:G^2\rightarrow U(1)$ satisfying
-\[R(g)R(h)=C(g,h)R(gh).\]
-\end{block}
-\pause
-Because of associativity
-\begin{align*}
-(R_n(g)R_n(h))R_n(l)&=R_n(g)(R_n(h)R_n(l))\\
-C(g,h)C(gh,l)&=C(g,hl)C(h,l).
-\end{align*}
-Such a C is called a 2-cochain ($C\in Z^2$).
+	Let $G$ be a compact lie group.
+	\begin{block}{Definition}
+		Take $R:G\rightarrow U(\CC^D)$. $R$ is the lift of a projective representation if there exists a $C:G^2\rightarrow U(1)$ satisfying
+		\[R(g)R(h)=C(g,h)R(gh).\]
+	\end{block}
+	\pause
+	Because of associativity
+	\begin{align*}
+		(R(g)R(h))R(l)&=R(g)(R(h)R(l))\\
+		C(g,h)C(gh,l)&=C(g,hl)C(h,l).
+	\end{align*}
+	Such a C is called a 2-cochain ($C\in Z^2$).
 \end{frame}
 
 \begin{frame}{Second group cohomology group}
-\begin{block}{Definition}
-We call $C:G^2\rightarrow U(1)$ a coboundary ($C\in B^2$) if there exists a $\beta:G\rightarrow U(1)$ such that
-\[C(g,h)=\beta(g)\beta(h)\overline{\beta(gh)}.\]
-\end{block}
-The second group cohomology group is defined as $H^2(G,U(1)):=Z^2/B^2$.
-\pause
-\begin{block}{Claim}
-The AKLT groundstate cannot be connected to a product state because cochain corresponding to
-\begin{align*}
-R(1,0)&=\sigma^x&R(0,1)&=\sigma^z&R(1,1)&=\sigma^y
-\end{align*}
-is in a nontrivial second group cohomology class.
-\end{block}
+	\begin{block}{Definition}
+		We call $C:G^2\rightarrow U(1)$ a coboundary ($C\in B^2$) if there exists a $\beta:G\rightarrow U(1)$ such that
+		\[C(g,h)=\beta(g)\beta(h)\overline{\beta(gh)}.\]
+	\end{block}
+	The second group cohomology group is defined as $H^2(G,U(1)):=Z^2/B^2$.
+	\pause
+	\begin{block}{Claim}
+		The AKLT groundstate cannot be connected to a product state because cochain corresponding to
+		\begin{align*}
+			R(1,0)&=\sigma^x&R(0,1)&=\sigma^z&R(1,1)&=\sigma^y
+		\end{align*}
+		is in a nontrivial second group cohomology class.
+	\end{block}
 \end{frame}
 
-\begin{frame}{Matrix product state}
-Translation invariance of AKLT state not important. We can make a more general, nonuniform construction:
-\begin{columns}
-\begin{column}{0.5\textwidth}
-\[\HH := \bigotimes_{n=1}^{L}\CC^{d}.\]
-\end{column}
-\begin{column}{0.5\textwidth}
-\begin{itemize}
-\item $L$ is chain length.
-\item $d$ is on site dimension.
-\end{itemize}
-\end{column}
-\end{columns}
-\pause
-\begin{block}{Definition: Matrix product state (MPS)}
-$\ket{\psi}\in\HH$ is a MPS (with periodic boundary) if $\exists D<<L:\forall n\in\{0,..,L\}:\forall i\in\{1,..,d\}:\exists A^i_n\in\BB(\CC^D):$
-\begin{equation}
-\ket{\psi}=\sum_{i_1,..,i_L}\Tr(A^{i_1}_1\cdots A^{i_L}_L)\ket{i_1,\cdots i_L}.
-\end{equation}
-\end{block}
-\pause
-\begin{itemize}
-\item D is called bond dimension.
-\end{itemize}
+\begin{frame}{SPT classification problem}
+	\begin{figure}
+		\center
+		\includegraphics[width=0.8\textwidth]{ConnectedComponents.png}
+	\end{figure}
+	\pause
+	In this case the green areas are labelled by $H^2(G,U(1))$.\\$\:$\\
+	In particular $H^2(SO(3),U(1))\cong H^2(\ZZ_2\times\ZZ_2,U(1))\cong \ZZ_2$.
 \end{frame}
 
-\begin{frame}{On site group action}
-For any $G$, a compact group we can take any representation:
-\begin{align}
-U(g)&\in\textrm{Hom}(G,U(\CC^d))&\tilde U(g)&:= \bigotimes_{n=0}^L U(g).
-\end{align}
-\pause
-\begin{block}{Definition}
-We say that an MPS $\ket{\psi}$ is $G$-invariant if $\exists \tilde{\alpha}\in\textrm{Hom}(G,U(1)):$
-\[\tilde{U}(g)\ket{\psi}=\tilde{\alpha}(g)\ket{\psi}.\]
-\end{block}
-\end{frame}
-
-\begin{frame}{On site group action on MPS}
-\begin{block}{Lemma:}
-Let $\ket{\psi}$ be an SPT then $\forall n\in\{1,L\}:$ $\exists R_n:G\rightarrow U(\CC^D)$ and $\alpha_n:G\rightarrow U(1)$ such that
-\begin{equation}
-\sum_{j=0}^{d}U(g)_{ij}A^j_n=\alpha_n(g) R_n(g)^\dagger A^i_n R_{n+1}(g)
-\end{equation}
-for all $g\in G.$
-\end{block}
-\pause
-\begin{itemize}
-\item $\alpha_n$ is a $U(1)$ representation.
-\item $R_n$ is lift of projective representation.
-\end{itemize}
-\end{frame}
-
-\begin{frame}{$C_n$ is uniform}
-Since $U(gh)^\dagger U(g)U(h)=\id$ we need
-\begin{equation}
-A_n^i=R_n(h)^\dagger R_n(g)^\dagger R_{n}(gh) A^i_n R_{n+1}(gh)^\dagger R_{n+1}(g) R_{n+1}(h)
-\end{equation}
-and therefore $C_n(g,h)=C_{n+1}(g,h)$. From now on:
-\[C_1(g,h)=\cdots=C_L(g,h)=C(g,h).\]
-\pause
-Therefore uniformity of (equivalences of) cochain comes about naturally.
-\pause
-\begin{block}{Claim}
-Let $C$ be the cochain defined up to now then $(C)_\sim$ is independent of the choice of $R_n$ and $\alpha_n$.
-\end{block}
-\pause
-One dimensional SPT's are classified by an $H^2(G,U(1))-$valued index.
-\end{frame}
-
-\begin{frame}{Translation invariance}
-\begin{itemize}
-\item The $\alpha_n(g)$ were not uniform.
-\pause
-\item What happens in the case where we impose translation invariance?
-\end{itemize}
-Eg. We set $d=2$ and $G=\ZZ_2$.\pause We let the on site group action be (for the $g\neq \text{id}$)
-\[U(g)=\begin{pmatrix}1&0\\0&-1\end{pmatrix}.\]
-\pause
-\begin{block}{Claim:}
-I cannot connect the states
-\begin{align*}
-\ket{\psi_\uparrow}&=\ket{\uparrow,\cdots,\uparrow}&\ket{\psi_\downarrow}&=\ket{\downarrow,\cdots,\downarrow}
-\end{align*}
-through local $G$ and translation invariant hamiltonians.
-\end{block}
-\end{frame}
-
-\begin{frame}{Translation invariance}
-A translation invariant MPS is of the form
-\[\ket{\psi}=\sum_{i_1\cdots i_L}\textrm{Tr}(A^{i_1}\cdots A^{i_L})\ket{i_1,\cdots i_L}.\]
-\pause
-We still have $\exists \alpha\in\text{Hom}(G,U(1))$ and $R:G\rightarrow U(\CC^D)$ such that
- \[\sum_j U(g)_{ij}A^j=\alpha(g) R(g)^\dagger A^i R(g).\]
-\pause
-\begin{block}{Claim}
-There exists an
-\[H^2(G,U(1))\oplus \text{Hom}(G,U(1))=H^2(G,U(1))\oplus H^1(G,U(1))\]
-valued index.
-\end{block}
-\end{frame}
-
-\begin{frame}{Loops of SPT's}
-Let
-\begin{align}
-H(\lambda)&= \sum_i H_i(\lambda)&U(\lambda)&= \mathcal{T}\exp(-i\int_0^\lambda \dd s H(s))
-\end{align}
-where each therm is $G-$invariant:
-\[[H_i(\lambda),\tilde{U}(g)]=0.\]
-\pause
-Let $\ket{\psi}$ be a $G$-invariant MPS such that
-\[U(1)\ket{\psi}\propto \ket{\psi}.\]
-\end{frame}
-
-\begin{frame}{Loops of SPT's: Making cuts}
-\begin{columns}
-\begin{column}{0.6\textwidth}
-\onslide<1->{
-\begin{align*}
-H_R(\lambda)&=\sum_i H_i(\lambda)\chi(\textrm{supp}(H_i(\lambda))\subset R)\\
-U_R(\lambda)&=\mathcal{T}\exp(-i \int_0^\lambda \dd s\: H_R(s) ).
-\end{align*}
-}
-\onslide<2->{
-Define
-\[\ket{\psi_R}:= U_R(1)\ket{\psi}.\]
-\begin{block}{Claim:}
-\begin{itemize}
-\item $\ket{\psi_R}$ is $G$-invariant and has same $\tilde{\alpha}(g)$.
-\item $\ket{\psi_R}$ only differs from $\ket{\psi}$ around $B_1$ and $B_2$.
-\end{itemize}
-\end{block}
-}
-\end{column}
-\onslide<1->{
-\begin{column}{0.4\textwidth}
-\includegraphics[width=\textwidth]{CircleRegions.png}
-\end{column}
-}
-\end{columns}
-\end{frame}
-
-\begin{frame}{Loops of SPT's: Finite depth quantum cirquit}
-A finite depth quantum cirquit (of depth 2) is of the form:
-\begin{figure}
-\center
-\includegraphics[width=0.8\textwidth]{FiniteDepthQuantumCirquit.png}
-\end{figure}
-\end{frame}
-
-\begin{frame}{Loops of SPT's: Making previous statement precise}
-\begin{columns}
-\begin{column}{0.6\textwidth}
-\begin{block}{Claim 1:}
-Let $U_R(\lambda)$ be a finite depth quantum cirquit. $\exists\: B_1,B_2:\forall n\in B_1\cup B_2:\exists A'^i_n:$ such that $\ket{\psi_R}$ is $\ket{\psi}$ with the $A_n^i$ in $B_1\cup B_2$ replaced by $A'^i_n$.
-\end{block}
-\onslide<2->{
-\begin{block}{Claim 2:}
-Let $\ket{\psi_{1,R}}$ be the MPS that is $\ket{\psi}$ with the $A^i_n$ replaced by $A'^i_n$ in $B_1$ only then $\ket{\psi_{1,R}}$ is $G$-invariant as well.
-\end{block}
-}
-\onslide<3->{
-However $\tilde{\alpha}_1(g)/\tilde{\alpha}(g)$ need not be $1$. 
-\[\tilde{\alpha}_1(g)/\tilde{\alpha}(g)\in H^1(G,U(1))\]
-is called the charge pumping index.
-}
-\end{column}
-\onslide<1->{
-\begin{column}{0.4\textwidth}
-\includegraphics[width=\textwidth]{CircleRegions.png}
-\end{column}
-}
-\end{columns}
+\begin{frame}{How do we make sense of the previous argument mathematically}
+	Previously we used a product of linear representations and acted with it on a Schmidt decomposition to obtain a projective representation. How is this possible?\\$\:$\\
+	\pause
+	The argument really only makes sense when we use the truly infinite lattice.
 \end{frame}
 
 \begin{frame}{Quasi Local $C^*$ algebra}
