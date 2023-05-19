@@ -1,91 +1,5 @@
 \documentclass{beamer}
-
-\setbeamertemplate{caption}{\raggedright\insertcaption\par}
-
-\mode<presentation>
-{
-  \usetheme{CambridgeUS}
-
-  \setbeamercovered{transparent}
-}
-
-
-\definecolor{Or}{RGB}{255,153,000}
-\definecolor{Indigo}{RGB}{72,61,139}
-\definecolor{Magenta}{RGB}{139,0,139}
-
-\setbeamercolor{normal text}{fg=black,bg=white}
-\setbeamercolor{alerted text}{fg=Indigo}
-\setbeamercolor{example text}{fg=Indigo}
-
-%\setbeamercolor{background canvas}{fg=myforeground, bg=white}
-%\setbeamercolor{background}{fg=myforeground, bg=mybackground}
-%
-%\setbeamercolor{palette primary}{fg=black, bg=gray!30!white}
-%\setbeamercolor{palette secondary}{fg=black, bg=gray!20!white}
-%\setbeamercolor{palette tertiary}{fg=black, bg=gold}
-
-
-
-\setbeamercolor{palette tertiary}{fg=black, bg=Indigo}
-\setbeamercolor{frametitle}{fg=Indigo}
-\setbeamercolor{title}{fg=Indigo}
-\setbeamercolor{footline}{fg=Indigo, bg=Indigo}
-\setbeamercolor{author in head/foot}{fg=black}
-\setbeamercolor{date in head/foot}{fg=black}
-\setbeamercolor{title in head/foot}{fg=black}
-
-\definecolor{Highlight}{RGB}{139,0,139}
-\newcommand{\HL}[1]{{\color{Highlight}#1}}
-
-\usefonttheme{professionalfonts}
-\beamertemplatenavigationsymbolsempty
-
-\usepackage[english]{babel}
-\usepackage{color}
-\usepackage{amsfonts}
-\usepackage{amssymb}
-\usepackage{epsfig}
-\usepackage{amsmath}
-\usepackage{txfonts}
-\usepackage{relsize}
-
-\usepackage{natbib}
-\usepackage{bibentry}
-\bibliographystyle{apalike}
-\usepackage{tikz}
-\usetikzlibrary{decorations.pathreplacing}
-
-\newcommand\footcite[1]{\footnote{\bibentry{#1}}\label{\thepage:#1}}
-\newcommand\secondcite[1]{\textsuperscript{\ref{\thepage:#1}}}
-
-%\usepackage{bbold}
-\usepackage{dsfont}
-\usepackage{bbm}
-
-\usepackage[latin1]{inputenc}
-
-\newcommand{\id}{\mathbbm{1}}
-\newcommand{\HH}{\mathcal{H}}
-\newcommand{\CC}{\mathbb{C}}
-\newcommand{\BB}{\mathcal{B}}
-\newcommand{\dd}{\mathrm{d}}
-\newcommand{\UU}{\mathcal{U}}
-\newcommand{\ZZ}{\mathbb{Z}}
-\newcommand{\tr}{\mathrm{tr}}
-\newcommand{\Tr}{\mathrm{Tr}}
-\renewcommand{\AA}{\mathcal{A}}
-
-\newcommand{\mean}[1]{\langle #1 \rangle}
-\newcommand{\cumul}[1]{\langle\!\langle #1 \rangle\!\rangle}
-
-\DeclareRobustCommand{\augiefamily}{%
-  \fontfamily{augie}\fontseries{m}\fontshape{n}\selectfont}
-\DeclareTextFontCommand{\textaugie}{\augiefamily}
-
-\usepackage{physics}
-
-\setlength{\parskip}{0.1cm}
+\input{myBeamerPackage.tex}
 
 \title[SPT classification]%\hspace{1cm} \insertframenumber/\inserttotalframenumber]
 {SPT classification:\\from the AKLT model to recent proofs}
@@ -139,6 +53,95 @@ instituut voor theorethische fysica KU Leuven
 \egroup
 
 \setcounter{framenumber}{0}
+\begin{frame}{Topological phases of matter}
+	\onslide<1->{
+		\begin{block}{Definition: Quantum phase of matter}
+			A phase of matter protected by a gap.
+		\end{block}
+		Typical examples:
+		\begin{enumerate}
+			\item Bose Einstein condensation (Superconductivity, superfluidity).
+			\item Insulators.
+		\end{enumerate}
+	}
+	\onslide<2->{
+		\begin{block}{Definition: Topological phase of matter}
+			Quantum phase of matter protected by topological property of many body ground-state.
+		\end{block}
+		Typical examples:
+		\begin{enumerate}
+			\item<2-> Invertible topological order (integer quantum hall plateaus).
+			\item<2-> Anyonic topological order (fractional quantum hall plateaus, toric code groundstate)
+		\end{enumerate}
+	}
+\end{frame}
+
+\begin{frame}{Same topological phase of matter}
+	How to see if two states have the same topological properties?
+	\pause
+	\begin{block}{Idea:}
+		$\ket{\psi_1}$ and $\ket{\psi_2}$ have the same topological properties if they can be connected through a local time evolution
+		\begin{itemize}
+			\item $\ket{\psi_2}=\mathcal{T}\exp(-i\int_{0}^{t}\d s\: H(s))\ket{\psi_1}$.
+		\end{itemize}
+	\end{block}
+\end{frame}
+
+\begin{frame}{Quantum lattice}
+	\begin{center}
+		\input{Figures/Lattice.tikz}
+	\end{center}
+	Full Hilbert space:
+	\[\HH=\bigotimes_{i=1}^L (\CC^d)_i.\]
+	\pause
+	Local unitaries only act on a few sites. Eg:
+	\[U_{i,i+1}\in\UU((\CC^d)_i\otimes (\CC^d)_{i+1})\cong\UU(\CC^{d\times d}).\]
+	\pause
+	Combining local uniraries gives local unitaries:
+	\[U_{i,i+1}U_{i+1,i+2}\in \UU((\CC^d)_i\otimes (\CC^d)_{i+1}\otimes (\CC^d)_{i+2}).\]
+\end{frame}
+
+\begin{frame}{Simplification of time evolution: Finite depth quantum cirquit}
+	An even layer $U_1$ is of the form
+	\[U_1=\bigotimes_{i=1}^{L/2}(U_{1,i})_{2i,2i+1}.\]
+	\pause
+	An odd layer $U_2$ is of the form
+	\[U_2=\bigotimes_{i=1}^{L/2}(U_{2,i})_{2i-1,2i}.\]
+	\pause
+	A finite depth quantum cirquit of depth $D$ is a combination of odd and even layers:
+	\[U=U_D U_{D-1}\ldots U_2U_1.\]
+\end{frame}
+
+\begin{frame}{Finite depth quantum cirquit}
+	\begin{center}
+		\input{Figures/FiniteDepthQuantumCircuit.tikz}
+	\end{center}
+\end{frame}
+
+\begin{frame}{Finite depth quantum cirquit is locality preserving}
+	If I calculate $\Ad{U}(A)$ for $U$ a FDQC and $A$ local I only need unitaries in a cone:
+	\begin{center}
+		\scalebox{0.75}{
+			\input{Figures/FiniteDepthQuantumCircuitLightcone.tikz}
+		}
+	\end{center}
+\end{frame}
+
+\begin{frame}{The SRE phase}
+	A product state is of the form
+	\[\ket{\phi}=\bigotimes_{i=1}^L\ket{v_i}\qquad \ket{v_i}\in\CC^d.\]
+	\pause
+	\begin{block}{Definition}
+		$\ket{\psi}$ is SRE if $\exists$ FDQC $U$:
+		\[\ket{\phi}=U\ket{\psi}\]
+		is a product state.
+	\end{block}
+\end{frame}
+
+\begin{frame}{Enriching with symmetry}
+	Let $G$ be a compact Lie Group
+\end{frame}
+
 \begin{frame}{The singlet and the triplet}
 	\begin{block}{On site Hilbert space}
 		In $\CC^4\cong \CC^2\otimes \CC^2$, take as basis
@@ -261,7 +264,7 @@ instituut voor theorethische fysica KU Leuven
 	A finite depth quantum cirquit (of depth 4) is of the form:
 	\begin{figure}
 		\center
-		\includegraphics[width=0.8\textwidth]{FiniteDepthQuantumCirquit2.png}
+		\includegraphics[width=0.8\textwidth]{Figures/FiniteDepthQuantumCirquit2.png}
 	\end{figure}
 	If all $U_{ij}$ commute with $U(g)$ $(\forall g\in G)$ then it is $G$-invariant.
 \end{frame}
@@ -270,7 +273,7 @@ instituut voor theorethische fysica KU Leuven
 	I can connect $\ket{\psi}$ and $\ket{\psi_0}$ with a quantum circuit of depth 2:
 	\begin{figure}
 		\center
-		\includegraphics[width=0.8\textwidth]{ConnectingPsiAndPsi0.png}
+		\includegraphics[width=0.8\textwidth]{Figures/ConnectingPsiAndPsi0.png}
 	\end{figure}
 	However, this is not $G$-invariant.\\
 	\pause
@@ -351,7 +354,7 @@ instituut voor theorethische fysica KU Leuven
 	Suppose I can connect $\ket{\psi}$ and $\ket{\psi_0}$ through $G$-invariant quantum cirquit of depth $d$:
 	\begin{figure}
 		\center
-		\includegraphics[width=0.8\textwidth]{ConnectingPsiAndPsi0Proof.png}
+		\includegraphics[width=0.8\textwidth]{Figures/ConnectingPsiAndPsi0Proof.png}
 	\end{figure}
 \end{frame}
 
@@ -359,7 +362,7 @@ instituut voor theorethische fysica KU Leuven
 	This implies that there exists a state $\ket{\tilde\psi}$ that looks like $\ket{\psi}$ on the left and $\ket{\psi_0}$ on the right:
 	\begin{figure}
 		\center
-		\includegraphics[width=0.75\textwidth]{ConnectingPsiAndPsi0Proof2.png}
+		\includegraphics[width=0.75\textwidth]{Figures/ConnectingPsiAndPsi0Proof2.png}
 	\end{figure}
 	\pause
 	This cannot exist because you can't connect a state that transforms projectively to a state that transforms linearly.
@@ -399,7 +402,7 @@ instituut voor theorethische fysica KU Leuven
 \begin{frame}{SPT classification problem}
 	\begin{figure}
 		\center
-		\includegraphics[width=0.8\textwidth]{ConnectedComponents.png}
+		\includegraphics[width=0.8\textwidth]{Figures/ConnectedComponents.png}
 	\end{figure}
 	\pause
 	In this case the green areas are labelled by $H^2(G,U(1))$.\\$\:$\\

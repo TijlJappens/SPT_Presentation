@@ -1,0 +1,19 @@
+\begin{tikzpicture}
+	\foreach \x in {0,...,11}{
+		\node (\x) [circle,fill,inner sep=2pt] at (\x*1.2,0) {};
+		\node (2\x) [] at (\x*1.2,-1) {};
+		\node (3\x) [circle,fill,inner sep=2pt] at (\x*1.2,-2) {};
+	}
+	
+	\foreach \x in {0,...,11}{
+		\draw (\x) -- (2\x);
+		\draw (2\x) -- (3\x);
+	}
+	
+	\foreach \x in {0,...,11}
+	\draw [fill=white] (\x*1.2-0.55,-0.6) rectangle (\x*1.2+0.55,-1.40);
+	
+	\foreach \x in {0,...,11}{
+		\node (other \x) [] at (\x*1.2,-1) {$U_{\x}(g)$};
+	}
+\end{tikzpicture}

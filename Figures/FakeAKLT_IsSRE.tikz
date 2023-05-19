@@ -1,0 +1,48 @@
+\begin{tikzpicture}
+		\foreach \i in {1,...,11}
+	{
+		\draw[black] (\i,0) ellipse (0.3 and 0.2);
+		\foreach \j in {0,...,3}{
+			\node (Left\i\j) [circle,fill,inner sep=1.6pt] at (\i-0.15,-2*\j) {};
+			\node (Right\i\j) [circle,fill,inner sep=1.6pt] at (\i+0.15,-2*\j) {};
+		}
+	}
+	\newcommand\y{6}
+	
+	\foreach \i in {1,...,10}
+	{
+		\draw[black] (\i+0.5,-\y) ellipse (0.48 and 0.2);
+	}
+	\begin{scope}
+		\clip(0.5,-\y+0.2)rectangle(1,-\y-0.2);
+		\draw[black] (0.5,-\y) ellipse (0.48 and 0.2);
+	\end{scope}
+	\begin{scope}
+		\clip(11,-\y+0.2)rectangle(11.5,-\y-0.2);
+		\draw[black] (11.5,-\y) ellipse (0.48 and 0.2);
+	\end{scope}
+
+	\foreach \i in {1,...,11}
+	{
+		\draw (Left\i0) -- (Left\i1);
+		\draw (Right\i0) -- (Right\i1);
+		\ifthenelse{\isodd{\i}}{
+			\draw (Right\i1) -- (Right\i2);
+			\draw (Left\i2) -- (Left\i3);
+		}{
+			\draw (Left\i1) -- (Left\i2);
+			\draw (Right\i2) -- (Right\i3);
+		}
+	}
+	\foreach \i in {1,...,11}{
+		\draw[fill=white] (\i-0.4,-0.4) rectangle (\i+0.4,-1.4);
+		\node[] (\i) at (\i,-1) {$U$};
+		\ifthenelse{\isodd{\i}}{
+			\draw[fill=white] (\i,-2.6) rectangle (\i+1,-3.4);
+			\node[] (SecondUnitary\i) at (\i+0.5,-3) {$U^\dagger$};
+			\draw[fill=white] (\i-1,-4.6) rectangle (\i,-5.4);
+			\node[] (ThirdUnitary\i) at (\i-0.5,-5) {$U^\dagger$};
+			\draw[black] (\i+0.5,-4) ellipse (0.48 and 0.2);
+		}{}
+	}
+\end{tikzpicture}
