@@ -36,14 +36,14 @@
 	}
 	
 	\foreach \x in {1,...,5}{
-		\node [] at (2*\x-0.5,-1) {$U_{1,\x}$};
-		\node [] at (2*\x-0.5,-3) {$U_{3,\x}$};
-		\node [] at (2*\x-0.5,1) {$U_{1,\x}^\dagger$};
-		\node [] at (2*\x-0.5,3) {$U_{3,\x}^\dagger$};
+		\node [] at (2*\x-0.5,-1) {$V_{1,\x}$};
+		\node [] at (2*\x-0.5,-3) {$V_{3,\x}$};
+		\node [] at (2*\x-0.5,1) {$V_{1,\x}^\dagger$};
+		\node [] at (2*\x-0.5,3) {$V_{3,\x}^\dagger$};
 	}
 	\foreach \x in {0,...,5}{
-		\node [] at (2*\x+0.5,-2) {$U_{2,\the\numexpr \x + 1\relax}$};
-		\node [] at (2*\x+0.5,2) {$U_{2,\the\numexpr \x + 1\relax}^\dagger$};
+		\node [] at (2*\x+0.5,-2) {$V_{2,\the\numexpr \x + 1\relax}$};
+		\node [] at (2*\x+0.5,2) {$V_{2,\the\numexpr \x + 1\relax}^\dagger$};
 	}
 	
 	

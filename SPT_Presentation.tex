@@ -94,22 +94,32 @@ instituut voor theorethische fysica KU Leuven
 	Full Hilbert space:
 	\[\HH=\bigotimes_{i=1}^L (\CC^d)_i.\]
 	\pause
-	Local unitaries only act on a few sites. Eg:
-	\[U_{i,i+1}\in\UU((\CC^d)_i\otimes (\CC^d)_{i+1})\cong\UU(\CC^{d\times d}).\]
+	Local operators only act on a few sites. Eg:
+	\[V_{i,i+1}\in\BB((\CC^d)_i\otimes (\CC^d)_{i+1})\cong\BB(\CC^{d\times d}).\]
 	\pause
-	Combining local uniraries gives local unitaries:
-	\[U_{i,i+1}U_{i+1,i+2}\in \UU((\CC^d)_i\otimes (\CC^d)_{i+1}\otimes (\CC^d)_{i+2}).\]
+	Combining local operators gives local operators:
+	\[V_{i,i+1}V_{i+1,i+2}\in \BB((\CC^d)_i\otimes (\CC^d)_{i+1}\otimes (\CC^d)_{i+2}).\]
+\end{frame}
+
+\begin{frame}{Example lattice on sphere}
+	\begin{align}
+		\nonumber
+		&\vcenter{\hbox{\includegraphics[width=0.3\textwidth]{Figures/LatticeOnSphere}}}&&\begin{matrix}
+			H_{\text{Global}}(\lambda)\\ \rightarrow\\ \: \\ H_{\text{local}}(\lambda)\\ \nrightarrow\end{matrix}&&\vcenter{\hbox{\includegraphics[width=0.3\textwidth]{Figures/LatticeOnSphere}}}\\
+		\nonumber
+		& \qquad\qquad H_{\text{Toric Code}}&& && \quad H_{trivial}=\sum_{i\in\Lambda} (\sigma_z)_i
+	\end{align}
 \end{frame}
 
 \begin{frame}{Simplification of time evolution: Finite depth quantum cirquit}
-	An even layer $U_1$ is of the form
-	\[U_1=\bigotimes_{i=1}^{L/2}(U_{1,i})_{2i,2i+1}.\]
+	An even layer $V_1\in\UU(\HH)$ is of the form
+	\[V_1=\bigotimes_{i=1}^{L/2}(V_{1,i})_{2i,2i+1}.\]
 	\pause
-	An odd layer $U_2$ is of the form
-	\[U_2=\bigotimes_{i=1}^{L/2}(U_{2,i})_{2i-1,2i}.\]
+	An odd layer $V_2\in\UU(\HH)$ is of the form
+	\[V_2=\bigotimes_{i=1}^{L/2}(V_{2,i})_{2i-1,2i}.\]
 	\pause
 	A finite depth quantum cirquit of depth $D$ is a combination of odd and even layers:
-	\[U=U_D U_{D-1}\ldots U_2U_1.\]
+	\[V=V_D V_{D-1}\ldots V_2V_1.\]
 \end{frame}
 
 \begin{frame}{Finite depth quantum cirquit}
@@ -119,7 +129,7 @@ instituut voor theorethische fysica KU Leuven
 \end{frame}
 
 \begin{frame}{Finite depth quantum cirquit is locality preserving}
-	If I calculate $\Ad{U}(A)$ for $U$ a FDQC and $A$ local I only need unitaries in a cone:
+	If I calculate $\Ad{V}(A)$ for $V$ a FDQC and $A$ local I only need unitaries in a cone:
 	\begin{center}
 		\scalebox{0.75}{
 			\input{Figures/FiniteDepthQuantumCircuitLightcone.tikz}
@@ -139,7 +149,42 @@ instituut voor theorethische fysica KU Leuven
 \end{frame}
 
 \begin{frame}{Enriching with symmetry}
-	Let $G$ be a compact Lie Group
+	\begin{center}
+		\scalebox{0.75}{
+		\input{Figures/GroupActionQuantumCirquit.tikz}
+		}
+	\end{center}
+	\begin{itemize}
+		\item $G$ compact Lie group.
+		\item $U_i\in\hom(G,\UU(\CC^d))$ representation on on site Hilbert space.
+		\item $U(g)=\bigotimes_{i=1}^{L}U_i(g)$ group action.
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Enriching with symmetry}
+	\begin{itemize}
+		\item $\ket{\psi}$ is $G$-invariant if
+		\[U(g)\ket{\psi}=\ket{\psi}.\]
+		\item A product state $\ket{\phi}=\bigotimes_{i=1}^{L}\ket{v_i}$ is $G$-trivial if
+		\[U_i(g)\ket{v_i}=\ket{v_i}.\]
+		\item A FDQC $V$ is $G$-invariant if
+		\[[U,V_{i,j}]=0.\]
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{SPT classification}
+	\includegraphics[width=\textwidth]{Figures/ConnectedComponents.png}
+\end{frame}
+
+\begin{frame}{Example:}
+	\begin{itemize}
+		\item We take $G=\ZZ_2\times\ZZ_2$.
+		\item We write the group elements as:
+		\begin{align*}
+			e&=(1,1)&g_x&=(-1,1)&g_y&=(1,-1)&g_z&=(-1,-1).
+		\end{align*}
+	\end{itemize}
+	
 \end{frame}
 
 \begin{frame}{The singlet and the triplet}
@@ -154,7 +199,7 @@ instituut voor theorethische fysica KU Leuven
 	\begin{block}{Group action}
 		Take $U\in \textrm{Hom}(\ZZ^2\times \ZZ^2,U(\CC^4))$ by setting
 		\begin{align*}
-		U(-1,1)&=\sigma_x\otimes \sigma_x&U(1,-1)&=-\sigma_y\otimes \sigma_y&U(-1,-1)&=\sigma_z\otimes \sigma_z.
+		U(-1,1)&=-\sigma_x\otimes \sigma_x&U(1,-1)&=-\sigma_y\otimes \sigma_y&U(-1,-1)&=-\sigma_z\otimes \sigma_z.
 		\end{align*}
 	\end{block}
 \end{frame}
@@ -163,7 +208,7 @@ instituut voor theorethische fysica KU Leuven
 	\begin{block}{Group action}
 		Take $U\in \textrm{Hom}(\ZZ^2\times \ZZ^2,U(\CC^4))$ by setting
 		\begin{align*}
-		U(-1,1)&=\sigma_x\otimes \sigma_x&U(1,-1)&=-\sigma_y\otimes \sigma_y&U(-1,-1)&=\sigma_z\otimes \sigma_z.
+		U(-1,1)&=-\sigma_x\otimes \sigma_x&U(1,-1)&=-\sigma_y\otimes \sigma_y&U(-1,-1)&=-\sigma_z\otimes \sigma_z.
 		\end{align*}
 	\end{block}
 	Think of $\ZZ^2\times \ZZ^2$ as a subgroup of $SO(3)$ where
@@ -174,7 +219,7 @@ instituut voor theorethische fysica KU Leuven
 	\end{itemize}
 	\pause
 	\begin{block}{Back to the state}
-		$\ket{s}$ transforms one dimensional under $\ZZ^2\times \ZZ^2$.\\
+		$\ket{s}$ is invariant under $\ZZ^2\times \ZZ^2$.\\
 		$\ket{-1},\ket{0},\ket{1}$ transform irreducibly under $\ZZ^2\times \ZZ^2$.
 	\end{block}
 \end{frame}
@@ -182,7 +227,7 @@ instituut voor theorethische fysica KU Leuven
 \begin{frame}{Intermezzo linear and projective representations}
 	We had a (linear) representation
 	\begin{align*}
-			U(-1,1)&=\sigma_x\otimes \sigma_x&U(1,-1)&=-\sigma_y\otimes \sigma_y&U(-1,1)&=\sigma_z\otimes \sigma_z.
+			U(-1,1)&=-\sigma_x\otimes \sigma_x&U(1,-1)&=-\sigma_y\otimes \sigma_y&U(-1,1)&=-\sigma_z\otimes \sigma_z.
 	\end{align*}
 	\pause
 	Does this reduce to a representation on $\CC^2$?\\
@@ -192,89 +237,49 @@ instituut voor theorethische fysica KU Leuven
 		U(-1,1)&=\sigma_x&U(1,-1)&=\sigma_y&U(-1,-1)&=\sigma_z
 	\end{align}
 	then
-	\begin{equation}
+	\begin{equation*}
 		U(-1,1)U(1,-1)=-U(1,-1)U(-1,1)=i U(-1,-1).
-	\end{equation}
+	\end{equation*}
 	It is a lift of a projective representation.
 \end{frame}
 
+\begin{frame}{The $G$-trivial product state}
+	\input{Figures/TrivialProductState.tikz}\\
+	On $\bigotimes_{i=1}^L(\CC^4)$, define a state
+	\begin{equation*}
+		\ket{\phi_0}=\bigotimes_{i=1}^L\ket{s}_{(i,L),(i,R)}
+	\end{equation*}
+	\pause
+	It is a trivial product state under
+	\begin{equation*}
+		U(g)=\bigotimes_i U_i(g).
+	\end{equation*}
+\end{frame}
+
 \begin{frame}{The (fake) AKLT model}
-	\begin{tikzpicture}
-		\foreach \i in {1,...,10}
-		{
-			\draw[black] (\i+0.5,0) ellipse (0.48 and 0.2);
-			\filldraw [black] (\i-0.15,0) circle (2pt);
-			\filldraw [black] (\i+0.15,0) circle (2pt);
-			
-		}
-		\filldraw [black] (11-0.15,0) circle (2pt);
-		\filldraw [black] (11+0.15,0) circle (2pt);
-		\draw [decorate,decoration={brace,amplitude=5pt},xshift=0cm,yshift=0pt] (5,0.3) -- (5+1,0.3) node [black,midway,yshift=0.3cm] {\footnotesize $\ket{s}$};
-		\draw [decorate,decoration={brace,amplitude=5pt},xshift=0cm,yshift=0pt] (5+0.3,-0.3) -- (5-0.3,-0.3) node [black,midway,yshift=-0.3cm] {\footnotesize $\CC^4$};
-		\begin{scope}
-			\clip(0.5,0.2)rectangle(1,-0.2);
-			\draw[black] (0.5,0) ellipse (0.48 and 0.2);
-		\end{scope}
-		\begin{scope}
-			\clip(11,0.2)rectangle(11.5,-0.2);
-			\draw[black] (11.5,0) ellipse (0.48 and 0.2);
-		\end{scope}
-	\end{tikzpicture}\\
+	\input{Figures/FakeAKLT_State.tikz}\\
 	On $\bigotimes_{i=1}^L(\CC^4)$, define a state
-	\begin{equation}
+	\begin{equation*}
 		\ket{\psi}=\bigotimes_{i=1}^L\ket{s}_{(i,R),(i+1,L)}
-	\end{equation}
-	\pause
+	\end{equation*}
 	It satisfies that:
 	\begin{itemize}
 		\item If I put this state on periodic boundary conditions it is invariant under
-		\begin{equation}
+		\begin{equation*}
 			U(g)=\bigotimes_i U_i(g).
-		\end{equation}
+		\end{equation*}
 	\end{itemize}
 \end{frame}
 
-\begin{frame}{The product state}
-	\begin{tikzpicture}
-		\foreach \i in {1,...,11}
-		{
-			\draw[black] (\i,0) ellipse (0.3 and 0.2);
-			\filldraw [black] (\i-0.15,0) circle (2pt);
-			\filldraw [black] (\i+0.15,0) circle (2pt);
-			
+
+\begin{frame}{Connecting $\ket{\psi}$ and $\ket{\phi_0}$}
+	I can connect $\ket{\psi}$ and $\ket{\phi_0}$ with a quantum circuit of depth 3:
+	\begin{center}
+		\scalebox{0.75}{
+		\input{Figures/FakeAKLT_IsSRE.tikz}
 		}
-		\draw [decorate,decoration={brace,amplitude=5pt},xshift=0cm,yshift=0pt] (5-0.3,0.3) -- (5+0.3,0.3) node [black,midway,yshift=0.3cm] {\footnotesize $\ket{s}$};
-		\draw [decorate,decoration={brace,amplitude=5pt},xshift=0cm,yshift=0pt] (5+0.3,-0.3) -- (5-0.3,-0.3) node [black,midway,yshift=-0.3cm] {\footnotesize $\CC^4$};
-	\end{tikzpicture}\\
-	On $\bigotimes_{i=1}^L(\CC^4)$, define a state
-	\begin{equation}
-		\ket{\psi_0}=\bigotimes_{i=1}^L\ket{s}_{(i,L),(i,R)}
-	\end{equation}
+	\end{center}
 	\pause
-	It satisfies that:
-	\begin{itemize}
-		\item If I put this state on periodic boundary conditions it is invariant under
-		\begin{equation}
-			U(g)=\bigotimes_i U_i(g).
-		\end{equation}
-	\end{itemize}
-\end{frame}
-
-\begin{frame}{Finite depth quantum cirquits}
-	A finite depth quantum cirquit (of depth 4) is of the form:
-	\begin{figure}
-		\center
-		\includegraphics[width=0.8\textwidth]{Figures/FiniteDepthQuantumCirquit2.png}
-	\end{figure}
-	If all $U_{ij}$ commute with $U(g)$ $(\forall g\in G)$ then it is $G$-invariant.
-\end{frame}
-
-\begin{frame}{Connecting $\ket{\psi}$ and $\ket{\psi_0}$}
-	I can connect $\ket{\psi}$ and $\ket{\psi_0}$ with a quantum circuit of depth 2:
-	\begin{figure}
-		\center
-		\includegraphics[width=0.8\textwidth]{Figures/ConnectingPsiAndPsi0.png}
-	\end{figure}
 	However, this is not $G$-invariant.\\
 	\pause
 	Can I find a $G$-invariant quantum cirquit?
@@ -282,67 +287,32 @@ instituut voor theorethische fysica KU Leuven
 
 \begin{frame}{The (fake) AKLT model}
 	$\ket{\psi}=\ket{\psi_L}\otimes\ket{s}\otimes\ket{\psi_R}$ \\
-	\begin{tikzpicture}
-		\foreach \i in {1,...,10}
-		{
-			\draw[black] (\i+0.5,0) ellipse (0.48 and 0.2);
-			\filldraw [black] (\i-0.15,0) circle (2pt);
-			\filldraw [black] (\i+0.15,0) circle (2pt);
-			
-		}
-		\filldraw [black] (11-0.15,0) circle (2pt);
-		\filldraw [black] (11+0.15,0) circle (2pt);
-		\begin{scope}
-			\clip(0.5,0.2)rectangle(1,-0.2);
-			\draw[black] (0.5,0) ellipse (0.48 and 0.2);
-		\end{scope}
-		\begin{scope}
-			\clip(11,0.2)rectangle(11.5,-0.2);
-			\draw[black] (11.5,0) ellipse (0.48 and 0.2);
-		\end{scope}
-		\draw [decorate,decoration={brace,amplitude=5pt},xshift=0cm,yshift=0pt] (7,0.3) -- (11.5,0.3) node [black,midway,yshift=0.3cm] {\footnotesize $\ket{\psi_R}$};
-		\draw [decorate,decoration={brace,amplitude=5pt},xshift=0cm,yshift=0pt] (0.5,0.3) -- (6,0.3) node [black,midway,yshift=0.3cm] {\footnotesize $\ket{\psi_L}$};
-		\draw [decorate,decoration={brace,amplitude=5pt},xshift=0cm,yshift=0pt] (6,0.3) -- (7,0.3) node [black,midway,yshift=0.3cm] {\footnotesize $\ket{s}$};
-		\draw [decorate,decoration={brace,amplitude=5pt},xshift=0cm,yshift=0pt] (6.5,-0.3) -- (0.5,-0.3)  node [black,midway,yshift=-0.3cm] {\footnotesize $L$};
-		\draw [decorate,decoration={brace,amplitude=5pt},xshift=0cm,yshift=0pt] (11.5,-0.3) -- (6.5,-0.3)  node [black,midway,yshift=-0.3cm] {\footnotesize $R$};
-	\end{tikzpicture}\\
+	\input{Figures/FakeAKLT_State_TwoParts.tikz}\\
 	\pause
-	\begin{equation}
+	\begin{equation*}
 		\textrm{Tr}_L(\ket{\psi}\bra{\psi})=\frac{1}{2}(\ket{\uparrow}\bra{\uparrow}+\ket{\downarrow}\bra{\downarrow})\otimes\ket{\psi_R}\bra{\psi_R}.
-	\end{equation}
+	\end{equation*}
 	This is a (perfectly) mixed state. Take a basis of this mixed state
-	\begin{align}
+	\begin{align*}
 		\ket{v_1}=&\ket{\uparrow}\otimes\ket{\psi_R}&\ket{v_2}=&\ket{\downarrow}\otimes\ket{\psi_R}.
-	\end{align}
+	\end{align*}
 	\pause
 	This subspace transforms under $\ZZ_2\times\ZZ_2$ as
-	\begin{align}
+	\begin{align*}
 		R(-1,1)&=\sigma_x&R(1,-1)&=\sigma_y&R(-1,-1)&=\sigma_z.
-	\end{align}
+	\end{align*}
 	\begin{block}{Claim}
 		The right half of this chain transforms projectively under the group action.
 	\end{block}
 \end{frame}
 
 \begin{frame}{The product state}
-	$\ket{\psi_0}=\ket{\psi_{0,L}}\otimes\ket{\psi_{0,R}}$ \\
-	\begin{tikzpicture}
-		\foreach \i in {1,...,11}
-		{
-			\draw[black] (\i,0) ellipse (0.3 and 0.2);
-			\filldraw [black] (\i-0.15,0) circle (2pt);
-			\filldraw [black] (\i+0.15,0) circle (2pt);
-			
-		}
-		\draw [decorate,decoration={brace,amplitude=5pt},xshift=0cm,yshift=0pt] (6.5,0.3) -- (11.5,0.3) node [black,midway,yshift=0.3cm] {\footnotesize $\ket{\psi_{0,R}}$};
-		\draw [decorate,decoration={brace,amplitude=5pt},xshift=0cm,yshift=0pt] (0.5,0.3) -- (6.5,0.3) node [black,midway,yshift=0.3cm] {\footnotesize $\ket{\psi_{0,L}}$};
-		\draw [decorate,decoration={brace,amplitude=5pt},xshift=0cm,yshift=0pt] (6.5,-0.3) -- (0.5,-0.3)  node [black,midway,yshift=-0.3cm] {\footnotesize $L$};
-		\draw [decorate,decoration={brace,amplitude=5pt},xshift=0cm,yshift=0pt] (11.5,-0.3) -- (6.5,-0.3)  node [black,midway,yshift=-0.3cm] {\footnotesize $R$};
-	\end{tikzpicture}\\
+	$\ket{\phi_0}=\ket{\psi_{0,L}}\otimes\ket{\psi_{0,R}}$ \\
+	\input{Figures/TrivialProductState_TwoParts.tikz}\\
 	\pause
-	\begin{equation}
-		\textrm{Tr}_L(\ket{\psi_0}\bra{\psi_0})=\ket{\psi_{0,R}}\bra{\psi_{0,R}}.
-	\end{equation}
+	\begin{equation*}
+		\textrm{Tr}_L(\ket{\phi_0}\bra{\phi_0})=\ket{\phi_{0,R}}\bra{\phi_{0,R}}.
+	\end{equation*}
 	\pause
 	This subspace transforms under $\ZZ_2\times\ZZ_2$ one dimensionally.
 	\begin{block}{Claim}
@@ -350,22 +320,46 @@ instituut voor theorethische fysica KU Leuven
 	\end{block}
 \end{frame}
 
-\begin{frame}{Proof that I can't connect $\ket{\psi_0}$ and $\ket{\psi}$ through finite depth quantum cirquit}
-	Suppose I can connect $\ket{\psi}$ and $\ket{\psi_0}$ through $G$-invariant quantum cirquit of depth $d$:
+\begin{frame}{Proof that I can't connect $\ket{\phi_0}$ and $\ket{\psi}$ through finite depth quantum cirquit}
+	Suppose I can connect $\ket{\psi}$ and $\ket{\phi_0}$ through $G$-invariant quantum cirquit of depth $d$:
 	\begin{figure}
 		\center
 		\includegraphics[width=0.8\textwidth]{Figures/ConnectingPsiAndPsi0Proof.png}
 	\end{figure}
 \end{frame}
 
-\begin{frame}{Proof that I can't connect $\ket{\psi_0}$ and $\ket{\psi}$ through finite depth quantum cirquit}
-	This implies that there exists a state $\ket{\tilde\psi}$ that looks like $\ket{\psi}$ on the left and $\ket{\psi_0}$ on the right:
+\begin{frame}{Proof that I can't connect $\ket{\phi_0}$ and $\ket{\psi}$ through finite depth quantum cirquit}
+	Set all unitaries of FDQC with support on the left to be $\id$.
 	\begin{figure}
 		\center
 		\includegraphics[width=0.75\textwidth]{Figures/ConnectingPsiAndPsi0Proof2.png}
 	\end{figure}
+\end{frame}
+
+\begin{frame}{Proof that I can't connect $\ket{\phi_0}$ and $\ket{\psi}$ through finite depth quantum cirquit}
+	This implies that there exists a state $\ket{\tilde\psi}$ that looks like $\ket{\psi}$ on the left and $\ket{\phi_0}$ on the right:
+	\begin{figure}
+		\center
+		\includegraphics[width=0.75\textwidth]{Figures/ConnectingPsiAndPsi0Proof2_WithLightcone.png}
+	\end{figure}
 	\pause
-	This cannot exist because you can't connect a state that transforms projectively to a state that transforms linearly.
+	For $A_L\in\AA_L$ and $A_R\in\AA_R$ respectively I have
+	\begin{align}
+		\bra{\tilde\psi}A_L\ket{\tilde{\psi}}&=\bra{\psi}A_L\ket{\psi}&\bra{\tilde\psi}A_R\ket{\tilde{\psi}}&=\bra{\phi_0}A_R\ket{\phi_0}.
+	\end{align}
+\end{frame}
+
+\begin{frame}{Proof that I can't connect $\ket{\phi_0}$ and $\ket{\psi}$ through finite depth quantum cirquit}
+	For $A_L\in\AA_L$ and $A_R\in\AA_R$ respectively I have
+	\begin{align}
+		\bra{\tilde\psi}A_L\ket{\tilde{\psi}}&=\bra{\psi}A_L\ket{\psi}&\bra{\tilde\psi}A_R\ket{\tilde{\psi}}&=\bra{\phi_0}A_R\ket{\phi_0}.
+	\end{align}
+	This means that
+	\begin{itemize}
+		\item $\ket{\tilde{\psi}}$ transforms projectively under $U_L(g)=\bigotimes_{i \in L}U_i(g)$.
+		\item $\ket{\tilde{\psi}}$ transforms trivially under $U_R(g)=\bigotimes_{i \in R}U_i(g)$.
+	\end{itemize}
+	This implies that $\ket{\tilde{\psi}}$ cannot be $G$-invariant.
 \end{frame}
 
 \begin{frame}{Second group cohomology group}
@@ -499,7 +493,7 @@ There exists an $H^2(G,U(1))$ valued index on invertible $G$ invariant states. T
 \begin{frame}{1D SPT classification results}
 Let $\AA$ be a quasi local algebra over $\ZZ$.
 \begin{block}{Theorem 2:}
-If two states $\omega_1$ and $\omega_2$ have the same $H^2(G,U(1))$-valued index then there exist product states $\phi_1,\phi_2$ and an LGA $\alpha_1$ such that
+If two invertible $G$-invariant states $\omega_1$ and $\omega_2$ have the same $H^2(G,U(1))$-valued index then there exist product states $\phi_1,\phi_2$ and an LGA $\alpha_1$ such that
 \[\omega_1\otimes_{\text{stack}}\phi_1=\omega_2\otimes_{\text{stack}}\phi_2\circ\alpha_1.\footcite{kapustin2021classification}\]
 \end{block}
 \end{frame}

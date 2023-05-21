@@ -14,6 +14,6 @@
 	\draw [fill=white] (\x*1.2-0.55,-0.6) rectangle (\x*1.2+0.55,-1.40);
 	
 	\foreach \x in {0,...,11}{
-		\node (other \x) [] at (\x*1.2,-1) {$U_{\x}(g)$};
+		\node (other \x) [] at (\x*1.2,-1) {$U_{\the\numexpr \x + 1\relax}(g)$};
 	}
 \end{tikzpicture}
