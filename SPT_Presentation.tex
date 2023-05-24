@@ -113,7 +113,7 @@ instituut voor theorethische fysica KU Leuven
 		\end{itemize}
 	\end{block}
 	\pause
-	\[\ket{\phi}=\bigotimes_{i=1}^L\ket{v_i}\qquad \ket{v_i}\in\CC^d.\]
+	\[\ket{\phi}=\bigotimes_{i\in\Lambda}\ket{v_i}\qquad \ket{v_i}\in\CC^d.\]
 \end{frame}
 
 \begin{frame}{SRE phase}
@@ -166,9 +166,12 @@ instituut voor theorethische fysica KU Leuven
 
 \begin{frame}{Enriching with symmetry}
 	\begin{itemize}
-		\item $\ket{\psi}$ is $G$-invariant if
+		\item<1-> $\ket{\psi}$ is $G$-invariant if
 		\[U(g)\ket{\psi}=\ket{\psi}.\]
-		\item A FDQC $V$ is $G$-invariant if
+		\item<2-> An LGU,
+		\[U(t)=\mathcal{T}\exp(-i\int_0^t \d s K(s))\]
+		is $G$-invariant if each of the local therms of $K$ is $G$-invariant.
+		\item<3-> In particular, a FDQC, $V$ is $G$-invariant if
 		\[[U(g),V_{i,j}]=0.\]
 	\end{itemize}
 \end{frame}
@@ -236,49 +239,39 @@ instituut voor theorethische fysica KU Leuven
 	U(-1,1)&=(i\sigma_x)\otimes (i\sigma_x)&U(1,-1)&=(i\sigma_y)\otimes (i\sigma_y)&U(-1,1)&=(i\sigma_z)\otimes (i\sigma_z).
 	\end{align*}
 	\pause
-	Is it a representation on $\CC^2$?
-	\pause
-	\begin{align}
+	Is
+	\begin{align*}
 		R(-1,1)&=i\sigma_x&R(1,-1)&=i\sigma_y&R(-1,-1)&=i\sigma_z
-	\end{align}
-	then
+	\end{align*}
+	 a representation on $\CC^2$? \pause No:
 	\begin{equation*}
 		R(-1,1)R(1,-1)=-R(1,-1)R(-1,1)=-i R(-1,-1).
 	\end{equation*}
 \end{frame}
 
-\begin{frame}{The $G$-trivial product state}
+\begin{frame}{The $G$-invariant product state}
 	\input{Figures/TrivialProductState.tikz}\\
-	On $\bigotimes_{i=1}^L(\CC^4)$, define a state
+	On $\bigotimes_{i\in\Lambda}(\CC^4)$, define a state
 	\begin{equation*}
-		\ket{\phi_0}=\bigotimes_{i=1}^L\ket{s}_{(i,L),(i,R)}
+		\ket{\phi}=\bigotimes_{i\in\Lambda}\ket{s}_{(i,L),(i,R)}
 	\end{equation*}
 	\pause
-	It is a trivial product state under
-	\begin{equation*}
-		U(g)=\bigotimes_i U_i(g).
-	\end{equation*}
+	It is a $G$-invariant product state.
 \end{frame}
 
-\begin{frame}{The (fake) AKLT model}
+\begin{frame}{The entangled pair state}
 	\input{Figures/FakeAKLT_State.tikz}\\
-	On $\bigotimes_{i=1}^L(\CC^4)$, define a state
+	On $\bigotimes_{i\in\Lambda}(\CC^4)$, define a state
 	\begin{equation*}
 		\ket{\psi}=\bigotimes_{i=1}^L\ket{s}_{(i,R),(i+1,L)}
 	\end{equation*}
 	\pause
-	It satisfies that:
-	\begin{itemize}
-		\item If I put this state on periodic boundary conditions it is invariant under
-		\begin{equation*}
-			U(g)=\bigotimes_i U_i(g).
-		\end{equation*}
-	\end{itemize}
+	It is $G$-invariant.
 \end{frame}
 
 
 \begin{frame}{Connecting $\ket{\psi}$ and $\ket{\phi_0}$}
-	I can connect $\ket{\psi}$ and $\ket{\phi_0}$ with a quantum circuit of depth 3:
+	I can connect $\ket{\psi}$ and $\ket{\phi}$ with a quantum circuit of depth 3:
 	\begin{center}
 		\scalebox{0.75}{
 		\input{Figures/FakeAKLT_IsSRE.tikz}
@@ -290,7 +283,7 @@ instituut voor theorethische fysica KU Leuven
 	Can I find a $G$-invariant quantum cirquit?
 \end{frame}
 
-\begin{frame}{The (fake) AKLT model}
+\begin{frame}{The entangled pair state}
 	$\ket{\psi}=\ket{\psi_L}\otimes\ket{s}\otimes\ket{\psi_R}$ \\
 	\input{Figures/FakeAKLT_State_TwoParts.tikz}\\
 	\pause
@@ -304,7 +297,7 @@ instituut voor theorethische fysica KU Leuven
 	\pause
 	This subspace transforms under $\ZZ_2\times\ZZ_2$ as
 	\begin{align*}
-		R(-1,1)&=\sigma_x&R(1,-1)&=\sigma_y&R(-1,-1)&=\sigma_z.
+		R(-1,1)&=i\sigma_x&R(1,-1)&=i\sigma_y&R(-1,-1)&=i\sigma_z.
 	\end{align*}
 	\begin{block}{Claim}
 		The right half of this chain transforms projectively under the group action.
@@ -312,11 +305,11 @@ instituut voor theorethische fysica KU Leuven
 \end{frame}
 
 \begin{frame}{The product state}
-	$\ket{\phi_0}=\ket{\psi_{0,L}}\otimes\ket{\psi_{0,R}}$ \\
+	$\ket{\phi}=\ket{\phi_{L}}\otimes\ket{\phi_{R}}$ \\
 	\input{Figures/TrivialProductState_TwoParts.tikz}\\
 	\pause
 	\begin{equation*}
-		\textrm{Tr}_L(\ket{\phi_0}\bra{\phi_0})=\ket{\phi_{0,R}}\bra{\phi_{0,R}}.
+		\textrm{Tr}_L(\ket{\phi}\bra{\phi})=\ket{\phi_{R}}\bra{\phi_{R}}.
 	\end{equation*}
 	\pause
 	This subspace transforms under $\ZZ_2\times\ZZ_2$ one dimensionally.
@@ -325,15 +318,15 @@ instituut voor theorethische fysica KU Leuven
 	\end{block}
 \end{frame}
 
-\begin{frame}{Proof that I can't connect $\ket{\phi_0}$ and $\ket{\psi}$ through finite depth quantum cirquit}
-	Suppose I can connect $\ket{\psi}$ and $\ket{\phi_0}$ through $G$-invariant quantum cirquit of depth $d$:
+\begin{frame}{Proof that I can't connect $\ket{\phi}$ and $\ket{\psi}$ through finite depth quantum cirquit}
+	Suppose I can connect $\ket{\psi}$ and $\ket{\phi}$ through $G$-invariant quantum cirquit of depth $d$:
 	\begin{figure}
 		\center
 		\includegraphics[width=0.8\textwidth]{Figures/ConnectingPsiAndPsi0Proof.png}
 	\end{figure}
 \end{frame}
 
-\begin{frame}{Proof that I can't connect $\ket{\phi_0}$ and $\ket{\psi}$ through finite depth quantum cirquit}
+\begin{frame}{Proof that I can't connect $\ket{\phi}$ and $\ket{\psi}$ through finite depth quantum cirquit}
 	Set all unitaries of FDQC with support on the left to be $\id$.
 	\begin{figure}
 		\center
@@ -341,8 +334,8 @@ instituut voor theorethische fysica KU Leuven
 	\end{figure}
 \end{frame}
 
-\begin{frame}{Proof that I can't connect $\ket{\phi_0}$ and $\ket{\psi}$ through finite depth quantum cirquit}
-	This implies that there exists a state $\ket{\tilde\psi}$ that looks like $\ket{\psi}$ on the left and $\ket{\phi_0}$ on the right:
+\begin{frame}{Proof that I can't connect $\ket{\phi}$ and $\ket{\psi}$ through finite depth quantum cirquit}
+	This implies that there exists a state $\ket{\tilde\psi}$ that looks like $\ket{\psi}$ on the left and $\ket{\phi}$ on the right:
 	\begin{figure}
 		\center
 		\includegraphics[width=0.75\textwidth]{Figures/ConnectingPsiAndPsi0Proof2_WithLightcone.png}
@@ -359,12 +352,18 @@ instituut voor theorethische fysica KU Leuven
 	\begin{align}
 		\bra{\tilde\psi}A_L\ket{\tilde{\psi}}&=\bra{\psi}A_L\ket{\psi}&\bra{\tilde\psi}A_R\ket{\tilde{\psi}}&=\bra{\phi_0}A_R\ket{\phi_0}.
 	\end{align}
+	\pause
 	This means that
 	\begin{itemize}
 		\item $\ket{\tilde{\psi}}$ transforms projectively under $U_L(g)=\bigotimes_{i \in L}U_i(g)$.
 		\item $\ket{\tilde{\psi}}$ transforms trivially under $U_R(g)=\bigotimes_{i \in R}U_i(g)$.
+		\item <3->$U_C(g)=\bigotimes_{i\in C}U_i(g)$ is a linear representation.
 	\end{itemize}
-	This implies that $\ket{\tilde{\psi}}$ cannot be $G$-invariant.
+	\pause
+	\pause
+	$\ket{\tilde{\psi}}$ has to transform projectively\\
+	\pause
+	$\Rightarrow$ $\ket{\tilde{\psi}}$ cannot be $G$-invariant.
 \end{frame}
 
 \begin{frame}{Second group cohomology group}

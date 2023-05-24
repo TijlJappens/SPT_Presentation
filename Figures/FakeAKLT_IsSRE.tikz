@@ -26,13 +26,13 @@
 	{
 		\draw (Left\i0) -- (Left\i1);
 		\draw (Right\i0) -- (Right\i1);
-		\ifthenelse{\isodd{\i}}{
-			\draw (Right\i1) -- (Right\i2);
-			\draw (Left\i2) -- (Left\i3);
-		}{
-			\draw (Left\i1) -- (Left\i2);
-			\draw (Right\i2) -- (Right\i3);
-		}
+		
+		\draw (Right\i1) -- (Right\i2);
+		\draw (Left\i2) -- (Left\i3);
+		
+		\draw (Left\i1) -- (Left\i2);
+		\draw (Right\i2) -- (Right\i3);
+		
 	}
 	\foreach \i in {1,...,11}{
 		\draw[fill=white] (\i-0.4,-0.4) rectangle (\i+0.4,-1.4);
