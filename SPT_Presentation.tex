@@ -53,78 +53,88 @@ instituut voor theorethische fysica KU Leuven
 \egroup
 
 \setcounter{framenumber}{0}
-\begin{frame}{Topological phases of matter}
-	\onslide<1->{
-		\begin{block}{Definition: Quantum phase of matter}
-			A phase of matter protected by a gap.
-		\end{block}
-		Typical examples:
-		\begin{enumerate}
-			\item Bose Einstein condensation (Superconductivity, superfluidity).
-			\item Insulators.
-		\end{enumerate}
-	}
-	\onslide<2->{
-		\begin{block}{Definition: Topological phase of matter}
-			Quantum phase of matter protected by topological property of many body ground-state.
-		\end{block}
-		Typical examples:
-		\begin{enumerate}
-			\item<2-> Invertible topological order (integer quantum hall plateaus).
-			\item<2-> Anyonic topological order (fractional quantum hall plateaus, toric code groundstate)
-		\end{enumerate}
-	}
-\end{frame}
-
-\begin{frame}{Same topological phase of matter}
-	How to see if two states have the same topological properties?
+\begin{frame}{Gapped phases of quantum matter}
+	Take $H$ and $\ket{\psi}$ such that:
+	\begin{itemize}
+		\item $H$ is a sum of local therms.
+		\item $\ket{\psi}$ is unique gapped groundstate of $H$.
+	\end{itemize}
 	\pause
-	\begin{block}{Idea:}
-		$\ket{\psi_1}$ and $\ket{\psi_2}$ have the same topological properties if they can be connected through a local time evolution
-		\begin{itemize}
-			\item $\ket{\psi_2}=\mathcal{T}\exp(-i\int_{0}^{t}\d s\: H(s))\ket{\psi_1}$.
-		\end{itemize}
-	\end{block}
+	Two Hamiltonians, $H(0)$ and $H(1)$ are connected if:
+	\begin{center}
+		\begin{tikzpicture}
+		\node (0) [circle,fill,inner sep=3pt] at (0,0) {};
+		\node (0 -1) [] at (0,-0.5) {$H(0)$};
+		\node (1) [circle,fill,inner sep=3pt] at (5,0) {};
+		\node (1 -1) [] at (5,-0.5) {$H(1)$};
+		\draw [line width=2pt,-{Stealth[scale = 1.2]}] (0) -- (1);
+		\node (arrow) [] at (2.5,-0.5) {$H(t)$};
+		\end{tikzpicture}
+	\end{center}
+	\pause
+	Two states $\ket{\psi(0)}$ and $\ket{\psi(1)}$ are connected if
+	\begin{center}
+		\begin{tikzpicture}
+		\node (0) [circle,fill,inner sep=3pt] at (0,0) {};
+		\node (0 -1) [] at (0,-0.5) {$\ket{\psi(0)}$};
+		\node (1) [circle,fill,inner sep=3pt] at (5,0) {};
+		\node (1 -1) [] at (5,-0.5) {$\ket{\psi(1)}$};
+		\draw [line width=2pt,-{Stealth[scale = 1.2]}] (0) -- (1);
+		\node (arrow) [] at (2.5,-0.5) {$\ket{\psi(\lambda)}=U(t)\ket{\psi(0)}$};
+		\end{tikzpicture}
+	\end{center}
+	\[U(t)=\mathcal{T}\exp(-i\int_0^t \d s K(s))\]
+	is a locally generated family of unitaries (LGU).
 \end{frame}
 
-\begin{frame}{Quantum lattice}
+\begin{frame}{Topological phases of matter}
+	\begin{center}
+		\includegraphics[trim={6cm 0 2.5cm 0},clip,width=0.8\textwidth]{Figures/GappedPhasesOfQuantumMatter.pdf}
+	\end{center}
+\end{frame}
+
+\begin{frame}{Scope of this talk}
+	\begin{center}
+		\includegraphics[trim={1.5cm 0 2cm 0},clip,width=0.8\textwidth]{Figures/TrivialGappedPhaseOfQuantumMatter.pdf}
+	\end{center}
+\end{frame}
+
+\begin{frame}{short ranged entangled (SRE) phase}
 	\begin{center}
 		\input{Figures/Lattice.tikz}
 	\end{center}
-	Full Hilbert space:
-	\[\HH=\bigotimes_{i=1}^L (\CC^d)_i.\]
 	\pause
-	Local operators only act on a few sites. Eg:
-	\[V_{i,i+1}\in\BB((\CC^d)_i\otimes (\CC^d)_{i+1})\cong\BB(\CC^{d\times d}).\]
+	\begin{block}{Definition}
+		$\ket{\psi}$ is SRE if:
+		\[\ket{\phi}=U\ket{\psi}\]
+		\begin{itemize}
+			\item $U$ LGU.
+			\item $\ket{\phi}$ is a product state.
+		\end{itemize}
+	\end{block}
 	\pause
-	Combining local operators gives local operators:
-	\[V_{i,i+1}V_{i+1,i+2}\in \BB((\CC^d)_i\otimes (\CC^d)_{i+1}\otimes (\CC^d)_{i+2}).\]
+	\[\ket{\phi}=\bigotimes_{i=1}^L\ket{v_i}\qquad \ket{v_i}\in\CC^d.\]
 \end{frame}
 
-\begin{frame}{Example lattice on sphere}
-	\begin{align}
-		\nonumber
-		&\vcenter{\hbox{\includegraphics[width=0.3\textwidth]{Figures/LatticeOnSphere}}}&&\begin{matrix}
-			H_{\text{Global}}(\lambda)\\ \rightarrow\\ \: \\ H_{\text{local}}(\lambda)\\ \nrightarrow\end{matrix}&&\vcenter{\hbox{\includegraphics[width=0.3\textwidth]{Figures/LatticeOnSphere}}}\\
-		\nonumber
-		& \qquad\qquad H_{\text{Toric Code}}&& && \quad H_{\text{trivial}}=\sum_{i\in\Lambda} (\sigma_z)_i
-	\end{align}
+\begin{frame}{SRE phase}
+	\begin{center}
+		\includegraphics[trim={1.5cm 0 2cm 0},clip,width=0.8\textwidth]{Figures/SRE_Phase.pdf}
+	\end{center}
 \end{frame}
 
-\begin{frame}{Simplification of time evolution: Finite depth quantum cirquit}
-	An even layer $V_1\in\UU(\HH)$ is of the form
-	\[V_1=\bigotimes_{i=1}^{L/2}(V_{1,i})_{2i,2i+1}.\]
-	\pause
-	An odd layer $V_2\in\UU(\HH)$ is of the form
-	\[V_2=\bigotimes_{i=1}^{L/2}(V_{2,i})_{2i-1,2i}.\]
-	\pause
-	A finite depth quantum cirquit of depth $D$ is a combination of odd and even layers:
-	\[V=V_D V_{D-1}\ldots V_2V_1.\]
-\end{frame}
-
-\begin{frame}{Finite depth quantum cirquit}
+\begin{frame}{Example of LGU: Finite depth quantum cirquit}
 	\begin{center}
 		\input{Figures/FiniteDepthQuantumCircuit.tikz}
+	\end{center}
+\end{frame}
+
+\begin{frame}{Finite depth quantum cirquit is locality preserving}
+	\begin{center}
+		\scalebox{0.75}{\input{Figures/SupportOf_A.tikz}}
+	\end{center}
+	\pause
+	\begin{center}
+		\scalebox{0.75}{\input{Figures/SupportOf_A_After_U.tikz}}
 	\end{center}
 \end{frame}
 
@@ -137,15 +147,8 @@ instituut voor theorethische fysica KU Leuven
 	\end{center}
 \end{frame}
 
-\begin{frame}{The SRE phase}
-	A product state is of the form
-	\[\ket{\phi}=\bigotimes_{i=1}^L\ket{v_i}\qquad \ket{v_i}\in\CC^d.\]
-	\pause
-	\begin{block}{Definition}
-		$\ket{\psi}$ is SRE if $\exists$ FDQC $U$:
-		\[\ket{\phi}=U\ket{\psi}\]
-		is a product state.
-	\end{block}
+\begin{frame}{Enriching with symmetry}
+	\includegraphics[width=\textwidth]{Figures/G-invariant_Parts_Of_SRE_Phase.pdf}
 \end{frame}
 
 \begin{frame}{Enriching with symmetry}
@@ -165,15 +168,13 @@ instituut voor theorethische fysica KU Leuven
 	\begin{itemize}
 		\item $\ket{\psi}$ is $G$-invariant if
 		\[U(g)\ket{\psi}=\ket{\psi}.\]
-		\item A product state $\ket{\phi}=\bigotimes_{i=1}^{L}\ket{v_i}$ is $G$-trivial if
-		\[U_i(g)\ket{v_i}=\ket{v_i}.\]
 		\item A FDQC $V$ is $G$-invariant if
-		\[[U,V_{i,j}]=0.\]
+		\[[U(g),V_{i,j}]=0.\]
 	\end{itemize}
 \end{frame}
 
-\begin{frame}{SPT classification}
-	\includegraphics[width=\textwidth]{Figures/ConnectedComponents.png}
+\begin{frame}{SPT phases}
+	\includegraphics[width=\textwidth]{Figures/SPT_Phases.pdf}
 \end{frame}
 
 \begin{frame}{Example:}
@@ -230,18 +231,20 @@ instituut voor theorethische fysica KU Leuven
 			U(-1,1)&=-\sigma_x\otimes \sigma_x&U(1,-1)&=-\sigma_y\otimes \sigma_y&U(-1,1)&=-\sigma_z\otimes \sigma_z.
 	\end{align*}
 	\pause
-	Does this reduce to a representation on $\CC^2$?\\
+	I can rewrite this as:\\
+	\begin{align*}
+	U(-1,1)&=(i\sigma_x)\otimes (i\sigma_x)&U(1,-1)&=(i\sigma_y)\otimes (i\sigma_y)&U(-1,1)&=(i\sigma_z)\otimes (i\sigma_z).
+	\end{align*}
 	\pause
-	In particular, if one takes
+	Is it a representation on $\CC^2$?
+	\pause
 	\begin{align}
-		R(-1,1)&=\sigma_x&R(1,-1)&=\sigma_y&R(-1,-1)&=\sigma_z
+		R(-1,1)&=i\sigma_x&R(1,-1)&=i\sigma_y&R(-1,-1)&=i\sigma_z
 	\end{align}
 	then
 	\begin{equation*}
-		R(-1,1)R(1,-1)=-R(1,-1)R(-1,1)=i R(-1,-1).
+		R(-1,1)R(1,-1)=-R(1,-1)R(-1,1)=-i R(-1,-1).
 	\end{equation*}
-	\pause
-	It is a lift of a projective representation.
 \end{frame}
 
 \begin{frame}{The $G$-trivial product state}
@@ -263,6 +266,7 @@ instituut voor theorethische fysica KU Leuven
 	\begin{equation*}
 		\ket{\psi}=\bigotimes_{i=1}^L\ket{s}_{(i,R),(i+1,L)}
 	\end{equation*}
+	\pause
 	It satisfies that:
 	\begin{itemize}
 		\item If I put this state on periodic boundary conditions it is invariant under
