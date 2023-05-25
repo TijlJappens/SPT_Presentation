@@ -25,7 +25,6 @@ instituut voor theorethische fysica KU Leuven
 \DeclareTextFontCommand{\textaugie}{\augiefamily}
 
 \begin{document}
-\nobibliography{SPT_Presentation}
 
 %%%%%%%%%% Removes the frame number from the title page %%%%%%%%%%
 \bgroup
@@ -53,13 +52,50 @@ instituut voor theorethische fysica KU Leuven
 \egroup
 
 \setcounter{framenumber}{0}
+\begin{frame}{Topological phases of matter}
+	What do:
+	\begin{figure}
+		\centering
+		\begin{subfigure}[b]{0.3\textwidth}
+			\centering
+			\includegraphics[width=\textwidth]{Figures/IntegerQHE.png}
+			\caption{Integer quantum Hall effect (1980)}
+		\end{subfigure}
+		\hfill
+		\begin{subfigure}[b]{0.3\textwidth}
+			\centering
+			\includegraphics[width=\textwidth]{Figures/FractionalQHE.png}
+			\caption{Fractional quantum Hall effect (1982)}
+		\end{subfigure}
+		\hfill
+		\begin{subfigure}[b]{0.3\textwidth}
+			\centering
+			\includegraphics[width=\textwidth]{Figures/MajoranaEdgeModes.png}
+			\caption{Majorana edge modes (not found yet)}
+		\end{subfigure}
+	\end{figure}
+	have in common?
+\end{frame}
+
+\begin{frame}{Unique gapped groundstates}
+	\begin{columns}
+		\begin{column}{0.7\textwidth}
+			They are described by Hamiltonians $H$ that
+			\begin{itemize}
+				\item<2-> have a "unique gapped groundstate" $\ket{\psi}$.
+				\item<3-> are a sum of local therms.
+			\end{itemize}
+		\end{column}
+		\begin{column}{0.3\textwidth}
+			\begin{center}
+				\input{Figures/SPEC(H).tikz}
+			\end{center}
+		\end{column}
+	\end{columns}
+	
+\end{frame}
+
 \begin{frame}{Gapped phases of quantum matter}
-	Take $H$ and $\ket{\psi}$ such that:
-	\begin{itemize}
-		\item $H$ is a sum of local therms.
-		\item $\ket{\psi}$ is unique gapped groundstate of $H$.
-	\end{itemize}
-	\pause
 	Two Hamiltonians, $H(0)$ and $H(1)$ are connected if:
 	\begin{center}
 		\begin{tikzpicture}
@@ -71,7 +107,14 @@ instituut voor theorethische fysica KU Leuven
 		\node (arrow) [] at (2.5,-0.5) {$H(t)$};
 		\end{tikzpicture}
 	\end{center}
-	\pause
+	\begin{itemize}
+		\item<2-> $H(t)$ is gapped.
+		\item<3-> The local therms of $H(t)$ are continuous in $t$.
+	\end{itemize}
+	
+\end{frame}
+
+\begin{frame}
 	Two states $\ket{\psi(0)}$ and $\ket{\psi(1)}$ are connected if
 	\begin{center}
 		\begin{tikzpicture}
@@ -80,14 +123,22 @@ instituut voor theorethische fysica KU Leuven
 		\node (1) [circle,fill,inner sep=3pt] at (5,0) {};
 		\node (1 -1) [] at (5,-0.5) {$\ket{\psi(1)}$};
 		\draw [line width=2pt,-{Stealth[scale = 1.2]}] (0) -- (1);
-		\node (arrow) [] at (2.5,-0.5) {$\ket{\psi(\lambda)}=U(t)\ket{\psi(0)}$};
+		\node (arrow) [] at (2.5,-0.5) {$\ket{\psi(\lambda)}=V(t)\ket{\psi(0)}$};
 		\end{tikzpicture}
 	\end{center}
-	\[U(t)=\mathcal{T}\exp(-i\int_0^t \d s K(s))\]
+	\[V(t)=\mathcal{T}\exp(-i\int_0^t \d s K(s))\]
 	is a locally generated family of unitaries (LGU).
 \end{frame}
 
-\begin{frame}{Topological phases of matter}
+\begin{frame}
+	These two concepts are equivalent:
+	\begin{itemize}
+		\item<2-> If $H(0)$ and $H(1)$ are equivalent through a path $H(t)$, the groundstates of $H(t)$ form a path.
+		\item<3-> If $\ket{\psi(0)}$ and $\ket{\psi(1)}$ are equivalent through a path $\ket{\psi(\lambda)}$, there exists a path of parent Hamiltonians $H(t)$ for $\ket{\psi(\lambda)}$.
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Gapped phases of quantum matter}
 	\begin{center}
 		\includegraphics[trim={6cm 0 2.5cm 0},clip,width=0.8\textwidth]{Figures/GappedPhasesOfQuantumMatter.pdf}
 	\end{center}
@@ -99,24 +150,25 @@ instituut voor theorethische fysica KU Leuven
 	\end{center}
 \end{frame}
 
-\begin{frame}{short ranged entangled (SRE) phase}
+\begin{frame}{The quantum lattice, $\Lambda$}
 	\begin{center}
 		\input{Figures/Lattice.tikz}
 	\end{center}
-	\pause
-	\begin{block}{Definition}
-		$\ket{\psi}$ is SRE if:
-		\[\ket{\phi}=U\ket{\psi}\]
-		\begin{itemize}
-			\item $U$ LGU.
-			\item $\ket{\phi}$ is a product state.
-		\end{itemize}
-	\end{block}
-	\pause
-	\[\ket{\phi}=\bigotimes_{i\in\Lambda}\ket{v_i}\qquad \ket{v_i}\in\CC^d.\]
 \end{frame}
 
-\begin{frame}{SRE phase}
+\begin{frame}{Trivial phase: short ranged entangled (SRE) phase}
+	\begin{block}{Definition}
+		$\ket{\psi}$ is SRE if:
+		\[\ket{\phi}=V\ket{\psi}\]
+		\begin{itemize}
+			\item $V$, LGU.
+			\item $\ket{\phi}$, product state.
+		\end{itemize}
+		\[\ket{\phi}=\bigotimes_{i\in\Lambda}\ket{v_i}\qquad \ket{v_i}\in\CC^d.\]
+	\end{block}
+\end{frame}
+
+\begin{frame}{Trivial phase: SRE phase}
 	\begin{center}
 		\includegraphics[trim={1.5cm 0 2cm 0},clip,width=0.8\textwidth]{Figures/SRE_Phase.pdf}
 	\end{center}
@@ -160,7 +212,7 @@ instituut voor theorethische fysica KU Leuven
 	\begin{itemize}
 		\item $G$ compact Lie group.
 		\item $U_i\in\hom(G,\UU(\CC^d))$ representation on on site Hilbert space.
-		\item $U(g)=\bigotimes_{i=1}^{L}U_i(g)$ group action.
+		\item $U(g)=\bigotimes_{i\in\Lambda}U_i(g)$ group action.
 	\end{itemize}
 \end{frame}
 
@@ -270,7 +322,7 @@ instituut voor theorethische fysica KU Leuven
 \end{frame}
 
 
-\begin{frame}{Connecting $\ket{\psi}$ and $\ket{\phi_0}$}
+\begin{frame}{Connecting $\ket{\psi}$ and $\ket{\phi}$}
 	I can connect $\ket{\psi}$ and $\ket{\phi}$ with a quantum circuit of depth 3:
 	\begin{center}
 		\scalebox{0.75}{
@@ -343,14 +395,14 @@ instituut voor theorethische fysica KU Leuven
 	\pause
 	For $A_L\in\AA_L$ and $A_R\in\AA_R$ respectively I have
 	\begin{align}
-		\bra{\tilde\psi}A_L\ket{\tilde{\psi}}&=\bra{\psi}A_L\ket{\psi}&\bra{\tilde\psi}A_R\ket{\tilde{\psi}}&=\bra{\phi_0}A_R\ket{\phi_0}.
+		\bra{\tilde\psi}A_L\ket{\tilde{\psi}}&=\bra{\psi}A_L\ket{\psi}&\bra{\tilde\psi}A_R\ket{\tilde{\psi}}&=\bra{\phi}A_R\ket{\phi}.
 	\end{align}
 \end{frame}
 
-\begin{frame}{Proof that I can't connect $\ket{\phi_0}$ and $\ket{\psi}$ through finite depth quantum cirquit}
+\begin{frame}{Proof that I can't connect $\ket{\phi}$ and $\ket{\psi}$ through finite depth quantum cirquit}
 	For $A_L\in\AA_L$ and $A_R\in\AA_R$ respectively I have
 	\begin{align}
-		\bra{\tilde\psi}A_L\ket{\tilde{\psi}}&=\bra{\psi}A_L\ket{\psi}&\bra{\tilde\psi}A_R\ket{\tilde{\psi}}&=\bra{\phi_0}A_R\ket{\phi_0}.
+		\bra{\tilde\psi}A_L\ket{\tilde{\psi}}&=\bra{\psi}A_L\ket{\psi}&\bra{\tilde\psi}A_R\ket{\tilde{\psi}}&=\bra{\phi}A_R\ket{\phi}.
 	\end{align}
 	\pause
 	This means that
@@ -364,6 +416,15 @@ instituut voor theorethische fysica KU Leuven
 	$\ket{\tilde{\psi}}$ has to transform projectively\\
 	\pause
 	$\Rightarrow$ $\ket{\tilde{\psi}}$ cannot be $G$-invariant.
+\end{frame}
+
+\begin{frame}{Questions}
+	\begin{center}
+		\includegraphics[width=0.5\textwidth]{Figures/AnyQuestions.jpg}
+	\end{center}
+	\begin{itemize}
+		\item I can show some of my own theorems on demand.
+	\end{itemize}
 \end{frame}
 
 \begin{frame}{Second group cohomology group}
@@ -397,129 +458,39 @@ instituut voor theorethische fysica KU Leuven
 	\end{block}
 \end{frame}
 
-\begin{frame}{SPT classification problem}
-	\begin{figure}
-		\center
-		\includegraphics[width=0.8\textwidth]{Figures/ConnectedComponents.png}
-	\end{figure}
-	\pause
-	In this case the green areas are labelled by $H^2(G,U(1))$.\\$\:$\\
-	In particular $H^2(SO(3),U(1))\cong H^2(\ZZ_2\times\ZZ_2,U(1))\cong \ZZ_2$.
-\end{frame}
-
-\begin{frame}{How do we make sense of the previous argument mathematically}
-	Previously we used a product of linear representations and acted with it on a Schmidt decomposition to obtain a projective representation. How is this possible?\\$\:$\\
-	\pause
-	The argument really only makes sense when we use the truly infinite lattice.
-\end{frame}
-
-\begin{frame}{Quasi Local $C^*$ algebra}
-Take
-\begin{itemize}
-\item $d$ the on site dimension.
-\item $D$ the spatial dimension.
-\item $\mathfrak{B}_{\ZZ^D}$ the local subsets of $\ZZ^D$.
-\end{itemize}
-\pause
-We define the local $C^*$ algebra as follows: $\forall Z\in \mathfrak{B}_{\ZZ^D}\}:$
-\begin{align*}
- \AA_Z&:=\bigotimes_{i\in Z}\left(\BB(\CC^d)\right)_i&\onslide<3->{\AA_{\text{loc}}&:=\{\AA_{Z} | Z\in \mathfrak{B}_{\ZZ^D}\}}.
-\end{align*}
-\onslide<4->{
-\begin{block}{Definition: Quasi Local $C^*$ algebra}
-We define $\AA$ as the norm closure of $\AA_{\text{loc}}$:
-\[\AA:=\overline{\AA_{\text{loc}}}.\]
-\end{block}}
-\end{frame}
-
-\begin{frame}{States and interactions}
-$\omega:\AA\rightarrow \CC$ is a state if it is positive and linear.\\
-\pause
-\begin{itemize}
-\item When will we say that two pure states are connected?
-\pause
-\item We won't define a topology only an equivalence class.
-\end{itemize}
-\pause
-\begin{block}{Bounded Interaction}
-An interaction is a map of the form
-\[\Phi:\mathfrak{B}_{\ZZ^D}\rightarrow\textrm{Herm}(\AA_{\cdot}).\]
-\pause
-Additionally it is bounded if there exists a MDP function $f:\mathbb{N}^+\rightarrow \mathbb{R}^+$ decaying faster then any exponent such that
-\[\norm{\Phi}_f:=\textrm{sup}_{j\in\ZZ^D}\sum_{S}\chi(j\in S)\frac{\norm{\Phi(S)}}{f(1+\textrm{diam}(S))}<\infty.\]
-\end{block}
-\end{frame}
-
-\begin{frame}{Locally generated automorphism (LGA)}
-\begin{block}{Definition}
-An automorphism $\alpha_\lambda:\AA\rightarrow \AA$ is locally generated if there exists a one parameter family of bounded interactions $\Phi_\lambda$ satisfying ($\forall a\in\AA$)
-\[\frac{\dd}{\dd \lambda}\alpha_\lambda(a)=-i\alpha_\lambda\left(\sum_{S\in\mathfrak{B}_{\ZZ^D}}[\Phi_\lambda(S),a]\right).\]
-\end{block}
-\end{frame}
-
-\begin{frame}{SRE stably SRE and Inverible}
-$\omega\in\mathcal{P}(\AA)$ is
-\pause
-\begin{itemize}
-\item short range entangled (SRE) if there exists a product state $\phi\in\mathcal{P}(\AA)$ and an LGA $\alpha_1$ such that
-\[\omega=\phi\circ\alpha_1.\]
-\pause
-\item stably SRE if there exists a product state $\psi\in\mathcal{P}(\AA')$, a product state $\phi\in\mathcal{P}(\AA\otimes_{\text{stack}} \AA')$ and an LGA $\alpha_1$ such that
-\[\omega\otimes_{\text{stack}}\psi =\phi\circ\alpha_1.\]
-\pause
-\item invertible if there exists an inverse state $\omega^{-1}\in\mathcal{P}(\AA')$, a product state $\phi\in\mathcal{P}(\AA\otimes_{\text{stack}}\AA')$ and an LGA such that
-\[\omega\otimes_{\text{stack}}\omega^{-1}=\phi\circ\alpha_1.\]
-\end{itemize}
-\end{frame}
-
-\begin{frame}{On site group action}
-Let $U\in\textrm{Hom}(G,U(\CC^d))$ be the on site group action. We define the group action $\beta\in\textrm{Hom}(G,\textrm{Aut}(\AA))$ such that for any $a\in\AA_Z$
-\[\beta_g(a)=\textrm{Ad}\left(\bigotimes_{i\in Z}U(g)\right)(a).\]
-\pause
-\begin{itemize}
-\item $\omega\in\mathcal{P}(\AA)$ is $G$-invariant if
-\[\omega\circ\beta_g=\omega.\]
-\pause
-\item An interaction $\Phi$ is $G$-invariant if $\forall Z\in\mathfrak{B}_{\ZZ^D}$
-\[\beta_g(\Phi(Z))=\Phi(Z).\]
-\pause
-\item Similarly for translation invariance.
-\end{itemize}
-\end{frame}
-
 \begin{frame}{1D SPT classification results}
 Let $\AA$ be a quasi local algebra over $\ZZ$.
 \begin{block}{Theorem 1:}
-There exists an $H^2(G,U(1))$ valued index on invertible $G$ invariant states. This index is invariant under $G$-invariant LGA's\footcite{ogata2019classification}. (This result is actually more general)
+There exists an $H^2(G,U(1))$ valued index on $G$-invariant SRE states. This index is invariant under $G$-invariant LGA's\footnote{Yoshiko Ogata. A classification of pure states on quantum spin chains satisfying the split property with on-site finite group symmetries. arXiv:1908.08621, 2019.}. (This result is actually more general)
 \end{block}
 \end{frame}
 
 \begin{frame}{1D SPT classification results}
 Let $\AA$ be a quasi local algebra over $\ZZ$.
 \begin{block}{Theorem 2:}
-If two invertible $G$-invariant states $\omega_1$ and $\omega_2$ have the same $H^2(G,U(1))$-valued index then there exist product states $\phi_1,\phi_2$ and an LGA $\alpha_1$ such that
-\[\omega_1\otimes_{\text{stack}}\phi_1=\omega_2\otimes_{\text{stack}}\phi_2\circ\alpha_1.\footcite{kapustin2021classification}\]
+If two $G$-invariant SRE states $\omega_1$ and $\omega_2$ have the same $H^2(G,U(1))$-valued index then there exist product states $\phi_1,\phi_2$ and an LGA $\alpha_1$ such that
+\[\omega_1\otimes_{\text{stack}}\phi_1=\omega_2\otimes_{\text{stack}}\phi_2\circ\alpha_1 \footnote{Anton Kapustin, Nikita Sopenko, and Bowen Yang. A classification of invertible phases of bosonic quantum lattice systems in one dimension. Journal of Mathematical Physics, 62(8):081901, Aug 2021.}.\]
 \end{block}
 \end{frame}
 
 \begin{frame}{Loops of 1D SPT classification results}
 Let $\AA$ be a quasi local algebra over $\ZZ$.
 \begin{block}{Theorem 3:}
-$G$-invariant locally generated loops of invertible states are classified by an $H^2(G,U(1))\oplus H^1(G,U(1))$-valued index. This classification is also complete.\footcite{https://doi.org/10.48550/arxiv.2204.03763}
+$G$-invariant locally generated loops of invertible states are classified by an $H^2(G,U(1))\oplus H^1(G,U(1))$-valued index. This classification is also complete.\footnote{Sven Bachmann, Wojciech De Roeck, Martin Fraas and Tijl Jappens, A classification of G-charge Thouless pumps in 1D invertible states, https://doi.org/10.48550/arxiv.2204.03763, 2022}
 \end{block}
 \end{frame}
 
 \begin{frame}{2D SPT classification results}
 Let $\AA$ be a quasi local algebra over $\ZZ^2$.
 \begin{block}{Theorem 4:}
-$G$-invariant SRE's carry an $H^3(G,U(1))$-valued index. This index is invariant under $G$-invariant LGA's.\footcite{ogata2021h3gmathbb}
+$G$-invariant SRE's carry an $H^3(G,U(1))$-valued index. This index is invariant under $G$-invariant LGA's.\footnote{Yoshiko Ogata. A $H^3(G,U(1))$-valued index of symmetry protected topological phases with on-site finite group symmetry for two-dimensional quantum spin systems. arXiv:2101.00426, 2021.}
 \end{block}
 \end{frame}
 
 \begin{frame}{2D translation invariant SPT classification results}
 Let $\AA$ be a quasi local algebra over $\ZZ^2$.
 \begin{block}{Theorem 5:}
-$G$-invariant stably SRE's, that are translation invariant in one direction carry an $H^3(G,U(1))\oplus H^2(G,U(1))$-valued index. This index is invariant under $G$-invariant, translation invariant LGA's.\footcite{https://doi.org/10.48550/arxiv.2202.11758}
+$G$-invariant stably SRE's, that are translation invariant in one direction carry an $H^3(G,U(1))\oplus H^2(G,U(1))$-valued index. This index is invariant under $G$-invariant, translation invariant LGA's.\footnote{Tijl Jappens, SPT indices emerging from translation invariance in two dimensional quantum spin systems, https://doi.org/10.48550/arxiv.2202.11758, 2022}
 \end{block}
 \end{frame}
 
@@ -528,7 +499,7 @@ Let $\AA$ be a quasi local algebra over $\ZZ^2$.
 \begin{block}{Theorem 6:}
 $G$-invariant stably SRE's, that are translation invariant in two directions carry an
 \[H^3(G,U(1))\oplus H^2(G,U(1))\oplus H^2(G,U(1))\oplus H^1(G,U(1))\]
--valued index. This index is invariant under $G$-invariant, translation invariant (in two directions) LGA's.\footcite{https://doi.org/10.48550/arxiv.2202.11758}
+-valued index. This index is invariant under $G$-invariant, translation invariant (in two directions) LGA's.\footnote{Tijl Jappens, SPT indices emerging from translation invariance in two dimensional quantum spin systems, https://doi.org/10.48550/arxiv.2202.11758, 2022}
 \end{block}
 \end{frame}
 

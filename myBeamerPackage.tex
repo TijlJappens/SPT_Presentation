@@ -7,15 +7,13 @@
 \usepackage{txfonts}
 \usepackage{relsize}
 \usepackage{physics}
-\usepackage{natbib}
-\usepackage{bibentry}
 \bibliographystyle{apalike}
 \usepackage{tikz}
 \usepackage{ifthen}
+\usepackage{caption,subcaption}
+\usepackage{svg}
 \usetikzlibrary{decorations.pathreplacing,arrows.meta}
-
-\newcommand\footcite[1]{\footnote{\bibentry{#1}}\label{\thepage:#1}}
-\newcommand\secondcite[1]{\textsuperscript{\ref{\thepage:#1}}}
+\usepackage[style=verbose,backend=bibtex]{biblatex}
 
 %\usepackage{bbold}
 \usepackage{dsfont}

@@ -1,8 +1,33 @@
 \begin{tikzpicture}
 	\foreach \i in {1,...,11}
 	{
-		\filldraw [black] (\i,0) circle (2pt);
+		\node[circle,fill,inner sep=1.5pt] (\i) at (\i,0) {};
 		
 	}
+	\node[] (i) at (6,0.5) {$i$};
+	\node[] (i+1) at (7,0.5) {$i+1$};
+	\node[] (i+2) at (8,0.5) {$i+2$};
 	\draw [decorate,decoration={brace,amplitude=5pt},xshift=0cm,yshift=0pt] (5+0.3,-0.3) -- (5-0.3,-0.3) node [black,midway,yshift=-0.3cm] {\footnotesize $\CC^d$};
+	
+	
+	\onslide<2->{
+	\node[circle,fill,inner sep=1.5pt] (iDown) at (6,-1) {};
+	\node[circle,fill,inner sep=1.5pt] (i+1Down) at (7,-1) {};
+	\draw (6) -- (iDown);
+	\draw (7) -- (i+1Down);
+	\draw[fill=white] (5.5,-0.25) rectangle (7.5,-0.75);
+	\node[] (A1) at (6.5,-0.5) {$A_{i,i+1}$};
+	
+	}\onslide<3->{
+	\node[circle,fill,inner sep=1.5pt] (iFarDown) at (6,-2) {};
+	\node[circle,fill,inner sep=1.5pt] (i+1FarDown) at (7,-2) {};
+	\node[circle,fill,inner sep=1.5pt] (i+2FarDown) at (8,-2) {};
+	\draw (iDown)--(iFarDown);
+	\draw (i+1Down)--(i+1FarDown);
+	\draw (8)--(i+2FarDown);
+	\draw[fill=white] (6.5,-1.25) rectangle (8.5,-1.75);
+	\node[] (A1) at (7.5,-1.5) {$A_{i+1,i+2}$};
+	}
+	
+	
 \end{tikzpicture}

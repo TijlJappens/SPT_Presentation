@@ -17,4 +17,8 @@
 		\clip(11,0.2)rectangle(11.5,-0.2);
 		\draw[black] (11.5,0) ellipse (0.48 and 0.2);
 	\end{scope}
+	\node (iL) [] at (5.5,-1) {$(i,L)$};
+	\draw[black,->] (6L) -- (iL);
+	\node (iR) [] at (6.5,-1) {$(i,R)$};
+	\draw[black,->] (6R) -- (iR);
 \end{tikzpicture}
