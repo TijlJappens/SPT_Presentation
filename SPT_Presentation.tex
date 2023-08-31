@@ -10,7 +10,7 @@
 
 
 \institute[]{
-instituut voor theorethische fysica KU Leuven
+instituut voor theoretische fysica KU Leuven
 }
 
 
@@ -56,22 +56,35 @@ instituut voor theorethische fysica KU Leuven
 	What do:
 	\begin{figure}
 		\centering
-		\begin{subfigure}[b]{0.3\textwidth}
+		\begin{subfigure}[b]{0.4\textwidth}
 			\centering
 			\includegraphics[width=\textwidth]{Figures/IntegerQHE.png}
 			\caption{Integer quantum Hall effect (1980)}
 		\end{subfigure}
 		\hfill
-		\begin{subfigure}[b]{0.3\textwidth}
+		\begin{subfigure}[b]{0.4\textwidth}
 			\centering
 			\includegraphics[width=\textwidth]{Figures/FractionalQHE.png}
 			\caption{Fractional quantum Hall effect (1982)}
 		\end{subfigure}
-		\hfill
-		\begin{subfigure}[b]{0.3\textwidth}
+	\end{figure}
+	have in common?
+\end{frame}
+
+\begin{frame}
+	What do:
+	\begin{figure}
+		\centering
+		\begin{subfigure}[b]{0.4\textwidth}
 			\centering
 			\includegraphics[width=\textwidth]{Figures/MajoranaEdgeModes.png}
 			\caption{Majorana edge modes (not found yet)}
+		\end{subfigure}
+		\hfill
+		\begin{subfigure}[b]{0.4\textwidth}
+			\centering
+			\includegraphics[width=\textwidth]{Figures/Fermi-Hubbard Ladders.pdf}
+			\caption{Haldane phase (2021)}
 		\end{subfigure}
 	\end{figure}
 	have in common?
@@ -82,7 +95,7 @@ instituut voor theorethische fysica KU Leuven
 		\begin{column}{0.7\textwidth}
 			They are described by Hamiltonians $H$ that
 			\begin{itemize}
-				\item<2-> have a "unique gapped groundstate" $\ket{\psi}$.
+				\item<2-> have a "unique gapped (bulk) ground-state" $\ket{\psi}$.
 				\item<3-> are a sum of local therms.
 			\end{itemize}
 		\end{column}
@@ -123,7 +136,7 @@ instituut voor theorethische fysica KU Leuven
 		\node (1) [circle,fill,inner sep=3pt] at (5,0) {};
 		\node (1 -1) [] at (5,-0.5) {$\ket{\psi(1)}$};
 		\draw [line width=2pt,-{Stealth[scale = 1.2]}] (0) -- (1);
-		\node (arrow) [] at (2.5,-0.5) {$\ket{\psi(\lambda)}=V(t)\ket{\psi(0)}$};
+		\node (arrow) [] at (2.5,-0.5) {$\ket{\psi(t)}=V(t)\ket{\psi(0)}$};
 		\end{tikzpicture}
 	\end{center}
 	\[V(t)=\mathcal{T}\exp(-i\int_0^t \d s K(s))\]
@@ -134,7 +147,7 @@ instituut voor theorethische fysica KU Leuven
 	These two concepts are equivalent:
 	\begin{itemize}
 		\item<2-> If $H(0)$ and $H(1)$ are equivalent through a path $H(t)$, the groundstates of $H(t)$ form a path.
-		\item<3-> If $\ket{\psi(0)}$ and $\ket{\psi(1)}$ are equivalent through a path $\ket{\psi(\lambda)}$, there exists a path of parent Hamiltonians $H(t)$ for $\ket{\psi(\lambda)}$.
+		\item<3-> If $\ket{\psi(0)}$ and $\ket{\psi(1)}$ are equivalent through a path $\ket{\psi(t)}$, there exists a path of parent Hamiltonians $H(t)$ for $\ket{\psi(t)}$.
 	\end{itemize}
 \end{frame}
 
@@ -422,6 +435,47 @@ instituut voor theorethische fysica KU Leuven
 	\begin{center}
 		\includegraphics[width=\linewidth]{Figures/SPT_Phases_1d.pdf}
 	\end{center}
+\end{frame}
+
+\begin{frame}{Edge modes}
+	\begin{columns}
+		\begin{column}{0.6\textwidth}
+			\begin{block}{Definition}
+				Edge modes are the ground state degeneracy introduced by introducing an edge.
+			\end{block}
+			\pause
+			E.g. Let $H\in\BB(\HH_L\otimes\HH_R)$ be
+			\begin{enumerate}
+				\item $G$-invariant.
+				\item sum of local therms.
+				\item with SPT $\ket{\psi}$ as unique gapped ground-state.
+			\end{enumerate}
+		\end{column}
+		\begin{column}{0.4\textwidth}  %%<--- here
+			\begin{center}
+				\includegraphics[width=\textwidth]{Figures/Fermi-Hubbard Ladders.pdf}
+			\end{center}
+		\end{column}
+	\end{columns}
+\end{frame}
+
+\begin{frame}{Edge modes}
+	\begin{columns}
+		\begin{column}{0.6\textwidth}
+			Eg. Let $H_R\in\BB(\HH_R)$ be the conditional expectation of $H$ to $\HH_R$ then:
+			\pause
+			\begin{enumerate}
+				\item The ground-state of $H_R$ doesn't have to be unique.
+				\item The ground state subspace has to be $G$-invariant.
+				\item If the SPT index is non-trivial the ground-state of $H_R$ can't be unique (protected ground-state degeneracy).
+			\end{enumerate}
+		\end{column}
+		\begin{column}{0.4\textwidth}  %%<--- here
+			\begin{center}
+				\includegraphics[width=\textwidth]{Figures/Fermi-Hubbard Ladders.pdf}
+			\end{center}
+		\end{column}
+	\end{columns}
 \end{frame}
 
 \begin{frame}{Questions}
