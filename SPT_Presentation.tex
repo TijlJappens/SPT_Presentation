@@ -2,7 +2,7 @@
 \input{myBeamerPackage.tex}
 
 \title[SPT classification]%\hspace{1cm} \insertframenumber/\inserttotalframenumber]
-{SPT classification:\\from the AKLT model to recent proofs}
+{SPT classification:\\from entangled pair states to recent proofs}
 
 \author[Tijl]
 {Tijl Jappens \\
@@ -68,11 +68,9 @@ instituut voor theoretische fysica KU Leuven
 			\caption{Fractional quantum Hall effect (1982)}
 		\end{subfigure}
 	\end{figure}
-	have in common?
 \end{frame}
 
 \begin{frame}
-	What do:
 	\begin{figure}
 		\centering
 		\begin{subfigure}[b]{0.4\textwidth}
@@ -128,26 +126,27 @@ instituut voor theoretische fysica KU Leuven
 \end{frame}
 
 \begin{frame}
-	Two states $\ket{\psi(0)}$ and $\ket{\psi(1)}$ are connected if
+	Two states $\psi_0$ and $\psi_1$ are connected if
 	\begin{center}
 		\begin{tikzpicture}
 		\node (0) [circle,fill,inner sep=3pt] at (0,0) {};
-		\node (0 -1) [] at (0,-0.5) {$\ket{\psi(0)}$};
+		\node (0 -1) [] at (0,-0.5) {$\psi_0$};
 		\node (1) [circle,fill,inner sep=3pt] at (5,0) {};
-		\node (1 -1) [] at (5,-0.5) {$\ket{\psi(1)}$};
+		\node (1 -1) [] at (5,-0.5) {$\psi_1$};
 		\draw [line width=2pt,-{Stealth[scale = 1.2]}] (0) -- (1);
-		\node (arrow) [] at (2.5,-0.5) {$\ket{\psi(t)}=V(t)\ket{\psi(0)}$};
+		\node (arrow) [] at (2.5,-0.5) {$\psi_t=\psi_0\circ\gamma^K_{0;t}$};
 		\end{tikzpicture}
 	\end{center}
-	\[V(t)=\mathcal{T}\exp(-i\int_0^t \d s K(s))\]
-	is a locally generated family of unitaries (LGU).
+	where $\gamma^K_{0;t}$, defined through:
+	\[\frac{\d}{\d t}\gamma_{0;t}^K(A)=\sum_i \gamma_{0;t}^K([-iK_i(t),A]).\]
+	is a locally generated family of automorphisms (LGA).
 \end{frame}
 
 \begin{frame}
 	These two concepts are equivalent:
 	\begin{itemize}
 		\item<2-> If $H(0)$ and $H(1)$ are equivalent through a path $H(t)$, the groundstates of $H(t)$ form a path.
-		\item<3-> If $\ket{\psi(0)}$ and $\ket{\psi(1)}$ are equivalent through a path $\ket{\psi(t)}$, there exists a path of parent Hamiltonians $H(t)$ for $\ket{\psi(t)}$.
+		\item<3-> If $\psi_0$ and $\psi_1$ are equivalent through a path $\psi_t$, there exists a path of parent Hamiltonians $H(t)$ for $\psi_t$.
 	\end{itemize}
 \end{frame}
 
@@ -157,27 +156,30 @@ instituut voor theoretische fysica KU Leuven
 	\end{center}
 \end{frame}
 
-\begin{frame}{Scope of this talk}
+\begin{frame}{Scope of this thesis}
 	\begin{center}
 		\includegraphics[trim={1.5cm 0 2cm 0},clip,width=0.8\textwidth]{Figures/TrivialGappedPhaseOfQuantumMatter.pdf}
 	\end{center}
 \end{frame}
 
 \begin{frame}{The quantum lattice, $\Lambda$}
+	Define $\AA_{\text{loc}}$ through
 	\begin{center}
 		\input{Figures/Lattice.tikz}
 	\end{center}
+	\pause
+	Define quasi-local algebra $\AA=\overline{\AA_{\text{loc}}}.$
 \end{frame}
 
 \begin{frame}{Trivial phase: short ranged entangled (SRE) phase}
 	\begin{block}{Definition}
-		$\ket{\psi}$ is SRE if:
-		\[\ket{\phi}=V\ket{\psi}\]
+		$\psi$ is SRE if:
+		\[\phi=\psi\circ \gamma^K_{0;1}\]
 		\begin{itemize}
-			\item $V$, LGU.
-			\item $\ket{\phi}$, product state.
+			\item $\gamma^K_{0;1}$, LGA.
+			\item $\phi$, product state:
 		\end{itemize}
-		\[\ket{\phi}=\bigotimes_{i\in\Lambda}\ket{v_i}\qquad \ket{v_i}\in\CC^d.\]
+		\[\phi=\bigotimes_{i\in\Lambda}\bra{v_i}\cdot\ket{v_i}\qquad \ket{v_i}\in\CC^d.\]
 	\end{block}
 \end{frame}
 
@@ -187,7 +189,7 @@ instituut voor theoretische fysica KU Leuven
 	\end{center}
 \end{frame}
 
-\begin{frame}{Example of LGU: Finite depth quantum cirquit}
+\begin{frame}{Example of LGA: Finite depth quantum cirquit}
 	\begin{center}
 		\input{Figures/FiniteDepthQuantumCircuit.tikz}
 	\end{center}
@@ -225,24 +227,73 @@ instituut voor theoretische fysica KU Leuven
 	\begin{itemize}
 		\item $G$ compact Lie group.
 		\item $U_i\in\hom(G,\UU(\CC^d))$ representation on on site Hilbert space.
-		\item $U(g)=\bigotimes_{i\in\Lambda}U_i(g)$ group action.
+		\item $\beta_g=\bigotimes_{i\in\Lambda}\Ad{U_i(g)}$ group action.
 	\end{itemize}
 \end{frame}
 
 \begin{frame}{Enriching with symmetry}
 	\begin{itemize}
-		\item<1-> $\ket{\psi}$ is $G$-invariant if
-		\[U(g)\ket{\psi}=\ket{\psi}.\]
-		\item<2-> An LGU,
-		\[U(t)=\mathcal{T}\exp(-i\int_0^t \d s K(s))\]
-		is $G$-invariant if each of the local therms of $K$ is $G$-invariant.
+		\item<1-> $\psi$ is $G$-invariant if
+		\[\psi\circ\beta_g=\psi.\]
+		\item<2-> An LGA, $\gamma^K_{0;1}$ is $G$-invariant if each of the local therms of $K$ is $G$-invariant.
 		\item<3-> In particular, a FDQC, $V$ is $G$-invariant if
-		\[[U(g),V_{i,j}]=0.\]
+		\[[U_{i}(g)\otimes U_j(g),V_{i,j}]=0.\]
 	\end{itemize}
 \end{frame}
 
 \begin{frame}{SPT phases}
 	\includegraphics[width=\textwidth]{Figures/SPT_Phases.pdf}
+\end{frame}
+
+\begin{frame}{1D SPT classification results}
+	Let $\AA$ be a quasi local algebra over $\ZZ$.
+	\begin{block}{Theorem 1:}
+		There exists an $H^2(G,U(1))$ valued index on $G$-invariant SRE states. This index is invariant under $G$-invariant LGA's\footnote{Yoshiko Ogata. A classification of pure states on quantum spin chains satisfying the split property with on-site finite group symmetries. arXiv:1908.08621, 2019.}. (This result is actually more general)
+	\end{block}
+\end{frame}
+
+\begin{frame}{1D SPT classification results}
+	Let $\AA$ be a quasi local algebra over $\ZZ$.
+	\begin{block}{Theorem 2:}
+		If two $G$-invariant SRE states $\omega_1$ and $\omega_2$ have the same $H^2(G,U(1))$-valued index then there exist $G$-invariant product states $\phi_1,\phi_2$ and an LGA $\gamma_{0;1}^K$ such that
+		\[\omega_1\otimes_{\text{stack}}\phi_1=\omega_2\otimes_{\text{stack}}\phi_2\circ\gamma_{0;1}^K \footnote{Anton Kapustin, Nikita Sopenko, and Bowen Yang. A classification of invertible phases of bosonic quantum lattice systems in one dimension. Journal of Mathematical Physics, 62(8):081901, Aug 2021.}.\]
+	\end{block}
+\end{frame}
+
+\begin{frame}{Loops of 1D SPT classification results}
+	Let $\AA$ be a quasi local algebra over $\ZZ$.
+	\begin{block}{Theorem 3:}
+		$G$-invariant locally generated loops of invertible states are classified by an $H^2(G,U(1))\oplus H^1(G,U(1))$-valued index. This classification is also complete.\footnote{Sven Bachmann, Wojciech De Roeck, Martin Fraas and Tijl Jappens, A classification of G-charge Thouless pumps in 1D invertible states, https://doi.org/10.48550/arxiv.2204.03763, 2022}
+	\end{block}
+\end{frame}
+
+\begin{frame}{2D SPT classification results}
+	Let $\AA$ be a quasi local algebra over $\ZZ^2$.
+	\begin{block}{Theorem 4:}
+		$G$-invariant SRE's carry an $H^3(G,U(1))$-valued index. This index is invariant under $G$-invariant LGA's.\footnote{Yoshiko Ogata. A $H^3(G,U(1))$-valued index of symmetry protected topological phases with on-site finite group symmetry for two-dimensional quantum spin systems. arXiv:2101.00426, 2021.}
+	\end{block}
+\end{frame}
+
+\begin{frame}{2D translation invariant SPT classification results}
+	Let $\AA$ be a quasi local algebra over $\ZZ^2$.
+	\begin{block}{Theorem 5:}
+		$G$-invariant stably SRE's, that are translation invariant in one direction carry an $H^3(G,U(1))\oplus H^2(G,U(1))$-valued index. This index is invariant under $G$-invariant, translation invariant LGA's.\footnote{Tijl Jappens, SPT indices emerging from translation invariance in two dimensional quantum spin systems, https://doi.org/10.48550/arxiv.2202.11758, 2022}
+	\end{block}
+\end{frame}
+
+\begin{frame}{2D translation invariant SPT classification results}
+	Let $\AA$ be a quasi local algebra over $\ZZ^2$.
+	\begin{block}{Theorem 6:}
+		$G$-invariant stably SRE's, that are translation invariant in two directions carry an
+		\[H^3(G,U(1))\oplus H^2(G,U(1))\oplus H^2(G,U(1))\oplus H^1(G,U(1))\]
+		-valued index. This index is invariant under $G$-invariant, translation invariant (in two directions) LGA's.\footnote{Tijl Jappens, SPT indices emerging from translation invariance in two dimensional quantum spin systems, https://doi.org/10.48550/arxiv.2202.11758, 2022 (Accepted by CMP).}
+	\end{block}
+\end{frame}
+
+\begin{frame}{End of the presentation}
+	\begin{center}
+		\includegraphics[width=0.8\textwidth]{Figures/thank-you.png}
+	\end{center}
 \end{frame}
 
 \begin{frame}{Example:}
@@ -334,6 +385,11 @@ instituut voor theoretische fysica KU Leuven
 	It is $G$-invariant.
 \end{frame}
 
+\begin{frame}{SP phases in 1d for $G=\ZZ_2\times \ZZ_2$}
+	\begin{center}
+		\includegraphics[width=\linewidth]{Figures/SPT_Phases_1d.pdf}
+	\end{center}
+\end{frame}
 
 \begin{frame}{Connecting $\ket{\psi}$ and $\ket{\phi}$}
 	I can connect $\ket{\psi}$ and $\ket{\phi}$ with a quantum circuit of depth 3:
@@ -478,15 +534,6 @@ instituut voor theoretische fysica KU Leuven
 	\end{columns}
 \end{frame}
 
-\begin{frame}{Questions}
-	\begin{center}
-		\includegraphics[width=0.5\textwidth]{Figures/AnyQuestions.jpg}
-	\end{center}
-	\begin{itemize}
-		\item I can show some of my own theorems on demand.
-	\end{itemize}
-\end{frame}
-
 \begin{frame}{Second group cohomology group}
 	Let $G$ be a compact lie group.
 	\begin{block}{Definition}
@@ -518,50 +565,31 @@ instituut voor theoretische fysica KU Leuven
 	\end{block}
 \end{frame}
 
-\begin{frame}{1D SPT classification results}
-Let $\AA$ be a quasi local algebra over $\ZZ$.
-\begin{block}{Theorem 1:}
-There exists an $H^2(G,U(1))$ valued index on $G$-invariant SRE states. This index is invariant under $G$-invariant LGA's\footnote{Yoshiko Ogata. A classification of pure states on quantum spin chains satisfying the split property with on-site finite group symmetries. arXiv:1908.08621, 2019.}. (This result is actually more general)
-\end{block}
+\begin{frame}{Two dimensional SPT example}
+	\begin{itemize}
+		\item We construct a $G=\ZZ_2$ SPT over the lattice $\ZZ^2$.
+		\item Take on-site Hilbert space $\CC^{16}=\CC^2\otimes\CC^2\otimes\CC^2\otimes\CC^2$.
+		\item Denote the vectors of $\CC^2$ by $\ket{g}$ where $g\in\ZZ_2$.
+		\item We denote the on-site group action by
+		\begin{align}
+			U(g)\ket{l_1,l_2,l_3,l_4}&=\alpha(g,l_1,l_2,l_3,l_4)\ket{l_1g,l_2g,l_3g,l_4g}\\
+			\alpha(g,l_1,l_2,l_3,l_4)&=\frac{\omega(l_3l_4^{-1},l_4,g)\omega(l_4l_1^{-1},l_1,g)}{\omega(l_2l_1^{-1},l_1,g)\omega(l_3l_2^{-1},l_2,g)}.
+		\end{align}
+		\item It turns out (although I wont prove it) that if $\omega\in Z^3(G,U(1))$, $U(g)$ is a representation.
+	\end{itemize}
 \end{frame}
 
-\begin{frame}{1D SPT classification results}
-Let $\AA$ be a quasi local algebra over $\ZZ$.
-\begin{block}{Theorem 2:}
-If two $G$-invariant SRE states $\omega_1$ and $\omega_2$ have the same $H^2(G,U(1))$-valued index then there exist $G$-invariant product states $\phi_1,\phi_2$ and an LGA $\alpha_1$ such that
-\[\omega_1\otimes_{\text{stack}}\phi_1=\omega_2\otimes_{\text{stack}}\phi_2\circ\alpha_1 \footnote{Anton Kapustin, Nikita Sopenko, and Bowen Yang. A classification of invertible phases of bosonic quantum lattice systems in one dimension. Journal of Mathematical Physics, 62(8):081901, Aug 2021.}.\]
-\end{block}
+\begin{frame}{Two dimensional SPT example}
+	\begin{itemize}
+		\item Importantly:
+		\[\alpha(g,l,l,l,l)=\frac{\omega(e,l,g)\omega(e,l,g)}{\omega(e,l,g)\omega(e,l,g)}=1.\]
+		\item This implies that $\ket{v}=\frac{1}{\sqrt{2}}(\ket{0,0,0,0}+\ket{1,1,1,1})$ is an invariant vector.
+		\item This means that $\phi=\bigotimes_{i\in\ZZ^2}\bra{v}\cdot \ket{v}$ is a trivial product state.
+		\item Translating this state by half a site to the upper right gives a nontrivial SPT state with index $[\omega]_\sim\in H^3(G,U(1))$.
+	\end{itemize}
 \end{frame}
 
-\begin{frame}{Loops of 1D SPT classification results}
-Let $\AA$ be a quasi local algebra over $\ZZ$.
-\begin{block}{Theorem 3:}
-$G$-invariant locally generated loops of invertible states are classified by an $H^2(G,U(1))\oplus H^1(G,U(1))$-valued index. This classification is also complete.\footnote{Sven Bachmann, Wojciech De Roeck, Martin Fraas and Tijl Jappens, A classification of G-charge Thouless pumps in 1D invertible states, https://doi.org/10.48550/arxiv.2204.03763, 2022}
-\end{block}
-\end{frame}
 
-\begin{frame}{2D SPT classification results}
-Let $\AA$ be a quasi local algebra over $\ZZ^2$.
-\begin{block}{Theorem 4:}
-$G$-invariant SRE's carry an $H^3(G,U(1))$-valued index. This index is invariant under $G$-invariant LGA's.\footnote{Yoshiko Ogata. A $H^3(G,U(1))$-valued index of symmetry protected topological phases with on-site finite group symmetry for two-dimensional quantum spin systems. arXiv:2101.00426, 2021.}
-\end{block}
-\end{frame}
-
-\begin{frame}{2D translation invariant SPT classification results}
-Let $\AA$ be a quasi local algebra over $\ZZ^2$.
-\begin{block}{Theorem 5:}
-$G$-invariant stably SRE's, that are translation invariant in one direction carry an $H^3(G,U(1))\oplus H^2(G,U(1))$-valued index. This index is invariant under $G$-invariant, translation invariant LGA's.\footnote{Tijl Jappens, SPT indices emerging from translation invariance in two dimensional quantum spin systems, https://doi.org/10.48550/arxiv.2202.11758, 2022}
-\end{block}
-\end{frame}
-
-\begin{frame}{2D translation invariant SPT classification results}
-Let $\AA$ be a quasi local algebra over $\ZZ^2$.
-\begin{block}{Theorem 6:}
-$G$-invariant stably SRE's, that are translation invariant in two directions carry an
-\[H^3(G,U(1))\oplus H^2(G,U(1))\oplus H^2(G,U(1))\oplus H^1(G,U(1))\]
--valued index. This index is invariant under $G$-invariant, translation invariant (in two directions) LGA's.\footnote{Tijl Jappens, SPT indices emerging from translation invariance in two dimensional quantum spin systems, https://doi.org/10.48550/arxiv.2202.11758, 2022}
-\end{block}
-\end{frame}
 
 \end{document}
 
