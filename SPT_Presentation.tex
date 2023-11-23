@@ -99,7 +99,7 @@ instituut voor theoretische fysica KU Leuven
 			They are described by Hamiltonians $H$ that
 			\begin{itemize}
 				\item<2-> have a "unique gapped (bulk) ground-state" $\ket{\psi}$.
-				\item<3-> are a sum of local therms.
+				\item<3-> are a sum of local terms.
 			\end{itemize}
 		\end{column}
 		\begin{column}{0.3\textwidth}
@@ -125,13 +125,13 @@ instituut voor theoretische fysica KU Leuven
 	\end{center}
 	\begin{itemize}
 		\item<2-> $H(t)$ is gapped.
-		\item<3-> The local therms of $H(t)$ are continuous in $t$.
+		\item<3-> The local terms of $H(t)$ are continuous in $t$.
 	\end{itemize}
 	
 \end{frame}
 
 \begin{frame}
-	Two states $\psi_0$ and $\psi_1$ are connected if
+	Two states $\psi_0$ and $\psi_1$ are connected ($\psi_0\sim\psi_1$) if
 	\begin{center}
 		\begin{tikzpicture}
 		\node (0) [circle,fill,inner sep=3pt] at (0,0) {};
@@ -183,7 +183,7 @@ instituut voor theoretische fysica KU Leuven
 
 \subsection{SRE definition}
 
-\begin{frame}{Trivial phase: short ranged entangled (SRE) phase}
+\begin{frame}{Trivial phase: short-ranged entangled (SRE) phase}
 	\begin{block}{Definition}
 		$\psi$ is SRE if:
 		\[\phi=\psi\circ \gamma^K_{0;1}\]
@@ -209,7 +209,7 @@ instituut voor theoretische fysica KU Leuven
 	\end{center}
 \end{frame}
 
-\begin{frame}{Finite depth quantum cirquit is locality preserving}
+\begin{frame}{Finite depth quantum circuit is locality preserving}
 	\begin{center}
 		\scalebox{0.75}{\input{Figures/SupportOf_A.tikz}}
 	\end{center}
@@ -221,7 +221,7 @@ instituut voor theoretische fysica KU Leuven
 
 \subsection{Locality}
 
-\begin{frame}{Finite depth quantum cirquit is locality preserving}
+\begin{frame}{Finite depth quantum circuit is locality preserving}
 	If I calculate $\Ad{V}(A)$ for $V$ a FDQC and $A$ local I only need unitaries in a cone:
 	\begin{center}
 		\scalebox{0.75}{
@@ -256,16 +256,28 @@ instituut voor theoretische fysica KU Leuven
 	\begin{itemize}
 		\item<1-> $\psi$ is $G$-invariant if
 		\[\psi\circ\beta_g=\psi.\]
-		\item<2-> An LGA, $\gamma^K_{0;1}$ is $G$-invariant if each of the local therms of $K$ is $G$-invariant.
+		\item<2-> An LGA, $\gamma^K_{0;1}$ is $G$-invariant if each of the local terms of $K$ is $G$-invariant.
 		\item<3-> In particular, a FDQC, $V$ is $G$-invariant if
 		\[[U_{i}(g)\otimes U_j(g),V_{i,j}]=0.\]
+		\item<4-> A path from $\psi_0\sim \psi_1$ (both $G$-invariant) is $G$-invariant if the path is $G$-invariant (we write $\psi_0\sim_G\psi_1$).
 	\end{itemize}
 \end{frame}
 
-\section{SPT lanscape}
+\section{SPT landscape}
 
 \begin{frame}{SPT phases}
 	\includegraphics[width=\textwidth]{Figures/SPT_Phases.pdf}
+\end{frame}
+
+\begin{frame}{SPT index}
+	A map
+	\[\textrm{index}:\{\psi\text{ is SRE and $G$-invariant}\}\rightarrow\{\textrm{discrete set}\}\]
+	is an SPT index if
+	\begin{align*}
+		\psi_1&\sim_G\psi_2&&\Rightarrow&\textrm{index}(\psi_1)&=\textrm{index}(\psi_2).
+	\end{align*}
+	\pause
+	An SPT index is complete if $\Leftrightarrow$.
 \end{frame}
 
 \section{Results}
@@ -273,7 +285,7 @@ instituut voor theoretische fysica KU Leuven
 \begin{frame}{1D SPT classification results}
 	Let $\AA$ be a quasi local algebra over $\ZZ$.
 	\begin{block}{Theorem 1:}
-		There exists an $H^2(G,U(1))$ valued index on $G$-invariant SRE states. This index is invariant under $G$-invariant LGA's\footnote{Yoshiko Ogata. A classification of pure states on quantum spin chains satisfying the split property with on-site finite group symmetries. arXiv:1908.08621, 2019.}. (This result is actually more general)
+		There exists an $H^2(G,U(1))$ valued index on $G$-invariant SRE states. This index is invariant under $G$-invariant LGA's\footnote{Yoshiko Ogata. A classification of pure states on quantum spin chains satisfying the split property with on-site finite group symmetries. arXiv:1908.08621, 2019.}. (This result is more general)
 	\end{block}
 \end{frame}
 
@@ -295,14 +307,14 @@ instituut voor theoretische fysica KU Leuven
 \begin{frame}{2D SPT classification results}
 	Let $\AA$ be a quasi local algebra over $\ZZ^2$.
 	\begin{block}{Theorem 4:}
-		$G$-invariant SRE's carry an $H^3(G,U(1))$-valued index. This index is invariant under $G$-invariant LGA's.\footnote{Yoshiko Ogata. A $H^3(G,U(1))$-valued index of symmetry protected topological phases with on-site finite group symmetry for two-dimensional quantum spin systems. arXiv:2101.00426, 2021.}
+		$G$-invariant SRE's carry an $H^3(G,U(1))$-valued index. This index is invariant under $G$-invariant LGAs.\footnote{Yoshiko Ogata. A $H^3(G,U(1))$-valued index of symmetry protected topological phases with on-site finite group symmetry for two-dimensional quantum spin systems. arXiv:2101.00426, 2021.}
 	\end{block}
 \end{frame}
 
 \begin{frame}{2D translation invariant SPT classification results}
 	Let $\AA$ be a quasi local algebra over $\ZZ^2$.
 	\begin{block}{Theorem 5:}
-		$G$-invariant stably SRE's, that are translation invariant in one direction carry an $H^3(G,U(1))\oplus H^2(G,U(1))$-valued index. This index is invariant under $G$-invariant, translation invariant LGA's.\footnote{Tijl Jappens, SPT indices emerging from translation invariance in two dimensional quantum spin systems, https://doi.org/10.48550/arxiv.2202.11758, 2022}
+		$G$-invariant stably SRE's, that are translation invariant in one direction carry an $H^3(G,U(1))\oplus H^2(G,U(1))$-valued index. This index is invariant under $G$-invariant, translation invariant LGA's.\footnote{Tijl Jappens, SPT indices emerging from translation invariance in two-dimensional quantum spin systems, https://doi.org/10.48550/arxiv.2202.11758, 2022}
 	\end{block}
 \end{frame}
 
@@ -311,7 +323,7 @@ instituut voor theoretische fysica KU Leuven
 	\begin{block}{Theorem 6:}
 		$G$-invariant stably SRE's, that are translation invariant in two directions carry an
 		\[H^3(G,U(1))\oplus H^2(G,U(1))\oplus H^2(G,U(1))\oplus H^1(G,U(1))\]
-		-valued index. This index is invariant under $G$-invariant, translation invariant (in two directions) LGA's.\footnote{Tijl Jappens, SPT indices emerging from translation invariance in two dimensional quantum spin systems, https://doi.org/10.48550/arxiv.2202.11758, 2022 (Accepted by CMP).}
+		-valued index. This index is invariant under $G$-invariant, translation invariant (in two directions) LGA's.\footnote{Tijl Jappens, SPT indices emerging from translation invariance in two-dimensional quantum spin systems, https://doi.org/10.48550/arxiv.2202.11758, 2022 (Accepted by CMP).}
 	\end{block}
 \end{frame}
 
@@ -468,14 +480,14 @@ instituut voor theoretische fysica KU Leuven
 		\textrm{Tr}_L(\ket{\phi}\bra{\phi})=\ket{\phi_{R}}\bra{\phi_{R}}.
 	\end{equation*}
 	\pause
-	This subspace transforms under $\ZZ_2\times\ZZ_2$ one dimensionally.
+	This subspace transforms under $\ZZ_2\times\ZZ_2$ one-dimensionally.
 	\begin{block}{Claim}
 		The right half of this chain transforms linearly under the group action.
 	\end{block}
 \end{frame}
 
 \begin{frame}{Proof that I can't connect $\ket{\phi}$ and $\ket{\psi}$ through finite depth quantum cirquit}
-	Suppose I can connect $\ket{\psi}$ and $\ket{\phi}$ through $G$-invariant quantum cirquit of depth $d$:
+	Suppose I can connect $\ket{\psi}$ and $\ket{\phi}$ through $G$-invariant quantum circuit of depth $d$:
 	\begin{figure}
 		\center
 		\includegraphics[width=0.8\textwidth]{Figures/ConnectingPsiAndPsi0Proof.png}
@@ -534,13 +546,13 @@ instituut voor theoretische fysica KU Leuven
 	\begin{columns}
 		\begin{column}{0.6\textwidth}
 			\begin{block}{Definition}
-				Edge modes are the ground state degeneracy introduced by introducing an edge.
+				Edge modes are the ground-state degeneracy introduced by introducing an edge.
 			\end{block}
 			\pause
 			E.g. Let $H\in\BB(\HH_L\otimes\HH_R)$ be
 			\begin{enumerate}
 				\item $G$-invariant.
-				\item sum of local therms.
+				\item sum of local terms.
 				\item with SPT $\ket{\psi}$ as unique gapped ground-state.
 			\end{enumerate}
 		\end{column}
@@ -558,7 +570,7 @@ instituut voor theoretische fysica KU Leuven
 			Eg. Let $H_R\in\BB(\HH_R)$ be the conditional expectation of $H$ to $\HH_R$ then:
 			\pause
 			\begin{enumerate}
-				\item The ground-state of $H_R$ doesn't have to be unique.
+				\item The ground state of $H_R$ doesn't have to be unique.
 				\item The ground state subspace has to be $G$-invariant.
 				\item If the SPT index is non-trivial the ground-state of $H_R$ can't be unique (protected ground-state degeneracy).
 			\end{enumerate}
@@ -596,7 +608,7 @@ instituut voor theoretische fysica KU Leuven
 	The second group cohomology group is defined as $H^2(G,U(1)):=Z^2/B^2$.
 	\pause
 	\begin{block}{Claim}
-		The AKLT groundstate cannot be connected to a product state because cochain corresponding to
+		The AKLT groundstate cannot be connected to a product state because the cochain corresponding to
 		\begin{align*}
 			R(1,0)&=\sigma^x&R(0,1)&=\sigma^z&R(1,1)&=\sigma^y
 		\end{align*}
@@ -616,7 +628,7 @@ instituut voor theoretische fysica KU Leuven
 			U(g)\ket{l_1,l_2,l_3,l_4}&=\alpha(g,l_1,l_2,l_3,l_4)\ket{l_1g,l_2g,l_3g,l_4g}\\
 			\alpha(g,l_1,l_2,l_3,l_4)&=\frac{\omega(l_3l_4^{-1},l_4,g)\omega(l_4l_1^{-1},l_1,g)}{\omega(l_2l_1^{-1},l_1,g)\omega(l_3l_2^{-1},l_2,g)}.
 		\end{align}
-		\item It turns out (although I wont prove it) that if $\omega\in Z^3(G,U(1))$, $U(g)$ is a representation.
+		\item It turns out (although I won't prove it) that if $\omega\in Z^3(G,U(1))$, $U(g)$ is a representation.
 	\end{itemize}
 \end{frame}
 
