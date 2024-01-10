@@ -1,0 +1,41 @@
+\begin{tikzpicture}
+\newcommand{\s}{2.8}
+
+% Draw the curves of the four quadrants of a circle in different colors
+\draw[blue] (\s,0) arc (0:90:\s);
+\draw[red] (0,\s) arc (90:180:\s);
+\draw[green] (-\s,0) arc (180:270:\s);
+\draw[yellow] (0,-\s) arc (270:360:\s);
+
+% Draw a circle at the center (0,0)
+\draw[blue] (0,0) circle (0.8*\s);
+\draw[red] (0,0) circle (0.78*\s);
+\draw[green] (0,0) circle (0.76*\s);
+\draw[yellow] (0,0) circle (0.74*\s);
+
+\draw (\s,0) -- (\s*1.1,0);
+\node at (\s*1.15,0) {$1$};
+
+\draw (0,\s) -- (0,\s*1.1);
+\node at (0,\s*1.15) {$e^{i\pi/2}$};
+
+\draw (-\s,0) -- (-\s*1.1,0);
+\node at (-\s*1.15,0) {$e^{i\pi}$};
+
+\draw (0,-\s) -- (0,-\s*1.1);
+\node at (0,-\s*1.15) {$e^{i\: 3\pi/2}$};
+
+\draw (0.8*\s,0)--(0.6*\s,0);
+\node at (0,0) {$\begin{matrix}
+	\alpha_4(1)=\alpha_4(e^{i\pi/2})\\
+	=\alpha_4(e^{i\pi})=\alpha_4(e^{i3\pi/2})\\
+	=1
+	\end{matrix}$};
+
+% Add labels
+\node at (0.9*\s,0.9*\s) {\color{blue}\(0 \leq \theta < \frac{\pi}{2}\)};
+\node at (-0.9*\s,0.9*\s) {\color{red}\(\frac{\pi}{2} \leq \theta \leq \pi\)};
+\node at (-0.9*\s,-0.9*\s) {\color{green}\(\pi \leq \theta < \frac{3\pi}{2}\)};
+\node at (0.9*\s,-0.9*\s) {\color{yellow}\(\frac{3\pi}{2} \leq \theta \leq 2\pi\)};
+
+\end{tikzpicture}

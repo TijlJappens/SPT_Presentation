@@ -1,0 +1,814 @@
+\documentclass{beamer}
+\input{myBeamerPackage.tex}
+
+\title[SPT classification]%\hspace{1cm} \insertframenumber/\inserttotalframenumber]
+{Topological phases of matter:\\From the quantum hall effect to symmetry protected topological order}
+
+\author[Tijl Jappens]
+{Tijl Jappens \\
+ \scriptsize KU Leuven}
+
+
+\institute[]{
+instituut voor theoretische fysica KU Leuven
+}
+
+
+\date{December 22, 2023}
+
+\setbeamertemplate{itemize items}{\color{black}$\triangleright$}
+\setbeamertemplate{enumerate items}{\color{black}\insertenumlabel.}
+
+\usepackage[T1]{fontenc}
+\DeclareRobustCommand{\augiefamily}{%
+  \fontfamily{augie}\fontseries{m}\fontshape{n}\selectfont}
+\DeclareTextFontCommand{\textaugie}{\augiefamily}
+
+\begin{document}
+
+%%%%%%%%%% Removes the frame number from the title page %%%%%%%%%%
+\bgroup
+\makeatletter
+\setbeamertemplate{footline}
+{
+	\leavevmode%
+	\hbox{%
+		\begin{beamercolorbox}[wd=.333333\paperwidth,ht=2.25ex,dp=1ex,center]{author in head/foot}%
+			%   \usebeamerfont{author in head/foot}\insertshortauthor\expandafter\beamer@ifempty\expandafter{\beamer@shortinstitute}{}{~~(\insertshortinstitute)}
+		\end{beamercolorbox}%
+		\begin{beamercolorbox}[wd=.333333\paperwidth,ht=2.25ex,dp=1ex,center]{title in head/foot}%
+			%    \usebeamerfont{title in head/foot}\insertshorttitle
+		\end{beamercolorbox}%
+		\begin{beamercolorbox}[wd=.333333\paperwidth,ht=2.25ex,dp=1ex,right]{date in head/foot}%
+			%    \usebeamerfont{date in head/foot}\insertshortdate{}\hspace*{2em}
+			%    \insertframenumber{} / \inserttotalframenumber\hspace*{2ex} 
+	\end{beamercolorbox}}%
+	\vskip0pt%
+}
+\makeatother
+\begin{frame}
+	\titlepage
+\end{frame}
+
+%\begin{frame}{Overview}
+%	\tableofcontents
+%\end{frame}
+\egroup
+
+\begin{frame}{Todo}
+	\begin{itemize}
+		\item[\todo] Ordinary phases of matter
+		\begin{itemize}
+			\item[\todo] Local order parameters
+		\end{itemize}
+		\item[\todo] Integer quantum hall effect
+		\begin{itemize}
+			\item[\todo] Hall effect
+			\item[\todo] Hall plateaus
+			\item[\todo] No local order parameters
+		\end{itemize}
+		\item[\todo] Topological phases of matter
+		\begin{itemize}
+			\item[\todo] Low temperature?
+			\item[\todo] How robust?
+			\item[\todo] Topological?
+		\end{itemize}
+		\item[\todo] Symmetry protected topological phases of matter
+		\begin{itemize}
+			\item[\todo] Short range entangled
+			\item[\todo] Symmetry
+		\end{itemize}
+		\item[\todo] Results
+	\end{itemize}
+\end{frame}
+
+\section{Phase of matter}
+\subsection{Definition}
+
+\begin{frame}{Phase of matter: Definition}
+	\onslide<1->{
+	A family of materials with common robust (discrete) set of properties.
+	}
+	\onslide<2->{
+		\begin{center}
+			\includegraphics[width=0.8\textwidth]{Images/solid,-liquid-and-gas-teachoo.jpg}
+		\end{center}
+		}
+\end{frame}
+
+\subsection{Example}
+\begin{frame}{Example: Ferromagnetism}
+	\begin{columns}
+		\begin{column}{0.5\textwidth}
+			Classical Ising model:
+			\begin{enumerate}
+				\item<1-> A lattice (collection of points).
+				\item<1-> On each point (labelled by $i$) a small magnet.
+				\item<2-> Can point upward ($\sigma_i=+1$) or downward ($\sigma_i=-1$) (nothing in between).
+				\item<3-> Magnetization is sum of magnets:
+				\[m=\sum_i\sigma_i.\]
+			\end{enumerate}
+		\end{column}
+		\begin{column}{0.5\textwidth}
+			\onslide<1->{\begin{center}
+					\input{Images/IsingModel.tikz}
+			\end{center}}
+		\end{column}
+	\end{columns}
+\end{frame}
+
+\begin{frame}{Example: Ferromagnetism}
+	\begin{columns}
+		\begin{column}{0.5\textwidth}
+			Energy classical Ising model:
+			\begin{enumerate}
+				\pause
+				\item \textbf{Decreases} if neighbouring magnets point in \textbf{same} direction.
+				\pause
+				\item \textbf{Increases} if neighbouring magnets point in \textbf{different} direction.
+				\pause
+				\item Formula:\[E=-J\sum_{<i,j>}\sigma_i\sigma_j\]
+			\end{enumerate}
+		\end{column}
+		\begin{column}{0.5\textwidth}
+			\begin{center}
+				\input{Images/IsingModelEnergy.tikz}
+			\end{center}
+		\end{column}
+	\end{columns}
+\end{frame}
+
+\begin{frame}{Example: Ferromagnetism}
+	\begin{columns}
+		\begin{column}{0.5\textwidth}
+			Entropy classical Ising model:
+			\begin{enumerate}
+				\item $n$ is amount of configurations with a given $m$.
+				\item Entropy is:
+				\[S=\log(n).\]
+				\pause
+			\end{enumerate}
+		\end{column}
+		\begin{column}{0.5\textwidth}
+			\begin{center}
+				\input{Images/IsingModelEntropy.tikz}
+			\end{center}
+		\end{column}
+	\end{columns}
+\end{frame}
+
+\begin{frame}{Example: Ferromagnetism}
+	\begin{columns}
+		\begin{column}{0.5\textwidth}
+			With temperature?
+			\begin{itemize}
+				\item If $T\rightarrow\infty$, maximize entropy ($m=0$).
+				\item If $T\rightarrow 0$, minimize energy ($m=1$ or $m=-1$).
+			\end{itemize}
+		\end{column}
+		\begin{column}{0.5\textwidth}
+			\begin{center}
+				\includegraphics[width=0.8\textwidth]{Images/IsingPhaseTransition.png}
+			\end{center}
+		\end{column}
+	\end{columns}
+\end{frame}
+
+\subsection{Ordinary phase of matter}
+
+\begin{frame}{Landau phases of matter}
+	\begin{itemize}
+		\item Parameters like $m$ are called \textbf{local order parameters}.
+		\item Landau paradigm gives a consistent way to construct them.
+		\item All phases of matter found before 1980 are of this form.
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Todo}
+	\begin{itemize}
+		\item[\done] Ordinary phases of matter
+		\begin{itemize}
+			\item[\done] Local order parameters
+		\end{itemize}
+		\item[\todo] Integer quantum hall effect
+		\begin{itemize}
+			\item[\todo] Hall effect
+			\item[\todo] Hall plateaus
+			\item[\todo] No local order parameters
+		\end{itemize}
+		\item[\todo] Topological phases of matter
+		\begin{itemize}
+			\item[\todo] Low temperature?
+			\item[\todo] How robust?
+			\item[\todo] Topological?
+		\end{itemize}
+		\item[\todo] Symmetry protected topological phases of matter
+		\begin{itemize}
+			\item[\todo] Short range entangled
+			\item[\todo] Symmetry
+		\end{itemize}
+		\item[\todo] Results
+	\end{itemize}
+\end{frame}
+
+\section{Topological phases of matter}
+
+\begin{frame}{Lorenz Force}
+	\begin{center}
+		\includegraphics[width=0.7\textwidth]{Images/Lorentz_force.pdf}
+	\end{center}
+\end{frame}
+
+\subsection{Hall effect}
+
+\begin{frame}{Hall effect}
+	\begin{center}
+		\includegraphics[width=0.8\textwidth]{Images/HallEffect.png}
+	\end{center}
+	\pause
+	\begin{itemize}
+		\item Keep $I$ fixed and vary $B$.
+		\item Keep track of $R_x=V_x/I$, $R_H=V_H/I$.
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Hall effect}
+	\begin{itemize}
+		\item Keep $I$ fixed and vary $B$.
+		\item Keep track of $R_x=V_x/I$, $R_H=V_H/I$.
+	\end{itemize}
+	\pause
+	 For normal temperatures and normal magnetic fields:
+	\begin{center}
+		\includegraphics[width=0.6\textwidth]{Images/ClassicalHallResistance.png}
+	\end{center}
+\end{frame}
+
+\subsection{Integer quantum hall effect}
+
+\begin{frame}{Integer quantum hall effect}
+	\begin{columns}
+		\begin{column}{0.7\textwidth}
+			\begin{center}
+				\includegraphics[width=\textwidth]{Images/IntegerQHE.png}
+			\end{center}
+		\end{column}
+		\begin{column}{0.3\textwidth}
+			\begin{itemize}
+				\item In 1980
+				\item Klaus Von Klitzing
+				\item Silicon based MOSFET
+				\item Very low temperatures (liquid Helium).
+				\item Very high magnetic fields.
+			\end{itemize}
+		\end{column}
+	\end{columns}
+\end{frame}
+
+\begin{frame}{Integer quantum hall effect}
+	\begin{columns}
+		\begin{column}{0.7\textwidth}
+			\begin{center}
+				\includegraphics[width=\textwidth]{Images/IntegerQHE.png}
+			\end{center}
+		\end{column}
+		\begin{column}{0.3\textwidth}
+			On plateau exactly (up to one part in a billion):
+			\[R_H=\frac{c}{i}\qquad \begin{matrix}
+			c=\frac{h}{e^2}\\i=\text{ integer.}
+			\end{matrix}\]
+			\pause
+			Robust/independent under:
+			\begin{itemize}
+				\item Magnetic field.
+				\item Disorder.
+				\item Choice of material/doping.
+			\end{itemize}
+		\end{column}
+	\end{columns}
+\end{frame}
+
+\begin{frame}{Integer quantum hall effect}
+	\begin{itemize}
+		\item Robust discrete property of material.
+		\pause
+		\item Is it phase of matter (just like gas, liquid, solid or magnetized)?
+		\pause
+		\item
+		Local order parameter?
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Integer quantum hall effect}
+	From semiclassical arguments: Current distribution:
+	\begin{center}
+		\includegraphics[width=0.8\textwidth]{Images/HallEffectSemiclassicalCurrents.png}
+	\end{center}
+	\pause
+	No local order. Yet global hall resistance is quantized.
+\end{frame}
+
+\begin{frame}{Todo}
+	\begin{itemize}
+		\item[\done] Ordinary phases of matter
+		\begin{itemize}
+			\item[\done] Local order parameters
+		\end{itemize}
+		\item[\done] Integer quantum hall effect
+		\begin{itemize}
+			\item[\done] Hall effect
+			\item[\done] Hall plateaus
+			\item[\done] No local order parameters
+		\end{itemize}
+		\item[\todo] Topological phases of matter
+		\begin{itemize}
+			\item[\todo] Low temperature?
+			\item[\todo] How robust?
+			\item[\todo] Topological?
+		\end{itemize}
+		\item[\todo] Symmetry protected topological phases of matter
+		\begin{itemize}
+			\item[\todo] Short range entangled
+			\item[\todo] Symmetry
+		\end{itemize}
+		\item[\todo] Results
+	\end{itemize}
+\end{frame}
+
+\subsection{Definition}
+
+\begin{frame}{Topological phases of matter}
+	\begin{block}{Definition}
+		A phase of matter is topological if it has no local order parameters.
+	\end{block}
+	\pause
+	Examples:
+	\begin{itemize}
+		\item Invertible topological order
+		\begin{itemize}
+			\item like integer quantum hall plateau/Chern insulator
+		\end{itemize}
+		\item Anyonic topological order
+		\begin{itemize}
+			\item like fractional quantum hall effect/Toric code
+		\end{itemize}
+	\end{itemize}
+	\pause
+	Questions:
+	\begin{enumerate}
+		\item Why low temperature?
+		\item How robust?
+		\item Topological?
+	\end{enumerate}
+\end{frame}
+
+\section{Building model for topological phases of matter}
+
+\subsection{Quantum phases of matter}
+\begin{frame}{Unique gapped groundstates}
+	What do all topological phases of matter have in common?
+	\pause
+	\begin{columns}
+		\begin{column}{0.7\textwidth}
+			They are described by Hamiltonians $H$ that
+			\begin{itemize}
+				\item<3-> have a "unique gapped (bulk) ground-state" $\ket{\psi}$.
+				\item<4-> are a sum of local terms.
+			\end{itemize}
+		\end{column}
+		\begin{column}{0.3\textwidth}
+			\begin{center}
+				\input{Images/SPEC(H).tikz}
+			\end{center}
+		\end{column}
+	\end{columns}
+	\onslide<5->{Topological order only depends on groundstate.\\
+		Other (excited) states do not have it.}
+	
+	
+\end{frame}
+
+\begin{frame}{Connected states}
+	Two states $\ket{\psi_0}$ and $\ket{\psi_1}$ are connected if
+	\begin{center}
+		\begin{tikzpicture}
+		\node (0) [circle,fill,inner sep=3pt] at (0,0) {};
+		\node (0 -1) [] at (0,-0.5) {$\ket{\psi_0}$};
+		\node (1) [circle,fill,inner sep=3pt] at (5,0) {};
+		\node (1 -1) [] at (5,-0.5) {$\ket{\psi_1}$};
+		\draw [line width=2pt,-{Stealth[scale = 1.2]}] (0) -- (1);
+		\node (arrow) [] at (2.5,-0.5) {$\ket{\psi_t}$};
+		\end{tikzpicture}
+	\end{center}
+	where $\ket{\psi_t}$, satisfies a Shr\"odinger equation:
+	\[i\partial_t\ket{\psi_t}=\sum_{i\in\Lambda} K_{i}(t) \ket{\psi_t}\]
+	for some local generators $K_i(t)$.
+\end{frame}
+
+\begin{frame}{Gapped Phases Of Quantum Matter}
+	\begin{center}
+		\includegraphics[width=\textwidth]{Images/GappedPhasesOfQuantumMatter.pdf}
+	\end{center}
+	\pause
+	\textbf{Topological indices are robust over each gapped phase of matter.}
+\end{frame}
+
+\subsection{Topology}
+
+\begin{frame}{Detour: Winding number}
+	\begin{center}
+		\includegraphics[width=0.6\textwidth]{Images/1200px-Winding_Number_Around_Point.svg.png}
+	\end{center}
+	Move and shrink rope but no knots.\\
+	\pause
+	Goal: Find obstruction to shrinking the rope to a point.
+\end{frame}
+
+\begin{frame}{Detour: Winding number}
+	\begin{center}
+		\includegraphics[width=0.8\textwidth]{Images/Winding-numbers-for-several-closed-oriented-curves-In-each-case-the-winding-number-is.png}
+	\end{center}
+\end{frame}
+
+\begin{frame}{Detour: Winding number}
+	In mathematics language: Calculate homotopy classes of maps
+	\[\vec h:\TT\rightarrow\RR^2\setminus\{0\}:k\mapsto \vec h(k).\]
+	\pause
+	Winding number:
+	\begin{align*}
+		w(\hat{h})=&\frac{1}{2\pi} c(\hat{h})&c&=\int\d k \: \hat{z}\cdot \left(\hat{h}(k)\times \partial_k \hat{h}(k)\right)
+	\end{align*}
+	\begin{itemize}
+		\item $\hat{h}(k)$ is unit vector.
+		\item $c$ is circumference of $\hat{h}$.
+	\end{itemize}
+	 
+\end{frame}
+
+\begin{frame}{Detour 2: Wrapping number}
+	Same but in 3d.\\
+	\pause
+	Can't draw this.\\
+	\pause
+	Calculate homotopy classes of maps
+	\[\vec h:\TT^2\rightarrow \RR^3\setminus \{0\}:(k_1,k_2)\mapsto \vec{h}(k_1,k_2).\]
+	\pause
+	Has wrapping:
+	\begin{align*}
+		W(\hat{h})&=\frac{1}{4\pi}S(\hat{h})&S&=\int \d^2 k \: \hat{h}\times \left(\partial_{k_1}\hat{h}\times \partial_{k_2}\hat{h}\right)
+	\end{align*}
+	\begin{itemize}
+		\item $\hat{h}(k)$ is unit vector.
+		\item $S$ is surface area of $\hat{h}$.
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Topological?}
+	Why is integer quantum hall effect (IQHE) topological?
+	\pause
+	\begin{itemize}
+		\item Given a model with IQHE, there is an $\vec h:\TT^2\rightarrow \RR^3\setminus\{0\}$.
+		\pause
+		\item It has hall resistance $R_H=\frac{h}{e^2}\frac{1}{W(\hat h)}$.
+		\pause
+		\item Smooth deformations of groundstate lead to smooth deformations of $\vec h$.
+	\end{itemize}
+	\pause
+	Wrapping number is example of an \textbf{index}.
+	\pause
+	\begin{block}{Definition:}
+		Indices are discrete numbers that protect topological phases of matter.
+	\end{block}
+\end{frame}
+
+\begin{frame}{Todo}
+	\begin{itemize}
+		\item[\done] Ordinary phases of matter
+		\begin{itemize}
+			\item[\done] Local order parameters
+		\end{itemize}
+		\item[\done] Integer quantum hall effect
+		\begin{itemize}
+			\item[\done] Hall effect
+			\item[\done] Hall plateaus
+			\item[\done] No local order parameters
+		\end{itemize}
+		\item[\done] Topological phases of matter
+		\begin{itemize}
+			\item[\done] Low temperature?
+			\item[\done] How robust?
+			\item[\done] Topological?
+		\end{itemize}
+		\item[\todo] Symmetry protected topological phases of matter
+		\begin{itemize}
+			\item[\todo] Short range entangled
+			\item[\todo] Symmetry
+		\end{itemize}
+		\item[\todo] Results
+	\end{itemize}
+\end{frame}
+
+\section{Extending topological phases of matter using symmetry}
+\begin{frame}{Scope of the rest of the talk}
+	\begin{center}
+		\includegraphics[width=\textwidth]{Images/TrivialGappedPhaseOfQuantumMatter.pdf}
+	\end{center}
+	\textbf{What is the trivial phase?}
+\end{frame}
+
+\subsection{Short range entanglement}
+
+\begin{frame}{Connected states (again)}
+	Two states $\ket{\psi_0}$ and $\ket{\psi_1}$ are connected if
+	\begin{center}
+		\begin{tikzpicture}
+			\node (0) [circle,fill,inner sep=3pt] at (0,0) {};
+			\node (0 -1) [] at (0,-0.5) {$\ket{\psi_0}$};
+			\node (1) [circle,fill,inner sep=3pt] at (5,0) {};
+			\node (1 -1) [] at (5,-0.5) {$\ket{\psi_1}$};
+			\draw [line width=2pt,-{Stealth[scale = 1.2]}] (0) -- (1);
+			\node (arrow) [] at (2.5,-0.5) {$\ket{\psi_t}$};
+		\end{tikzpicture}
+	\end{center}
+	where $\ket{\psi_t}$, satisfies a Shr\"odinger equation:
+	\[i\partial_t\ket{\psi_t}=\sum_{i\in\Lambda} K_{i}(t) \ket{\psi_t}\]
+	for some local generators $K_i(t)$.
+\end{frame}
+
+\begin{frame}{Short range entanglement (SRE)}
+	\input{Images/Lattice.tikz}
+	\begin{block}{Definition: Product state}
+		$\ket{\phi}$ is a product state if it is of the form $\bigotimes_{i\in\Lambda}\ket{v_i}$.
+	\end{block}
+	\pause
+	\textbf{State with no entanglement.}
+	\pause
+	\begin{block}{Definition: short range entangled (SRE)}
+		$\ket{\psi}$ is SRE if it is connected to a product state.
+	\end{block}
+	\pause
+	\textbf{State where entanglement is short.}
+\end{frame}
+
+\begin{frame}{Endow with symmetry}
+	\begin{center}
+		\includegraphics[width=\textwidth]{Images/G-invariant_Parts_Of_SRE_Phase.pdf}
+	\end{center}
+\end{frame}
+
+
+\section{Symmetry}
+
+\begin{frame}{Symmetry}
+	\begin{enumerate}
+		\item A group $G$.
+		\item A space $S$.
+		\item A representation $R$.
+		\item Invariant elements $s\in S$.
+	\end{enumerate}
+\end{frame}
+
+\subsection{Symmetry: Example 1}
+
+\begin{frame}{Example 1: Mirror symmetry}
+	\begin{columns}
+		\begin{column}{0.6\textwidth}
+			\begin{center}
+				\includegraphics[width=0.6\textwidth]{Images/symmetry_shapes.png}
+			\end{center}
+		\end{column}
+		\begin{column}{0.4\textwidth}
+			\begin{itemize}
+				\item $G=\ZZ_2=\{1,-1\}$.
+				\item $S$ is space of two dimensional shapes.
+				\item $R(1)$ is trivial.
+				\item $R(-1)$ mirrors the shape.
+				\item To the left are shown six invariant shapes.
+			\end{itemize}
+		\end{column}
+	\end{columns}
+\end{frame}
+
+\subsection{Symmetry: Example 2}
+
+\begin{frame}{$U(1)$ representation of $U(1)$}
+	\begin{columns}
+		\begin{column}{0.6\textwidth}
+			\begin{center}
+				\input{Images/U(1)_Rep_Of_U(1).tikz}
+			\end{center}
+		\end{column}
+		\begin{column}{0.4\textwidth}
+			\begin{itemize}
+				\item $q\in\ZZ$ (integer).
+				\item A representation $\alpha_q\in\hom(U(1),U(1))$ is of the form
+				\begin{equation*}
+					\alpha_q:e^{i\theta}\mapsto e^{iq\theta}.
+				\end{equation*}
+				\item We call $q$ the charge.
+			\end{itemize}
+		\end{column}
+	\end{columns}
+\end{frame}
+
+\begin{frame}{Example 2: Electric charge in quantum mechanics}
+\begin{columns}
+	\begin{column}{0.4\textwidth}
+		\begin{center}
+			\includegraphics[width=\textwidth]{Images/Bloch_sphere.pdf}
+		\end{center}
+	\end{column}
+	\begin{column}{0.6\textwidth}
+		\begin{itemize}
+			\item Vector space $V=\CC^2$ with two basis vectors $\ket{0}$ and $\ket{1}$.
+			\item For any $\ket{v}\in V$ we can write
+			\[\ket{\Psi(\theta,\phi)}=\sin(\theta)\ket{0}+e^{i\phi}\cos(\theta)\ket{1}.\]
+			\pause
+			\item $R=\alpha_{q_1}\oplus\alpha_{q_2}$. So
+			\begin{align*}
+			R(e^{i\psi})\ket{0}&=\alpha_{q_1}(e^{i\psi})\ket{0}=e^{i q_1 \psi}\ket{0}\\
+			R(e^{i\psi})\ket{1}&=\alpha_{q_2}(e^{i\psi})\ket{1}=e^{i q_2 \psi}\ket{1}.
+			\end{align*}
+			\pause
+			\item This means that
+			\[R(e^{i\psi})\ket{\Psi(\theta,\phi)}=\ket{\Psi(\theta,\phi+(q_2-q_1)\psi)}.\]
+			\item Only $\ket{0}$ and $\ket{1}$ are invariant.
+		\end{itemize}
+	\end{column}
+\end{columns}
+\end{frame}
+
+\begin{frame}{Example 2: Electric charge in quantum mechanics}
+	\begin{block}{Consequence}
+		In a $U(1)$ invariant, isolated quantum mechanical system, only states with the same charge are connected.
+	\end{block}
+	\pause
+	\begin{itemize}
+		\item The generalization of this to general $G$ is called the 0-D symmetry protected topological (or SPT) classification.
+		\pause
+		\item It is classified by $\alpha\in\hom(G,U(1))$.
+		\pause
+		\item What is the generalization of this to higher dimensions?
+	\end{itemize}
+\end{frame}
+
+\section{SPT classification}
+
+\begin{frame}{On site group action}
+	\textbf{Representation in 1D:}\\$\:$\\
+	\pause
+	\scalebox{0.8}{\input{Images/GroupActionQuantumCirquit.tikz}}
+	\pause
+	\begin{align*}
+		U(g)&=\bigotimes_{i\in\Lambda}U_i(g)&U_i\in&\hom(G,U(\CC^d)).
+	\end{align*}
+	\pause
+	\textbf{$G$-Invariant state:}
+	\[U(g)\ket{\psi}\propto\ket{\psi}.\]
+\end{frame}
+
+\begin{frame}{On site group action}
+	\textbf{A path:}\\
+	\begin{equation*}
+		\begin{tikzpicture}
+			\node (0) [circle,fill,inner sep=3pt] at (0,0) {};
+			\node (0 -1) [] at (0,-0.5) {$\ket{\psi_0}$};
+			\node (1) [circle,fill,inner sep=3pt] at (5,0) {};
+			\node (1 -1) [] at (5,-0.5) {$\ket{\psi_1}$};
+			\draw [line width=2pt,-{Stealth[scale = 1.2]}] (0) -- (1);
+			\node (arrow) [] at (2.5,-0.5) {$\ket{\psi_t}$};
+			\node at (9,0) {$i\partial_t\ket{\psi_t}=\sum_{i\in\Lambda}K_i \ket{\psi_t}$};
+		\end{tikzpicture}
+	\end{equation*}
+	is $G$-invariant if
+	\[[K_i,U(g)]=0\]
+	for each $i\in\Lambda$.
+\end{frame}
+
+\begin{frame}
+	\begin{center}
+		\includegraphics[width=\textwidth]{Images/SPT_Phases.pdf}
+	\end{center}
+\end{frame}
+
+\begin{frame}{Todo}
+	\begin{itemize}
+		\item[\done] Ordinary phases of matter
+		\begin{itemize}
+			\item[\done] Local order parameters
+		\end{itemize}
+		\item[\done] Integer quantum hall effect
+		\begin{itemize}
+			\item[\done] Hall effect
+			\item[\done] Hall plateaus
+			\item[\done] No local order parameters
+		\end{itemize}
+		\item[\done] Topological phases of matter
+		\begin{itemize}
+			\item[\done] Low temperature?
+			\item[\done] How robust?
+			\item[\done] Topological?
+		\end{itemize}
+		\item[\done] Symmetry protected topological phases of matter
+		\begin{itemize}
+			\item[\done] Short range entangled
+			\item[\done] Symmetry
+		\end{itemize}
+		\item[\todo] Results
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{SPT index}
+	A map
+	\[\textrm{index}:\{\psi\text{ is SRE and $G$-invariant}\}\rightarrow\{\textrm{discrete set}\}\]
+	is an SPT index if
+	\begin{align*}
+		\psi_1&\sim_G\psi_2&&\Rightarrow&\textrm{index}(\psi_1)&=\textrm{index}(\psi_2).
+	\end{align*}
+	\pause
+	An SPT index is complete if $\Leftrightarrow$.
+\end{frame}
+
+\section{Results}
+
+\begin{frame}{1D SPT classification results}
+	Let $\AA$ be a quasi local algebra over $\ZZ$.
+	\begin{block}{Theorem 1:}
+		There exists an $H^2(G,U(1))$ valued index on $G$-invariant SRE states. This index is invariant under $G$-invariant LGA's\footnote{Yoshiko Ogata. A classification of pure states on quantum spin chains satisfying the split property with on-site finite group symmetries. arXiv:1908.08621, 2019.}. (This result is more general)
+	\end{block}
+\end{frame}
+
+\begin{frame}{1D SPT classification results}
+	Let $\AA$ be a quasi local algebra over $\ZZ$.
+	\begin{block}{Theorem 2:}
+		If two $G$-invariant SRE states $\omega_1$ and $\omega_2$ have the same $H^2(G,U(1))$-valued index then there exist $G$-invariant product states $\phi_1,\phi_2$ and an LGA $\gamma_{0;1}^K$ such that
+		\[\omega_1\otimes_{\text{stack}}\phi_1=\omega_2\otimes_{\text{stack}}\phi_2\circ\gamma_{0;1}^K \footnote{Anton Kapustin, Nikita Sopenko, and Bowen Yang. A classification of invertible phases of bosonic quantum lattice systems in one dimension. Journal of Mathematical Physics, 62(8):081901, Aug 2021.}.\]
+	\end{block}
+\end{frame}
+
+\begin{frame}{Loops of 1D SPT classification results}
+	Let $\AA$ be a quasi local algebra over $\ZZ$.
+	\begin{block}{Theorem 3:}
+		$G$-invariant locally generated loops of invertible states are classified by an $H^2(G,U(1))\oplus H^1(G,U(1))$-valued index. This classification is also complete.\footnote{Sven Bachmann, Wojciech De Roeck, Martin Fraas and Tijl Jappens, A classification of G-charge Thouless pumps in 1D invertible states, https://doi.org/10.48550/arxiv.2204.03763, 2022}
+	\end{block}
+\end{frame}
+
+\begin{frame}{2D SPT classification results}
+	Let $\AA$ be a quasi local algebra over $\ZZ^2$.
+	\begin{block}{Theorem 4:}
+		$G$-invariant SRE's carry an $H^3(G,U(1))$-valued index. This index is invariant under $G$-invariant LGAs.\footnote{Yoshiko Ogata. A $H^3(G,U(1))$-valued index of symmetry protected topological phases with on-site finite group symmetry for two-dimensional quantum spin systems. arXiv:2101.00426, 2021.}
+	\end{block}
+\end{frame}
+
+\begin{frame}{2D translation invariant SPT classification results}
+	Let $\AA$ be a quasi local algebra over $\ZZ^2$.
+	\begin{block}{Theorem 5:}
+		$G$-invariant stably SRE's, that are translation invariant in one direction carry an $H^3(G,U(1))\oplus H^2(G,U(1))$-valued index. This index is invariant under $G$-invariant, translation invariant LGA's.\footnote{Tijl Jappens, SPT indices emerging from translation invariance in two-dimensional quantum spin systems, https://doi.org/10.48550/arxiv.2202.11758, 2022}
+	\end{block}
+\end{frame}
+
+\begin{frame}{2D translation invariant SPT classification results}
+	Let $\AA$ be a quasi local algebra over $\ZZ^2$.
+	\begin{block}{Theorem 6:}
+		$G$-invariant stably SRE's, that are translation invariant in two directions carry an
+		\[H^3(G,U(1))\oplus H^2(G,U(1))\oplus H^2(G,U(1))\oplus H^1(G,U(1))\]
+		-valued index. This index is invariant under $G$-invariant, translation invariant (in two directions) LGA's.\footnote{Tijl Jappens, SPT indices emerging from translation invariance in two-dimensional quantum spin systems, https://doi.org/10.48550/arxiv.2202.11758, 2022 (Accepted by CMP).}
+	\end{block}
+\end{frame}
+
+\section{End slide}
+
+\begin{frame}{Todo}
+	\begin{itemize}
+		\item[\done] Ordinary phases of matter
+		\begin{itemize}
+			\item[\done] Local order parameters
+		\end{itemize}
+		\item[\done] Integer quantum hall effect
+		\begin{itemize}
+			\item[\done] Hall effect
+			\item[\done] Hall plateaus
+			\item[\done] No local order parameters
+		\end{itemize}
+		\item[\done] Topological phases of matter
+		\begin{itemize}
+			\item[\done] Low temperature?
+			\item[\done] How robust?
+			\item[\done] Topological?
+		\end{itemize}
+		\item[\done] Symmetry protected topological phases of matter
+		\begin{itemize}
+			\item[\done] Short range entangled
+			\item[\done] Symmetry
+		\end{itemize}
+		\item[\done] Results
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{End of the presentation}
+	\begin{center}
+		\includegraphics[width=0.8\textwidth]{Images/thank-you.png}
+	\end{center}
+\end{frame}
+
+\end{document}
