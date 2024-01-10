@@ -1,0 +1,649 @@
+\documentclass{beamer}
+\input{myBeamerPackage.tex}
+
+\title[SPT classification]%\hspace{1cm} \insertframenumber/\inserttotalframenumber]
+{SPT classification:\\from entangled pair states to recent proofs}
+
+\author[Tijl]
+{Tijl Jappens \\
+ \scriptsize KU Leuven}
+
+
+\institute[]{
+instituut voor theoretische fysica KU Leuven
+}
+
+
+\date{\today}
+
+\setbeamertemplate{itemize items}{\color{black}$\triangleright$}
+\setbeamertemplate{enumerate items}{\color{black}\insertenumlabel.}
+
+\usepackage[T1]{fontenc}
+\DeclareRobustCommand{\augiefamily}{%
+  \fontfamily{augie}\fontseries{m}\fontshape{n}\selectfont}
+\DeclareTextFontCommand{\textaugie}{\augiefamily}
+
+\begin{document}
+
+%%%%%%%%%% Removes the frame number from the title page %%%%%%%%%%
+\bgroup
+\makeatletter
+\setbeamertemplate{footline}
+{
+  \leavevmode%
+  \hbox{%
+  \begin{beamercolorbox}[wd=.333333\paperwidth,ht=2.25ex,dp=1ex,center]{author in head/foot}%
+ %   \usebeamerfont{author in head/foot}\insertshortauthor\expandafter\beamer@ifempty\expandafter{\beamer@shortinstitute}{}{~~(\insertshortinstitute)}
+  \end{beamercolorbox}%
+  \begin{beamercolorbox}[wd=.333333\paperwidth,ht=2.25ex,dp=1ex,center]{title in head/foot}%
+%    \usebeamerfont{title in head/foot}\insertshorttitle
+  \end{beamercolorbox}%
+  \begin{beamercolorbox}[wd=.333333\paperwidth,ht=2.25ex,dp=1ex,right]{date in head/foot}%
+%    \usebeamerfont{date in head/foot}\insertshortdate{}\hspace*{2em}
+%    \insertframenumber{} / \inserttotalframenumber\hspace*{2ex} 
+  \end{beamercolorbox}}%
+  \vskip0pt%
+}
+\makeatother
+\begin{frame}
+\titlepage
+\end{frame}
+\egroup
+
+\section{Topological phases of matter}
+
+\setcounter{framenumber}{0}
+\begin{frame}{Topological phases of matter}
+	What do:
+	\begin{figure}
+		\centering
+		\begin{subfigure}[b]{0.4\textwidth}
+			\centering
+			\includegraphics[width=\textwidth]{Figures/IntegerQHE.png}
+			\caption{Integer quantum Hall effect (1980)}
+		\end{subfigure}
+		\hfill
+		\begin{subfigure}[b]{0.4\textwidth}
+			\centering
+			\includegraphics[width=\textwidth]{Figures/FractionalQHE.png}
+			\caption{Fractional quantum Hall effect (1982)}
+		\end{subfigure}
+	\end{figure}
+\end{frame}
+
+\begin{frame}
+	\begin{figure}
+		\centering
+		\begin{subfigure}[b]{0.4\textwidth}
+			\centering
+			\includegraphics[width=\textwidth]{Figures/MajoranaEdgeModes.png}
+			\caption{Majorana edge modes (not found yet)}
+		\end{subfigure}
+		\hfill
+		\begin{subfigure}[b]{0.4\textwidth}
+			\centering
+			\includegraphics[width=\textwidth]{Figures/Fermi-Hubbard Ladders.pdf}
+			\caption{Haldane phase (2021)}
+		\end{subfigure}
+	\end{figure}
+	have in common?
+\end{frame}
+
+\section{Gapped phases of quantum matter}
+\subsection{Two definitions}
+
+\begin{frame}{Unique gapped groundstates}
+	\begin{columns}
+		\begin{column}{0.7\textwidth}
+			They are described by Hamiltonians $H$ that
+			\begin{itemize}
+				\item<2-> have a "unique gapped (bulk) ground-state" $\ket{\psi}$.
+				\item<3-> are a sum of local terms.
+			\end{itemize}
+		\end{column}
+		\begin{column}{0.3\textwidth}
+			\begin{center}
+				\input{Figures/SPEC(H).tikz}
+			\end{center}
+		\end{column}
+	\end{columns}
+	
+\end{frame}
+
+\begin{frame}{Gapped phases of quantum matter}
+	Two Hamiltonians, $H(0)$ and $H(1)$ are connected if:
+	\begin{center}
+		\begin{tikzpicture}
+		\node (0) [circle,fill,inner sep=3pt] at (0,0) {};
+		\node (0 -1) [] at (0,-0.5) {$H(0)$};
+		\node (1) [circle,fill,inner sep=3pt] at (5,0) {};
+		\node (1 -1) [] at (5,-0.5) {$H(1)$};
+		\draw [line width=2pt,-{Stealth[scale = 1.2]}] (0) -- (1);
+		\node (arrow) [] at (2.5,-0.5) {$H(t)$};
+		\end{tikzpicture}
+	\end{center}
+	\begin{itemize}
+		\item<2-> $H(t)$ is gapped.
+		\item<3-> The local terms of $H(t)$ are continuous in $t$.
+	\end{itemize}
+	
+\end{frame}
+
+\begin{frame}
+	Two states $\psi_0$ and $\psi_1$ are connected ($\psi_0\sim\psi_1$) if
+	\begin{center}
+		\begin{tikzpicture}
+		\node (0) [circle,fill,inner sep=3pt] at (0,0) {};
+		\node (0 -1) [] at (0,-0.5) {$\psi_0$};
+		\node (1) [circle,fill,inner sep=3pt] at (5,0) {};
+		\node (1 -1) [] at (5,-0.5) {$\psi_1$};
+		\draw [line width=2pt,-{Stealth[scale = 1.2]}] (0) -- (1);
+		\node (arrow) [] at (2.5,-0.5) {$\psi_t=\psi_0\circ\gamma^K_{0;t}$};
+		\end{tikzpicture}
+	\end{center}
+	where $\gamma^K_{0;t}$, defined through:
+	\[\frac{\d}{\d t}\gamma_{0;t}^K(A)=\sum_i \gamma_{0;t}^K([-iK_i(t),A]).\]
+	is a locally generated family of automorphisms (LGA).
+\end{frame}
+
+\begin{frame}
+	These two concepts are equivalent:
+	\begin{itemize}
+		\item<2-> If $H(0)$ and $H(1)$ are equivalent through a path $H(t)$, the groundstates of $H(t)$ form a path.
+		\item<3-> If $\psi_0$ and $\psi_1$ are equivalent through a path $\psi_t$, there exists a path of parent Hamiltonians $H(t)$ for $\psi_t$.
+	\end{itemize}
+\end{frame}
+
+\subsection{Picture of gapped phases of matter}
+
+\begin{frame}{Gapped phases of quantum matter}
+	\begin{center}
+		\includegraphics[trim={6cm 0 2.5cm 0},clip,width=0.8\textwidth]{Figures/GappedPhasesOfQuantumMatter.pdf}
+	\end{center}
+\end{frame}
+
+\begin{frame}{Scope of this thesis}
+	\begin{center}
+		\includegraphics[trim={1.5cm 0 2cm 0},clip,width=0.8\textwidth]{Figures/TrivialGappedPhaseOfQuantumMatter.pdf}
+	\end{center}
+\end{frame}
+
+\section{Lattice models}
+\subsection{The quasi-local $C^*$-algebra}
+
+\begin{frame}{The quantum lattice, $\Lambda$}
+	Define $\AA_{\text{loc}}$ through
+	\begin{center}
+		\input{Figures/Lattice.tikz}
+	\end{center}
+	\pause
+	Define quasi-local algebra $\AA=\overline{\AA_{\text{loc}}}.$
+\end{frame}
+
+\subsection{SRE definition}
+
+\begin{frame}{Trivial phase: short-ranged entangled (SRE) phase}
+	\begin{block}{Definition}
+		$\psi$ is SRE if:
+		\[\phi=\psi\circ \gamma^K_{0;1}\]
+		\begin{itemize}
+			\item $\gamma^K_{0;1}$, LGA.
+			\item $\phi$, product state:
+		\end{itemize}
+		\[\phi=\bigotimes_{i\in\Lambda}\bra{v_i}\cdot\ket{v_i}\qquad \ket{v_i}\in\CC^d.\]
+	\end{block}
+\end{frame}
+
+\begin{frame}{Trivial phase: SRE phase}
+	\begin{center}
+		\includegraphics[trim={1.5cm 0 2cm 0},clip,width=0.8\textwidth]{Figures/SRE_Phase.pdf}
+	\end{center}
+\end{frame}
+
+\subsection{FDQC definition}
+
+\begin{frame}{Example of LGA: Finite depth quantum cirquit}
+	\begin{center}
+		\input{Figures/FiniteDepthQuantumCircuit.tikz}
+	\end{center}
+\end{frame}
+
+\begin{frame}{Finite depth quantum circuit is locality preserving}
+	\begin{center}
+		\scalebox{0.75}{\input{Figures/SupportOf_A.tikz}}
+	\end{center}
+	\pause
+	\begin{center}
+		\scalebox{0.75}{\input{Figures/SupportOf_A_After_U.tikz}}
+	\end{center}
+\end{frame}
+
+\subsection{Locality}
+
+\begin{frame}{Finite depth quantum circuit is locality preserving}
+	If I calculate $\Ad{V}(A)$ for $V$ a FDQC and $A$ local I only need unitaries in a cone:
+	\begin{center}
+		\scalebox{0.75}{
+			\input{Figures/FiniteDepthQuantumCircuitLightcone.tikz}
+		}
+	\end{center}
+\end{frame}
+
+\section{Symmetry}
+\subsection{Idea}
+
+\begin{frame}{Enriching with symmetry}
+	\includegraphics[width=\textwidth]{Figures/G-invariant_Parts_Of_SRE_Phase.pdf}
+\end{frame}
+
+\subsection{On-site action}
+
+\begin{frame}{Enriching with symmetry}
+	\begin{center}
+		\scalebox{0.75}{
+		\input{Figures/GroupActionQuantumCirquit.tikz}
+		}
+	\end{center}
+	\begin{itemize}
+		\item $G$ compact Lie group.
+		\item $U_i\in\hom(G,\UU(\CC^d))$ representation on on site Hilbert space.
+		\item $\beta_g=\bigotimes_{i\in\Lambda}\Ad{U_i(g)}$ group action.
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Enriching with symmetry}
+	\begin{itemize}
+		\item<1-> $\psi$ is $G$-invariant if
+		\[\psi\circ\beta_g=\psi.\]
+		\item<2-> An LGA, $\gamma^K_{0;1}$ is $G$-invariant if each of the local terms of $K$ is $G$-invariant.
+		\item<3-> In particular, a FDQC, $V$ is $G$-invariant if
+		\[[U_{i}(g)\otimes U_j(g),V_{i,j}]=0.\]
+		\item<4-> A path from $\psi_0\sim \psi_1$ (both $G$-invariant) is $G$-invariant if the path is $G$-invariant (we write $\psi_0\sim_G\psi_1$).
+	\end{itemize}
+\end{frame}
+
+\section{SPT landscape}
+
+\begin{frame}{SPT phases}
+	\includegraphics[width=\textwidth]{Figures/SPT_Phases.pdf}
+\end{frame}
+
+\begin{frame}{SPT index}
+	A map
+	\[\textrm{index}:\{\psi\text{ is SRE and $G$-invariant}\}\rightarrow\{\textrm{discrete set}\}\]
+	is an SPT index if
+	\begin{align*}
+		\psi_1&\sim_G\psi_2&&\Rightarrow&\textrm{index}(\psi_1)&=\textrm{index}(\psi_2).
+	\end{align*}
+	\pause
+	An SPT index is complete if $\Leftrightarrow$.
+\end{frame}
+
+\section{Results}
+
+\begin{frame}{1D SPT classification results}
+	Let $\AA$ be a quasi local algebra over $\ZZ$.
+	\begin{block}{Theorem 1:}
+		There exists an $H^2(G,U(1))$ valued index on $G$-invariant SRE states. This index is invariant under $G$-invariant LGA's\footnote{Yoshiko Ogata. A classification of pure states on quantum spin chains satisfying the split property with on-site finite group symmetries. arXiv:1908.08621, 2019.}. (This result is more general)
+	\end{block}
+\end{frame}
+
+\begin{frame}{1D SPT classification results}
+	Let $\AA$ be a quasi local algebra over $\ZZ$.
+	\begin{block}{Theorem 2:}
+		If two $G$-invariant SRE states $\omega_1$ and $\omega_2$ have the same $H^2(G,U(1))$-valued index then there exist $G$-invariant product states $\phi_1,\phi_2$ and an LGA $\gamma_{0;1}^K$ such that
+		\[\omega_1\otimes_{\text{stack}}\phi_1=\omega_2\otimes_{\text{stack}}\phi_2\circ\gamma_{0;1}^K \footnote{Anton Kapustin, Nikita Sopenko, and Bowen Yang. A classification of invertible phases of bosonic quantum lattice systems in one dimension. Journal of Mathematical Physics, 62(8):081901, Aug 2021.}.\]
+	\end{block}
+\end{frame}
+
+\begin{frame}{Loops of 1D SPT classification results}
+	Let $\AA$ be a quasi local algebra over $\ZZ$.
+	\begin{block}{Theorem 3:}
+		$G$-invariant locally generated loops of invertible states are classified by an $H^2(G,U(1))\oplus H^1(G,U(1))$-valued index. This classification is also complete.\footnote{Sven Bachmann, Wojciech De Roeck, Martin Fraas and Tijl Jappens, A classification of G-charge Thouless pumps in 1D invertible states, https://doi.org/10.48550/arxiv.2204.03763, 2022}
+	\end{block}
+\end{frame}
+
+\begin{frame}{2D SPT classification results}
+	Let $\AA$ be a quasi local algebra over $\ZZ^2$.
+	\begin{block}{Theorem 4:}
+		$G$-invariant SRE's carry an $H^3(G,U(1))$-valued index. This index is invariant under $G$-invariant LGAs.\footnote{Yoshiko Ogata. A $H^3(G,U(1))$-valued index of symmetry protected topological phases with on-site finite group symmetry for two-dimensional quantum spin systems. arXiv:2101.00426, 2021.}
+	\end{block}
+\end{frame}
+
+\begin{frame}{2D translation invariant SPT classification results}
+	Let $\AA$ be a quasi local algebra over $\ZZ^2$.
+	\begin{block}{Theorem 5:}
+		$G$-invariant stably SRE's, that are translation invariant in one direction carry an $H^3(G,U(1))\oplus H^2(G,U(1))$-valued index. This index is invariant under $G$-invariant, translation invariant LGA's.\footnote{Tijl Jappens, SPT indices emerging from translation invariance in two-dimensional quantum spin systems, https://doi.org/10.48550/arxiv.2202.11758, 2022}
+	\end{block}
+\end{frame}
+
+\begin{frame}{2D translation invariant SPT classification results}
+	Let $\AA$ be a quasi local algebra over $\ZZ^2$.
+	\begin{block}{Theorem 6:}
+		$G$-invariant stably SRE's, that are translation invariant in two directions carry an
+		\[H^3(G,U(1))\oplus H^2(G,U(1))\oplus H^2(G,U(1))\oplus H^1(G,U(1))\]
+		-valued index. This index is invariant under $G$-invariant, translation invariant (in two directions) LGA's.\footnote{Tijl Jappens, SPT indices emerging from translation invariance in two-dimensional quantum spin systems, https://doi.org/10.48550/arxiv.2202.11758, 2022 (Accepted by CMP).}
+	\end{block}
+\end{frame}
+
+\section{End slide}
+
+\begin{frame}{End of the presentation}
+	\begin{center}
+		\includegraphics[width=0.8\textwidth]{Figures/thank-you.png}
+	\end{center}
+\end{frame}
+
+\section{Additional material}
+\section{1D}
+\subsection{1D example}
+
+\begin{frame}{Example:}
+	\begin{itemize}
+		\item We take $G=\ZZ_2\times\ZZ_2$.
+		\item We write the group elements as:
+		\begin{align*}
+			e&=(1,1)&g_x&=(-1,1)&g_y&=(1,-1)&g_z&=(-1,-1).
+		\end{align*}
+	\end{itemize}
+	
+\end{frame}
+
+\begin{frame}{The singlet and the triplet}
+	\begin{block}{On site Hilbert space}
+		In $\CC^4\cong \CC^2\otimes \CC^2$, take as basis
+		\begin{align*}
+			&&\ket{s}&=\frac{1}{\sqrt{2}}(\ket{\uparrow\downarrow}-\ket{\downarrow\uparrow})&&\\
+			\ket{0}&=\frac{1}{\sqrt{2}}(\ket{\uparrow\downarrow}+\ket{\downarrow\uparrow})&\ket{-1}&=\ket{\downarrow\downarrow}&\ket{1}&=\ket{\uparrow\uparrow}.
+		\end{align*}
+	\end{block}
+	\pause
+	\begin{block}{Group action}
+		Take $U\in \textrm{Hom}(\ZZ^2\times \ZZ^2,U(\CC^4))$ by setting
+		\begin{align*}
+		U(-1,1)&=-\sigma_x\otimes \sigma_x&U(1,-1)&=-\sigma_y\otimes \sigma_y&U(-1,-1)&=-\sigma_z\otimes \sigma_z.
+		\end{align*}
+	\end{block}
+\end{frame}
+
+\begin{frame}{The singlet and the triplet}
+	\begin{block}{Group action}
+		Take $U\in \textrm{Hom}(\ZZ^2\times \ZZ^2,U(\CC^4))$ by setting
+		\begin{align*}
+		U(-1,1)&=-\sigma_x\otimes \sigma_x&U(1,-1)&=-\sigma_y\otimes \sigma_y&U(-1,-1)&=-\sigma_z\otimes \sigma_z.
+		\end{align*}
+	\end{block}
+	Think of $\ZZ^2\times \ZZ^2$ as a subgroup of $SO(3)$ where
+	\begin{itemize}
+		\item $(-1,1)$ rotates around $x$-axis by $\pi$ radial.
+		\item $(1,-1)$ rotates around $y$-axis by $\pi$ radial.
+		\item $(-1,-1)$ rotates around $z$-axis by $\pi$ radial.
+	\end{itemize}
+	\pause
+	\begin{block}{Back to the state}
+		$\ket{s}$ is invariant under $\ZZ^2\times \ZZ^2$.\\
+		$\ket{-1},\ket{0},\ket{1}$ transform irreducibly under $\ZZ^2\times \ZZ^2$.
+	\end{block}
+\end{frame}
+
+\begin{frame}{Intermezzo linear and projective representations}
+	We had a (linear) representation
+	\begin{align*}
+			U(-1,1)&=-\sigma_x\otimes \sigma_x&U(1,-1)&=-\sigma_y\otimes \sigma_y&U(-1,1)&=-\sigma_z\otimes \sigma_z.
+	\end{align*}
+	\pause
+	I can rewrite this as:\\
+	\begin{align*}
+	U(-1,1)&=(i\sigma_x)\otimes (i\sigma_x)&U(1,-1)&=(i\sigma_y)\otimes (i\sigma_y)&U(-1,1)&=(i\sigma_z)\otimes (i\sigma_z).
+	\end{align*}
+	\pause
+	Is
+	\begin{align*}
+		R(-1,1)&=i\sigma_x&R(1,-1)&=i\sigma_y&R(-1,-1)&=i\sigma_z
+	\end{align*}
+	 a representation on $\CC^2$? \pause No:
+	\begin{equation*}
+		R(-1,1)R(1,-1)=-R(1,-1)R(-1,1)=-i R(-1,-1).
+	\end{equation*}
+\end{frame}
+
+\begin{frame}{The $G$-invariant product state}
+	\input{Figures/TrivialProductState.tikz}\\
+	On $\bigotimes_{i\in\Lambda}(\CC^4)$, define a state
+	\begin{equation*}
+		\ket{\phi}=\bigotimes_{i\in\Lambda}\ket{s}_{(i,L),(i,R)}
+	\end{equation*}
+	\pause
+	It is a $G$-invariant product state.
+\end{frame}
+
+\begin{frame}{The entangled pair state}
+	\input{Figures/FakeAKLT_State.tikz}\\
+	On $\bigotimes_{i\in\Lambda}(\CC^4)$, define a state
+	\begin{equation*}
+		\ket{\psi}=\bigotimes_{i\in\Lambda}\ket{s}_{(i,R),(i+1,L)}
+	\end{equation*}
+	\pause
+	It is $G$-invariant.
+\end{frame}
+
+\begin{frame}{SP phases in 1d for $G=\ZZ_2\times \ZZ_2$}
+	\begin{center}
+		\includegraphics[width=\linewidth]{Figures/SPT_Phases_1d.pdf}
+	\end{center}
+\end{frame}
+
+\subsection{1D proof of connectedness}
+
+\begin{frame}{Connecting $\ket{\psi}$ and $\ket{\phi}$}
+	I can connect $\ket{\psi}$ and $\ket{\phi}$ with a quantum circuit of depth 3:
+	\begin{center}
+		\scalebox{0.75}{
+		\input{Figures/FakeAKLT_IsSRE.tikz}
+		}
+	\end{center}
+	\pause
+	However, this is not $G$-invariant.\\
+	\pause
+	Can I find a $G$-invariant quantum cirquit?
+\end{frame}
+
+\subsection{1D proof not connected via G-invariant path}
+
+\begin{frame}{The entangled pair state}
+	$\ket{\psi}=\ket{\psi_L}\otimes\ket{s}\otimes\ket{\psi_R}$ \\
+	\input{Figures/FakeAKLT_State_TwoParts.tikz}\\
+	\pause
+	\begin{equation*}
+		\textrm{Tr}_L(\ket{\psi}\bra{\psi})=\frac{1}{2}(\ket{\uparrow}\bra{\uparrow}+\ket{\downarrow}\bra{\downarrow})\otimes\ket{\psi_R}\bra{\psi_R}.
+	\end{equation*}
+	This is a (perfectly) mixed state. Take a basis of this mixed state
+	\begin{align*}
+		\ket{v_1}=&\ket{\uparrow}\otimes\ket{\psi_R}&\ket{v_2}=&\ket{\downarrow}\otimes\ket{\psi_R}.
+	\end{align*}
+	\pause
+	This subspace transforms under $\ZZ_2\times\ZZ_2$ as
+	\begin{align*}
+		R(-1,1)&=i\sigma_x&R(1,-1)&=i\sigma_y&R(-1,-1)&=i\sigma_z.
+	\end{align*}
+	\begin{block}{Claim}
+		The right half of this chain transforms projectively under the group action.
+	\end{block}
+\end{frame}
+
+\begin{frame}{The product state}
+	$\ket{\phi}=\ket{\phi_{L}}\otimes\ket{\phi_{R}}$ \\
+	\input{Figures/TrivialProductState_TwoParts.tikz}\\
+	\pause
+	\begin{equation*}
+		\textrm{Tr}_L(\ket{\phi}\bra{\phi})=\ket{\phi_{R}}\bra{\phi_{R}}.
+	\end{equation*}
+	\pause
+	This subspace transforms under $\ZZ_2\times\ZZ_2$ one-dimensionally.
+	\begin{block}{Claim}
+		The right half of this chain transforms linearly under the group action.
+	\end{block}
+\end{frame}
+
+\begin{frame}{Proof that I can't connect $\ket{\phi}$ and $\ket{\psi}$ through finite depth quantum cirquit}
+	Suppose I can connect $\ket{\psi}$ and $\ket{\phi}$ through $G$-invariant quantum circuit of depth $d$:
+	\begin{figure}
+		\center
+		\includegraphics[width=0.8\textwidth]{Figures/ConnectingPsiAndPsi0Proof.png}
+	\end{figure}
+\end{frame}
+
+\begin{frame}{Proof that I can't connect $\ket{\phi}$ and $\ket{\psi}$ through finite depth quantum cirquit}
+	Set all unitaries of FDQC with support on the left to be $\id$.
+	\begin{figure}
+		\center
+		\includegraphics[width=0.75\textwidth]{Figures/ConnectingPsiAndPsi0Proof2.png}
+	\end{figure}
+\end{frame}
+
+\begin{frame}{Proof that I can't connect $\ket{\phi}$ and $\ket{\psi}$ through finite depth quantum cirquit}
+	This implies that there exists a state $\ket{\tilde\psi}$ that looks like $\ket{\psi}$ on the left and $\ket{\phi}$ on the right:
+	\begin{figure}
+		\center
+		\includegraphics[width=0.75\textwidth]{Figures/ConnectingPsiAndPsi0Proof2_WithLightcone.png}
+	\end{figure}
+	\pause
+	For $A_L\in\AA_L$ and $A_R\in\AA_R$ respectively I have
+	\begin{align}
+		\bra{\tilde\psi}A_L\ket{\tilde{\psi}}&=\bra{\psi}A_L\ket{\psi}&\bra{\tilde\psi}A_R\ket{\tilde{\psi}}&=\bra{\phi}A_R\ket{\phi}.
+	\end{align}
+\end{frame}
+
+\begin{frame}{Proof that I can't connect $\ket{\phi}$ and $\ket{\psi}$ through finite depth quantum cirquit}
+	For $A_L\in\AA_L$ and $A_R\in\AA_R$ respectively I have
+	\begin{align}
+		\bra{\tilde\psi}A_L\ket{\tilde{\psi}}&=\bra{\psi}A_L\ket{\psi}&\bra{\tilde\psi}A_R\ket{\tilde{\psi}}&=\bra{\phi}A_R\ket{\phi}.
+	\end{align}
+	\pause
+	This means that
+	\begin{itemize}
+		\item $\ket{\tilde{\psi}}$ transforms projectively under $U_L(g)=\bigotimes_{i \in L}U_i(g)$.
+		\item $\ket{\tilde{\psi}}$ transforms trivially under $U_R(g)=\bigotimes_{i \in R}U_i(g)$.
+		\item <3->$U_C(g)=\bigotimes_{i\in C}U_i(g)$ is a linear representation.
+	\end{itemize}
+	\pause
+	\pause
+	$\ket{\tilde{\psi}}$ has to transform projectively\\
+	\pause
+	$\Rightarrow$ $\ket{\tilde{\psi}}$ cannot be $G$-invariant.
+\end{frame}
+
+\begin{frame}{SP phases in 1d for $G=\ZZ_2\times \ZZ_2$}
+	\begin{center}
+		\includegraphics[width=\linewidth]{Figures/SPT_Phases_1d.pdf}
+	\end{center}
+\end{frame}
+
+\section{Edge modes}
+
+\begin{frame}{Edge modes}
+	\begin{columns}
+		\begin{column}{0.6\textwidth}
+			\begin{block}{Definition}
+				Edge modes are the ground-state degeneracy introduced by introducing an edge.
+			\end{block}
+			\pause
+			E.g. Let $H\in\BB(\HH_L\otimes\HH_R)$ be
+			\begin{enumerate}
+				\item $G$-invariant.
+				\item sum of local terms.
+				\item with SPT $\ket{\psi}$ as unique gapped ground-state.
+			\end{enumerate}
+		\end{column}
+		\begin{column}{0.4\textwidth}  %%<--- here
+			\begin{center}
+				\includegraphics[width=\textwidth]{Figures/Fermi-Hubbard Ladders.pdf}
+			\end{center}
+		\end{column}
+	\end{columns}
+\end{frame}
+
+\begin{frame}{Edge modes}
+	\begin{columns}
+		\begin{column}{0.6\textwidth}
+			Eg. Let $H_R\in\BB(\HH_R)$ be the conditional expectation of $H$ to $\HH_R$ then:
+			\pause
+			\begin{enumerate}
+				\item The ground state of $H_R$ doesn't have to be unique.
+				\item The ground state subspace has to be $G$-invariant.
+				\item If the SPT index is non-trivial the ground-state of $H_R$ can't be unique (protected ground-state degeneracy).
+			\end{enumerate}
+		\end{column}
+		\begin{column}{0.4\textwidth}  %%<--- here
+			\begin{center}
+				\includegraphics[width=\textwidth]{Figures/Fermi-Hubbard Ladders.pdf}
+			\end{center}
+		\end{column}
+	\end{columns}
+\end{frame}
+
+\section{Cohomology}
+
+\begin{frame}{Second group cohomology group}
+	Let $G$ be a compact lie group.
+	\begin{block}{Definition}
+		Take $R:G\rightarrow U(\CC^D)$. $R$ is the lift of a projective representation if there exists a $C:G^2\rightarrow U(1)$ satisfying
+		\[R(g)R(h)=C(g,h)R(gh).\]
+	\end{block}
+	\pause
+	Because of associativity
+	\begin{align*}
+		(R(g)R(h))R(l)&=R(g)(R(h)R(l))\\
+		C(g,h)C(gh,l)&=C(g,hl)C(h,l).
+	\end{align*}
+	Such a C is called a 2-cochain ($C\in Z^2$).
+\end{frame}
+
+\begin{frame}{Second group cohomology group}
+	\begin{block}{Definition}
+		We call $C:G^2\rightarrow U(1)$ a coboundary ($C\in B^2$) if there exists a $\beta:G\rightarrow U(1)$ such that
+		\[C(g,h)=\beta(g)\beta(h)\overline{\beta(gh)}.\]
+	\end{block}
+	The second group cohomology group is defined as $H^2(G,U(1)):=Z^2/B^2$.
+	\pause
+	\begin{block}{Claim}
+		The AKLT groundstate cannot be connected to a product state because the cochain corresponding to
+		\begin{align*}
+			R(1,0)&=\sigma^x&R(0,1)&=\sigma^z&R(1,1)&=\sigma^y
+		\end{align*}
+		is in a nontrivial second group cohomology class.
+	\end{block}
+\end{frame}
+
+\section{2D example}
+
+\begin{frame}{Two dimensional SPT example}
+	\begin{itemize}
+		\item We construct a $G=\ZZ_2$ SPT over the lattice $\ZZ^2$.
+		\item Take on-site Hilbert space $\CC^{16}=\CC^2\otimes\CC^2\otimes\CC^2\otimes\CC^2$.
+		\item Denote the vectors of $\CC^2$ by $\ket{g}$ where $g\in\ZZ_2$.
+		\item We denote the on-site group action by
+		\begin{align}
+			U(g)\ket{l_1,l_2,l_3,l_4}&=\alpha(g,l_1,l_2,l_3,l_4)\ket{l_1g,l_2g,l_3g,l_4g}\\
+			\alpha(g,l_1,l_2,l_3,l_4)&=\frac{\omega(l_3l_4^{-1},l_4,g)\omega(l_4l_1^{-1},l_1,g)}{\omega(l_2l_1^{-1},l_1,g)\omega(l_3l_2^{-1},l_2,g)}.
+		\end{align}
+		\item It turns out (although I won't prove it) that if $\omega\in Z^3(G,U(1))$, $U(g)$ is a representation.
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Two dimensional SPT example}
+	\begin{itemize}
+		\item Importantly:
+		\[\alpha(g,l,l,l,l)=\frac{\omega(e,l,g)\omega(e,l,g)}{\omega(e,l,g)\omega(e,l,g)}=1.\]
+		\item This implies that $\ket{v}=\frac{1}{\sqrt{2}}(\ket{0,0,0,0}+\ket{1,1,1,1})$ is an invariant vector.
+		\item This means that $\phi=\bigotimes_{i\in\ZZ^2}\bra{v}\cdot \ket{v}$ is a trivial product state.
+		\item Translating this state by half a site to the upper right gives a nontrivial SPT state with index $[\omega]_\sim\in H^3(G,U(1))$.
+	\end{itemize}
+\end{frame}
+
+
+
+\end{document}
+
+

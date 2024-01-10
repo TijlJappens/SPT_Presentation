@@ -1,0 +1,24 @@
+\begin{tikzpicture}
+	\foreach \i in {1,...,10}
+	{
+		\draw[black] (\i+0.5,0) ellipse (0.48 and 0.2);
+		\filldraw [black] (\i-0.15,0) circle (2pt);
+		\filldraw [black] (\i+0.15,0) circle (2pt);
+	}
+	\filldraw [black] (11-0.15,0) circle (2pt);
+	\filldraw [black] (11+0.15,0) circle (2pt);
+	\draw [decorate,decoration={brace,amplitude=5pt},xshift=0cm,yshift=0pt] (5,0.3) -- (5+1,0.3) node [black,midway,yshift=0.3cm] {\footnotesize $\ket{s}$};
+	\draw [decorate,decoration={brace,amplitude=5pt},xshift=0cm,yshift=0pt] (5+0.3,-0.3) -- (5-0.3,-0.3) node [black,midway,yshift=-0.3cm] {\footnotesize $\CC^4$};
+	\begin{scope}
+		\clip(0.5,0.2)rectangle(1,-0.2);
+		\draw[black] (0.5,0) ellipse (0.48 and 0.2);
+	\end{scope}
+	\begin{scope}
+		\clip(11,0.2)rectangle(11.5,-0.2);
+		\draw[black] (11.5,0) ellipse (0.48 and 0.2);
+	\end{scope}
+	\node (iL) [] at (5.5,-1) {$(i,L)$};
+	\draw[black,->] (6L) -- (iL);
+	\node (iR) [] at (6.5,-1) {$(i,R)$};
+	\draw[black,->] (6R) -- (iR);
+\end{tikzpicture}

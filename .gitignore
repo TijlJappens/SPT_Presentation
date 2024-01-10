@@ -1,4 +1,14 @@
-*.pdf
+SPT_Presentation.pdf
 *.aux
 *.synctex.gz
 README.md
+*.bbl
+*.blg
+*.log
+*.out
+*.nav
+*.snm
+*.toc
+*.odp#
+*.xml
+*.bcf

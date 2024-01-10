@@ -1,0 +1,14 @@
+\begin{tikzpicture}
+	\node (1L) at (0,0) {};
+	\node (1R) at (1,0) {};
+	\draw (1L) -- (1R);
+	\foreach \i in {2,...,11}
+	{
+		\node (\i L) at (0,1+0.2*\i) {};
+		\node (\i R) at (1,1+0.2*\i) {};
+		\draw (\i L) -- (\i R);
+	}
+	\node[] (1Groundstate) at (1.5,0) {$0$};
+	\draw [decorate,decoration={brace,amplitude=5pt},xshift=0cm,yshift=0pt] (0,0) -- (0,1.4) node [black,midway,xshift=-0.3cm] {$\Delta$};
+	\draw [decorate,decoration={brace,amplitude=5pt},xshift=0cm,yshift=0pt] (1,1+0.2*11) -- (1,1.4)  node [black,midway,xshift=1cm] {$\textrm{spec}(H)/0$};
+\end{tikzpicture}
